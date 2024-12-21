@@ -1,19 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Flex } from "@chakra-ui/react";
 import { Provider } from "./components/ui/provider";
+import validator from "validator";
+import axios from "axios";
 import connectionsIcon from "./assets/connections.svg";
 import infrastructureIcon from "./assets/infrastructure.svg";
 import standardizeIcon from "./assets/standardize.svg";
 import analyzeIcon from "./assets/analyze.svg";
 import backgroundImg from "./assets/universe.jpg";
 import standardizeIcon2 from "./assets/standardize2.svg";
+
 function LandingPage({ Component, pageProps }) {
   const [showBackgroundImg, setShowBackgroundImg] = useState(false);
+  const [showSignupPopup, setShowSignupPopup] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setShowBackgroundImg(true);
     }, 1000);
   }, []);
+
+  const emailRef1 = useRef(null);
+  const emailRef2 = useRef(null);
 
   return (
     <div className="landing-page--container">
@@ -40,6 +47,7 @@ function LandingPage({ Component, pageProps }) {
           {/* and teams? */}
           <div>We make the connections for you.</div>
           <br></br>
+          <SignupForm emailRef={emailRef1} />
           <div
             style={{
               display: "flex",
@@ -48,11 +56,6 @@ function LandingPage({ Component, pageProps }) {
               justifyContent: "center",
             }}
           >
-            <input
-              placeholder="Enter your email address"
-              className="landing-page--email-input"
-            ></input>
-            <button className="landing-page--button">Join Now</button>
             {/* <div className="landing-page-action-button-content">
               Join ___ others by signing up today.
             </div> */}
@@ -109,16 +112,80 @@ function LandingPage({ Component, pageProps }) {
         <br></br>
         <br></br>
         <br></br>
-        
+
         <div style={{ textAlign: "center" }}>
-          Application in development. Support us by signing up for email updates.
+          Application in development. Support us by signing up for email
+          updates.
         </div>
         <br></br>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button className="landing-page--button">Interested? Click Here.</button>
+          <button
+            onClick={() => setShowSignupPopup((prev) => !prev)}
+            className="landing-page--button"
+          >
+            Interested? Click Here.
+          </button>
         </div>
       </div>
+      {/* Popups here: */}
+      {showSignupPopup && (
+        <div
+          className="signup-popup"
+          id="popup"
+          onClick={(e) => {
+            if (e.target.id == "popup") {
+              setShowSignupPopup(false);
+            }
+          }}
+        >
+          <div className="signup-popup-container">
+            <h2 style={{ fontSize: "27px" }}>Sign up for updates</h2>
+            <SignupForm emailRef={emailRef2} />
+            <button
+              onClick={() => {
+                setShowSignupPopup(false);
+              }}
+              className="signup-popup-container-exit"
+            >
+              x
+            </button>
+          </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+function SignupForm(props) {
+  const { emailRef } = props;
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (validator.isEmail(emailRef.current.value)) {
+      axios
+        .post("http://localhost:3001/signup", { email: emailRef.current.value })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  return (
+    <form
+      style={{ display: "flex", gap: "30px", justifyContent: "center" }}
+      onSubmit={handleSubmit}
+    >
+      <input
+        ref={emailRef}
+        placeholder="Enter your email address"
+        className="landing-page--email-input"
+      ></input>
+      <button onClick={handleSubmit} className="landing-page--button">
+        Join Now
+      </button>
+    </form>
   );
 }
 

@@ -36,9 +36,12 @@ body {
       ),
       url("./assets/universe.jpg");
   }
-  50%{
-    background: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .8)),
-    url("./assets/universe.jpg");
+  50% {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.8)
+      ),
+      url("./assets/universe.jpg");
   }
   0% {
     background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1)),
@@ -138,12 +141,9 @@ body {
 .landing-page--fold-1 {
   height: 90vh;
   padding: 60px 60px;
-  background: linear-gradient(
-      rgba(255, 255, 255, 1),
-      rgba(196, 196, 196, 0.8)
-    ),
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(196, 196, 196, 0.8)),
     url("./assets/universe.jpg");
-    /* animation: fade-in 2s infinite ease-in-out; */
+  /* animation: fade-in 2s infinite ease-in-out; */
 }
 .landing-page--fold-2 {
   height: 90vh;
@@ -151,7 +151,6 @@ body {
   /* display: flex; */
   align-items: start;
   justify-content: space-between;
-  position: relative;
   /* background: linear-gradient(
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.5)
@@ -164,6 +163,43 @@ body {
     margin-bottom: 80px;
   }
   div {
-    z-index: 101;
+    z-index: 2;
   }
 }
+
+/* signup-popup */
+.signup-popup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(179, 179, 179, 0.8); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+  z-index: 100; /* Ensure it's above other content */
+  .signup-popup-container {
+    background-color: rgb(255, 255, 255);
+    padding: 20px 20px;
+    border-radius: 20px;
+    position: relative;
+  }
+  .signup-popup-container-exit{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: grey;
+    font-size:20px;
+    cursor:pointer;
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+  }
+  .signup-popup-container-exit:hover {
+    border: 1px solid grey;
+  }
+}
+
