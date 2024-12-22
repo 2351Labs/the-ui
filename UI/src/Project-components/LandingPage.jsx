@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Flex } from "@chakra-ui/react";
-import { Provider } from "./components/ui/provider";
+import { Provider } from "../components/ui/provider";
 import validator from "validator";
 import axios from "axios";
-import connectionsIcon from "./assets/connections.svg";
-import infrastructureIcon from "./assets/infrastructure.svg";
-import standardizeIcon from "./assets/standardize.svg";
-import analyzeIcon from "./assets/analyze.svg";
-import backgroundImg from "./assets/universe.jpg";
-import standardizeIcon2 from "./assets/standardize2.svg";
+import connectionsIcon from "../assets/connections.svg";
+import infrastructureIcon from "../assets/infrastructure.svg";
+import standardizeIcon from "../assets/standardize.svg";
+import analyzeIcon from "../assets/analyze.svg";
+import backgroundImg from "../assets/universe.jpg";
+import standardizeIcon2 from "../assets/standardize2.svg";
 
 function LandingPage({ Component, pageProps }) {
   const [showBackgroundImg, setShowBackgroundImg] = useState(false);
@@ -106,7 +106,7 @@ function LandingPage({ Component, pageProps }) {
             order={4}
             header="Analyze"
             img={analyzeIcon}
-            content="Automatically analyze data for insights and connections."
+            content="Automatically analyze your catalog for insights and connections."
           />
         </div>
         <br></br>
@@ -128,6 +128,7 @@ function LandingPage({ Component, pageProps }) {
         </div>
       </div>
       {/* Popups here: */}
+
       {showSignupPopup && (
         <div
           className="signup-popup"
@@ -158,34 +159,62 @@ function LandingPage({ Component, pageProps }) {
 
 function SignupForm(props) {
   const { emailRef } = props;
+  const [isAwaitingResponse, setIsAwaitingResponse] = useState(false);
+  const [isAcceptedEmail, setIsAcceptedEmail] = useState(null);
   function handleSubmit(e) {
     e.preventDefault();
-    if (validator.isEmail(emailRef.current.value)) {
-      axios
-        .post("http://localhost:3001/signup", { email: emailRef.current.value })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    if (emailRef.current.value) {
+      setIsAwaitingResponse(true);
+
+      if (validator.isEmail(emailRef.current.value)) {
+        axios
+          .post("http://localhost:3001/signup", {
+            email: emailRef.current.value,
+          })
+          .then((response) => {
+            console.log(response);
+            setIsAcceptedEmail(true);
+          })
+          .catch((err) => {
+            console.log(err);
+            setIsAcceptedEmail(false);
+          });
+      } else {
+        setIsAcceptedEmail(false);
+      }
     }
   }
 
   return (
-    <form
-      style={{ display: "flex", gap: "30px", justifyContent: "center" }}
-      onSubmit={handleSubmit}
-    >
-      <input
-        ref={emailRef}
-        placeholder="Enter your email address"
-        className="landing-page--email-input"
-      ></input>
-      <button onClick={handleSubmit} className="landing-page--button">
-        Join Now
-      </button>
-    </form>
+    <div style={{display:"flex", flexDirection:"column", position:"relative" }}>
+      <form
+        style={{ display: "flex", gap: "30px", justifyContent: "center"}}
+        onSubmit={handleSubmit}
+      >
+        <input
+          onChange={() => {
+            setIsAcceptedEmail(null);
+            setIsAwaitingResponse(false);
+          }}
+          ref={emailRef}
+          placeholder="Enter your email address"
+          className="landing-page--email-input"
+        ></input>
+        <button onClick={handleSubmit} className="landing-page--button">
+          Join
+        </button>
+      </form>
+      <br></br>
+      <div className="landing-page--email-status-box">
+        {isAwaitingResponse
+          ? isAcceptedEmail == null
+            ? ""
+            : isAcceptedEmail
+            ? "You are now signed up for email updates!"
+            : "Uh oh, that email is already in use or invalid."
+          : ""}
+      </div>
+    </div>
   );
 }
 

@@ -89,7 +89,7 @@ body {
   background-color: rgb(228, 228, 228); /* Red with 50% opacity */
   border-radius: 20px;
   padding: 15px;
-  min-height: 160px;
+  min-height: 140px;
   z-index: 2;
 }
 .landing-page--button {
@@ -100,9 +100,19 @@ body {
   font-size: 20px;
   border-radius: 30px;
   height: 54px;
+  min-width: 150px;
 }
 .landing-page--button:hover {
   background-color: rgba(0, 101, 242, 1);
+}
+.landing-page--email-status-box{
+  font-size: 15px !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: -10px;
+  width: 100%;
 }
 .landing-page-action-button-content {
   font-size: 12px;
@@ -132,6 +142,7 @@ body {
   height: 30px;
   font-size: 20px;
 }
+
 .landing-page--email-input::placeholder {
   color: rgb(255, 255, 255);
 }
@@ -141,6 +152,7 @@ body {
 .landing-page--fold-1 {
   height: 90vh;
   padding: 60px 60px;
+  padding-top: 15px;
   background: linear-gradient(rgba(255, 255, 255, 1), rgba(196, 196, 196, 0.8)),
     url("./assets/universe.jpg");
   /* animation: fade-in 2s infinite ease-in-out; */
@@ -202,4 +214,16 @@ body {
     border: 1px solid grey;
   }
 }
-
+/* NavBar component */
+.NavBar{
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  h3{
+    font-family: "Audiowide", "Inter", serif;
+    margin: 20px 30px;
+    font-size: 24px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    cursor: pointer;
+  }
+}
