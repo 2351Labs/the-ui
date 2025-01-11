@@ -3,22 +3,30 @@
 .dashboard--container {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "DM Sans", serif;
-
   display: flex;
-  padding: 20px;
+  padding: 15px 10px;
   border-radius: 15px;
   height: 100%;
   gap: 20px;
   background-color: white;
+  overflow: hidden;
   .dashboard--content {
+    position: relative;
     background-color: white;
     border-radius: 15px;
     /* padding: 20px; */
     width: 100%;
     .top-container {
       display: flex;
-      gap: 30px;
+      justify-content: space-between;
+      gap:10px;
       align-items: center;
+      width: 100%;
+      .bell-icon{
+        width: 20px;
+      }
+     
+     
       .sidebar-toggle-btn:hover{
         background-color: var(--dashboard-grey);
       }

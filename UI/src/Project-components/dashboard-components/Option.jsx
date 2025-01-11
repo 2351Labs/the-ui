@@ -13,10 +13,18 @@ export default function Option(props) {
       id={id}
       className="option"
     >
-      <img src={img} />
-      <div 
-      style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}
-      >
+      <img
+        style={
+          sidebarState.value == name
+            ? {
+              filter:
+                " brightness(0) saturate(100%) invert(85%) sepia(29%) saturate(1149%) hue-rotate(75deg) brightness(83%) contrast(94%)",
+            }
+            : {}
+        }
+        src={img}
+      />
+      <div style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}>
         {name}
       </div>
     </div>

@@ -22,14 +22,17 @@
   --primary-light: rgb(195, 238, 212);
 }
 
-body {
-  height: 97.3vh;
+html, body {
+  /* height: 97.3vh; */
+  height: 100%;
   margin: 0px;
+  width: 100%;
 }
 
 #root {
   /* background-color: rgb(245, 130, 130); */
   height: 100%;
+  width: 100%;
   padding: none;
   margin: none;
 }
@@ -57,18 +60,21 @@ body {
 
 @keyframes shrinkWidth {
   from {
-      width: 300px;
+      min-width: 270px;
   }
   to {
-      width: 87px;
+    min-width: 87px;    max-width: 87px;
+
   }
 }
 @keyframes growWidth {
   from {
-      width: 80px;
+    min-width: 87px;
+    max-width: 87px;
+
   }
   to {
-      width: 300px;
+    min-width:270px;
   }
 }
 

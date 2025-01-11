@@ -2,6 +2,7 @@
     border: 2px solid var(--primary);
   }
   .catalog-searchbar {
+    width: 100%;
     border: 2px solid transparent;
     background-color: var(--dashboard-grey);
     padding: 3px 15px;
@@ -23,6 +24,7 @@
       border-radius: 5px;
       user-select: none;
       /* width: 100px; */
+      
       .dropdown-list {
         background-color: var(--dashboard-grey);
         position: absolute;
@@ -73,13 +75,15 @@
     input {
       background-color: transparent;
       border: none;
-      font-size: 18px;
+      font-size: 16px;
       color:black;
+      width: 110px;
     }
     .filter-selection {
       white-space: nowrap;
     }
     input:focus {
+      
       /* outline: rgb(151, 151, 151) 1px solid; */
       outline: none;
       color: black;
