@@ -21,6 +21,7 @@
       cursor: pointer;
       position: relative;
       padding: 5px;
+      width: 140px;
       border-radius: 5px;
       user-select: none;
       /* width: 100px; */
