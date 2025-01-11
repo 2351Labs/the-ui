@@ -1,0 +1,47 @@
+/* DASHBOARD */
+
+.dashboard--container {
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "DM Sans", serif;
+
+  display: flex;
+  padding: 20px;
+  border-radius: 15px;
+  height: 100%;
+  gap: 20px;
+  background-color: white;
+  .dashboard--content {
+    background-color: white;
+    border-radius: 15px;
+    /* padding: 20px; */
+    width: 100%;
+    .top-container {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      .sidebar-toggle-btn:hover{
+        background-color: var(--dashboard-grey);
+      }
+      .sidebar-toggle-btn {
+        cursor: pointer;
+
+        padding:10px 10px;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .sidebar-icon {
+          width: 25px;
+          height: 25px;
+          opacity: 0.3;
+        }
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        padding: 5px;
+      }
+    }
+  }
+}

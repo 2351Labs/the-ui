@@ -9,7 +9,7 @@ import standardizeIcon from "../assets/standardize.svg";
 import analyzeIcon from "../assets/analyze.svg";
 import backgroundImg from "../assets/universe.jpg";
 import standardizeIcon2 from "../assets/standardize2.svg";
-
+import '../css/landingPage.css'
 function LandingPage({ Component, pageProps }) {
   const [showBackgroundImg, setShowBackgroundImg] = useState(false);
   const [showSignupPopup, setShowSignupPopup] = useState(false);
@@ -114,7 +114,7 @@ function LandingPage({ Component, pageProps }) {
         <br></br>
 
         <div style={{ textAlign: "center" }}>
-          Application in development. Support us by signing up for email
+          In development. Support us by signing up for email
           updates.
         </div>
         <br></br>
