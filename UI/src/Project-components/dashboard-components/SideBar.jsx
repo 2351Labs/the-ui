@@ -22,7 +22,7 @@ export default function SideBar(props) {
   const popupConfig = !(isPast725px && sidebarState.isEnabled)
     ? {
         position: "absolute",
-        height:"100%",
+        height: "100%",
         zIndex: "3",
         top: "0px",
         left: "0px",
@@ -40,11 +40,17 @@ export default function SideBar(props) {
           style={
             sidebarState.isEnabled
               ? {
-                  animation: "growWidth .5s forwards",
+                  animation: "growWidth .3s ease-in-out",
                   minWidth: "270px",
+                  maxWidth: "270px",
+
                   ...popupConfig,
                 }
-              : { animation: "shrinkWidth .5s forwards" }
+              : {
+                  animation: "shrinkWidth .3s ease-in-out",
+                  minWidth: "87px",
+                  maxWidth: "87px",
+                }
           }
           className="sidebar"
         >
@@ -64,7 +70,7 @@ export default function SideBar(props) {
             >
               Welcome, Jared!
             </div>
-            
+
             <div className="border"></div>
           </div>
           {/* <Option img={homeIcon} name={"Dashboard"} id={"selected"}/> */}
@@ -90,8 +96,7 @@ export default function SideBar(props) {
                 sidebarState={sidebarState}
                 img={peopleIcon}
                 name={"Service Maturity"}
-              />  
-          
+              />
             </div>
             {/* <Option
               sidebarState={sidebarState}

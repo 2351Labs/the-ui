@@ -10,6 +10,7 @@ export default function SearchBar() {
   const [isMainFilterOpen, setIsMainFilterOpen] = useState(false);
   const [mainFilterConfiguration, setMainFilterConfiguration] = useState({});
   const mainFilterRef = useRef(null);
+  const inputRef = useRef(null);
   useClickOutside(mainFilterRef, () => {
     setIsMainFilterOpen(false);
   });
@@ -17,9 +18,16 @@ export default function SearchBar() {
   const mainFilterSelection = Object.keys(mainFilterConfiguration).filter(
     (key) => mainFilterConfiguration[key] === true
   );
-  const mainFilterSelectionCount = mainFilterSelection.length
+  const mainFilterSelectionCount = mainFilterSelection.length;
   return (
-    <div className="catalog-searchbar">
+    <div
+      onClick={(e) => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }}
+      className="catalog-searchbar"
+    >
       <div
         id="main-filter"
         ref={mainFilterRef}
@@ -40,7 +48,11 @@ export default function SearchBar() {
         <div id="main-filter" className="filter-selection">
           {mainFilterSelectionCount == 0
             ? "All items"
-            : `${mainFilterSelectionCount == 1 ? `${mainFilterSelection[0]}` : `${mainFilterSelectionCount} items`}`}
+            : `${
+                mainFilterSelectionCount == 1
+                  ? `${mainFilterSelection[0]}`
+                  : `${mainFilterSelectionCount} items`
+              }`}
         </div>
         <img
           style={isMainFilterOpen ? { rotate: "180deg" } : {}}
@@ -84,7 +96,7 @@ export default function SearchBar() {
 
       <img className="splitter" src={lineSVG} />
       <img className="search-icon" src={searchIcon} />
-      <input placeholder="Search"></input>
+      <input ref={inputRef} placeholder="Search"></input>
     </div>
   );
 }
