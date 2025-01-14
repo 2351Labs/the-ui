@@ -49,10 +49,20 @@ export default function Catalog() {
           width={"100px"}
           name={"Type"}
         ></CatalogKey>
+         <CatalogKey
+          sortByKeysState={{
+            value: sortByKeySelection,
+            setter: setSortByKeySelection,
+          }}
+          width={"100px"}
+          name={"Created"}
+        ></CatalogKey>
+       
       </div>
       {/* BELOW KEYS */}
       {/* <div>CONTENT</div> */}
     </div>
+    
   );
 }
 
