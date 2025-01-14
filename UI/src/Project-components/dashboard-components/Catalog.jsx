@@ -5,8 +5,23 @@ import filterIcon from "../../assets/dashboard/filter.svg";
 export default function Catalog() {
   // const catalogKeys = ["Name", "Owner", "Type", "Created"]
 
+  const catalogData = [
+    {
+      name: "Order Service",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/9/25",
+    },
+    {
+      name: "Printing Service",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/14/25",
+    },
+  ];
+
   const [sortByKeySelection, setSortByKeySelection] = useState();
-  //SUB COMPONENT AT BOTTOM OF FILE 
+  //SUB COMPONENT AT BOTTOM OF FILE
   return (
     <div className="catalog">
       <div className="catalog--keys-container">
@@ -50,18 +65,18 @@ function CatalogKey(props) {
       onClick={(e) => {
         // if filter is active for selection, toggle modes. Else change to new filter selection
         if (isActiveFilter) {
-          if(toggleFilterMode==2){
+          if (toggleFilterMode == 2) {
             // reset after passing mode 2
-            setToggleFilterMode(0)
-            sortByKeysState.setter()
-          }else{
-            setToggleFilterMode(prev=>{
-              return(prev+1);
-            })
+            setToggleFilterMode(0);
+            sortByKeysState.setter();
+          } else {
+            setToggleFilterMode((prev) => {
+              return prev + 1;
+            });
           }
         } else {
           // on new filter selection, set starting filter mode to 1
-          setToggleFilterMode(1)
+          setToggleFilterMode(1);
           sortByKeysState.setter(name);
         }
       }}
@@ -78,12 +93,16 @@ function CatalogKey(props) {
       <div> {name}</div>
       <div className="sort-container">
         <img
-          style={toggleFilterMode == 1 && isActiveFilter ? {} : { opacity: 0.3 }}
+          style={
+            toggleFilterMode == 1 && isActiveFilter ? {} : { opacity: 0.3 }
+          }
           className="sort-icon top-sort"
           src={filterIcon}
         />
         <img
-          style={toggleFilterMode == 2 && isActiveFilter ? {} : { opacity: 0.3 }}
+          style={
+            toggleFilterMode == 2 && isActiveFilter ? {} : { opacity: 0.3 }
+          }
           className="sort-icon bottom-sort"
           src={filterIcon}
         />

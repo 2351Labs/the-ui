@@ -2,6 +2,7 @@
     border: 2px solid var(--primary);
   }
   .catalog-searchbar {
+    z-index: 1;
     width: 100%;
     border: 2px solid transparent;
     background-color: var(--dashboard-grey);

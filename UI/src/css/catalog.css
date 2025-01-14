@@ -4,14 +4,11 @@
     height: 100%;
     /* padding: 10px; */
     border-radius: 10px;
-    overflow: hidden;
+    overflow: scroll;
     .catalog--keys-container{
         display: flex;
         width: 100%;
-        background-color: var(--dashboard-grey);
         user-select: none;
-        border-bottom: 2px solid var(--dashboard-grey-hover);
-
         .catalog--key:not(:last-child){
             border-right: 2px solid var(--dashboard-grey-hover);
         }
@@ -22,6 +19,9 @@
             gap: 10px;
             align-items: center;
             font-weight: 600;
+            border-bottom: 2px solid var(--dashboard-grey-hover);
+            background-color: var(--dashboard-grey);
+            flex:1;
             .sort-container{
                 display: flex;
                 gap: 3px;
