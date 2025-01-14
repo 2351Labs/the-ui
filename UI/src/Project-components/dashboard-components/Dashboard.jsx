@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import "../../css/dashboard.css";
 import { useState } from "react";
 import sidebarIcon from "../../assets/dashboard/sidebar.svg";
-
+import Catalog from "./Catalog";
 export default function Dashboard() {
   const [sidebarSelection, setsidebarSelection] = useState("Catalog");
   const [toggleSidebar, setToggleSidebar] = useState(true);
@@ -14,10 +14,10 @@ export default function Dashboard() {
           value: sidebarSelection,
           setter: setsidebarSelection,
           isEnabled: toggleSidebar,
-          setToggleSidebar: setToggleSidebar
+          setToggleSidebar: setToggleSidebar,
         }}
       />
-      <div className="dashboard--content">
+      <div className="dashboard--right">
         <div className="top-container">
           <button
             onClick={(e) => {
@@ -28,7 +28,10 @@ export default function Dashboard() {
             <img className="sidebar-icon" src={sidebarIcon} />
           </button>
           <SearchBar />
-      
+        </div>
+        {/* CONTENT: */}
+        <div className="dashboard--content">
+        <Catalog />
         </div>
       </div>
 
