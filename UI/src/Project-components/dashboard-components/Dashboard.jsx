@@ -58,7 +58,6 @@ export default function Dashboard() {
         {/* CONTENT: */}
         <div className="dashboard--content">
           {sidebarSelection?.element}
-          {console.log("TET", sidebarOptions)}
         </div>
       </div>
 

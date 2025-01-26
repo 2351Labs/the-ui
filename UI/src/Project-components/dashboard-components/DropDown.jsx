@@ -4,7 +4,7 @@ import dropdownIcon from "../../assets/dashboard/dropdown.svg";
 import useClickOutside from "../../helpers/useClickOutside";
 import "../../css/dropDown.css";
 export default function DropDown(props) {
-  const { label, list, filterConfigurationState } = props;
+  const { label, list, optionClickHandler, listState } = props;
   const [isDropdown, setIsDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -25,7 +25,9 @@ export default function DropDown(props) {
       }
       className="DropDown"
     >
-      <span className="dropdown-label" htmlFor="dropdown-btn">{label}</span>
+      <span className="dropdown-label" htmlFor="dropdown-btn">
+        {label}
+      </span>
 
       <img
         style={isDropdown ? { rotate: "180deg" } : {}}
@@ -39,18 +41,7 @@ export default function DropDown(props) {
             return (
               <button
                 onClick={(e) => {
-                  e.stopPropagation();
-                  // update main filter configuration state stored at dashboard level
-                  filterConfigurationState.setter((prev) => {
-                    return {
-                      ...prev,
-                      [label]: {
-                        ...prev[label],
-                        [option]:
-                          !filterConfigurationState.value[label]?.[option],
-                      },
-                    };
-                  });
+                  optionClickHandler(option, label, e);
                 }}
                 key={index}
                 className="option-btn"
@@ -58,7 +49,7 @@ export default function DropDown(props) {
                 <label className="option-label" id={`option-btn-${index}`}>
                   <img
                     style={
-                      filterConfigurationState.value[label]?.[option]
+                      listState[label]?.[option]
                         ? { backgroundColor: "var(--primary)" }
                         : { backgroundColor: "grey" }
                     }
