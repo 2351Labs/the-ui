@@ -23,46 +23,46 @@ export default function Catalog() {
   const [sortByKeySelection, setSortByKeySelection] = useState();
   //SUB COMPONENT AT BOTTOM OF FILE
   return (
-    <div className="catalog">
-      <div className="catalog--keys-container">
-        <CatalogKey
-          sortByKeysState={{
-            value: sortByKeySelection,
-            setter: setSortByKeySelection,
-          }}
-          width={"200px"}
-          name={"Name"}
-        ></CatalogKey>
-        <CatalogKey
-          sortByKeysState={{
-            value: sortByKeySelection,
-            setter: setSortByKeySelection,
-          }}
-          width={"100px"}
-          name={"Owner"}
-        ></CatalogKey>
-        <CatalogKey
-          sortByKeysState={{
-            value: sortByKeySelection,
-            setter: setSortByKeySelection,
-          }}
-          width={"100px"}
-          name={"Type"}
-        ></CatalogKey>
-         <CatalogKey
-          sortByKeysState={{
-            value: sortByKeySelection,
-            setter: setSortByKeySelection,
-          }}
-          width={"100px"}
-          name={"Created"}
-        ></CatalogKey>
-       
+    <div className="catalog-container">
+      <div className="catalog">
+        <div className="catalog--keys-container">
+          <CatalogKey
+            sortByKeysState={{
+              value: sortByKeySelection,
+              setter: setSortByKeySelection,
+            }}
+            width={"200px"}
+            name={"Name"}
+          ></CatalogKey>
+          <CatalogKey
+            sortByKeysState={{
+              value: sortByKeySelection,
+              setter: setSortByKeySelection,
+            }}
+            width={"100px"}
+            name={"Owner"}
+          ></CatalogKey>
+          <CatalogKey
+            sortByKeysState={{
+              value: sortByKeySelection,
+              setter: setSortByKeySelection,
+            }}
+            width={"100px"}
+            name={"Type"}
+          ></CatalogKey>
+          <CatalogKey
+            sortByKeysState={{
+              value: sortByKeySelection,
+              setter: setSortByKeySelection,
+            }}
+            width={"100px"}
+            name={"Created"}
+          ></CatalogKey>
+        </div>
+        {/* BELOW KEYS */}
+        {/* <div>CONTENT</div> */}
       </div>
-      {/* BELOW KEYS */}
-      {/* <div>CONTENT</div> */}
     </div>
-    
   );
 }
 

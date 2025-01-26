@@ -11,7 +11,7 @@
   /* min-width: 87px; */
   /* height: 100%; */
   flex-direction: column;
-  overflow: hidden;
+  overflow-x:hidden;
   display: flex;
   background-color: #f1f1f1;
   /* padding: 20px; */

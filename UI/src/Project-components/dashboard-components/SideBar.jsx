@@ -12,7 +12,7 @@ import { useRef } from "react";
 import bellIcon from "../../assets/dashboard/bell.svg";
 import userIcon from "../../assets/dashboard/user.svg";
 export default function SideBar(props) {
-  const { sidebarState } = props;
+  const { sidebarState, sidebarOptions } = props;
   const sidebarRef = useRef(null);
   const isPast725px = useViewportWidth(725);
   useClickOutside(sidebarRef, () => {
@@ -77,41 +77,26 @@ export default function SideBar(props) {
           <div className="options-container">
             <div className="options-list">
               {/* <Option img={bookIcon} name={"Analytics"} /> */}
-              <Option
-                sidebarState={sidebarState}
-                img={bookIcon}
-                name={"Catalog"}
-              />
-              <Option
-                sidebarState={sidebarState}
-                img={reportsIcon}
-                name={"Reports"}
-              />
-              <Option
-                sidebarState={sidebarState}
-                img={peopleIcon}
-                name={"People"}
-              />
-              <Option
-                sidebarState={sidebarState}
-                img={peopleIcon}
-                name={"Service Maturity"}
-              />
+              {Object.keys(sidebarOptions).map((objectKey, index) => {
+                return (
+                  <Option
+                    sidebarOptions={sidebarOptions}
+                    key={index}
+                    sidebarState={sidebarState}
+                    img={sidebarOptions[objectKey].img}
+                    name={sidebarOptions[objectKey].label}
+                    element={sidebarOptions[objectKey].element}
+                  />
+                );
+              })}
             </div>
-            {/* <Option
-              sidebarState={sidebarState}
-              img={settingsIcon}
-              name={"Settings"}
-              style={{
-                borderBottomLeftRadius: "15px",
-                borderBottomRightRadius: "15px",
-              }}
-            /> */}
-            {/* <img className="bell-icon" src={bellIcon} /> */}
+            {/* seperate: */}
             <Option
+              sidebarOptions={sidebarOptions}
               sidebarState={sidebarState}
               img={userIcon}
               name={"Jared Stoddard"}
+              element={<div>IN DEV</div>}
             />
           </div>
           {/* <Option img={homeIcon} name={"Dashboard"}/> */}

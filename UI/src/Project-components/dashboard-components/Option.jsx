@@ -1,12 +1,12 @@
 export default function Option(props) {
-  const { img, name, id, sidebarState, style } = props;
+  const { img, name, id, sidebarState, style, element } = props;
   return (
     <div
       onClick={() => {
-        sidebarState.setter(name);
+        sidebarState.setter({ name: name, element: element });
       }}
       style={
-        sidebarState.value == name
+        sidebarState.value.name == name
           ? { backgroundColor: "var(--dashboard-grey-hover)", ...style }
           : { opacity: "50%", ...style }
       }
@@ -15,11 +15,11 @@ export default function Option(props) {
     >
       <img
         style={
-          sidebarState.value == name
+          sidebarState.value.name == name
             ? {
-              filter:
-                " brightness(0) saturate(100%) invert(85%) sepia(29%) saturate(1149%) hue-rotate(75deg) brightness(83%) contrast(94%)",
-            }
+                filter:
+                  " brightness(0) saturate(100%) invert(85%) sepia(29%) saturate(1149%) hue-rotate(75deg) brightness(83%) contrast(94%)",
+              }
             : {}
         }
         src={img}

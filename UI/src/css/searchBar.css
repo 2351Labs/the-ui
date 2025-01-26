@@ -28,6 +28,7 @@
       /* width: 100px; */
       
       .dropdown-list {
+        overflow: hidden;
         background-color: var(--dashboard-grey);
         position: absolute;
         top: 50px;

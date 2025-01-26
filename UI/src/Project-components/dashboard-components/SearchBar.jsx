@@ -11,6 +11,8 @@ export default function SearchBar() {
   const [mainFilterConfiguration, setMainFilterConfiguration] = useState({});
   const mainFilterRef = useRef(null);
   const inputRef = useRef(null);
+
+
   useClickOutside(mainFilterRef, () => {
     setIsMainFilterOpen(false);
   });

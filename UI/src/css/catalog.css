@@ -1,38 +1,46 @@
-.catalog{
-    /* background-color: red; */
-    border: 2px solid var(--dashboard-grey-hover);
-    height: 100%;
-    /* padding: 10px; */
-    border-radius: 10px;
-    overflow-x: scroll;
-    .catalog--keys-container{
-        display: flex;
-        width: 100%;
-        user-select: none;
-        .catalog--key:not(:last-child){
-            border-right: 2px solid var(--dashboard-grey-hover);
-        }
-        .catalog--key{
-             /* border: 2px solid var(--dashboard-grey-hover); */
-            padding: 15px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-weight: 600;
-            border-bottom: 2px solid var(--dashboard-grey-hover);
-            background-color: var(--dashboard-grey);
-            flex:1;
-            .sort-container{
-                display: flex;
-                gap: 3px;
-                flex-direction: column;
-                .bottom-sort{
-                    rotate: 180deg;
-                }
-                .sort-icon{
-                    width: 10px;
-                }
-            }
-        }
+.catalog-container {
+  /*seperate container to add padding to scrollbar at bottom of catalog element  */
+
+  height: 100%;
+  border: 2px solid var(--dashboard-grey-hover);
+    padding-bottom: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.catalog {
+  /* background-color: red; */
+  overflow: auto;
+  scrollbar-color: grey transparent;
+  /* scrollbar-width: thin; */
+  height: 100%;
+  .catalog--keys-container {
+    display: flex;
+    width: 100%;
+    user-select: none;
+    .catalog--key:not(:last-child) {
+      border-right: 2px solid var(--dashboard-grey-hover);
     }
+    .catalog--key {
+      /* border: 2px solid var(--dashboard-grey-hover); */
+      padding: 15px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-weight: 600;
+      border-bottom: 2px solid var(--dashboard-grey-hover);
+      background-color: var(--dashboard-grey);
+      flex: 1;
+      .sort-container {
+        display: flex;
+        gap: 3px;
+        flex-direction: column;
+        .bottom-sort {
+          rotate: 180deg;
+        }
+        .sort-icon {
+          width: 10px;
+        }
+      }
+    }
+  }
 }
