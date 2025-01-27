@@ -9,9 +9,18 @@
   height: 100%;
   gap: 20px;
   width: 100%;
+  color: black;
   background-color: white;
   overflow: hidden;
   height: 100%;
+  input,
+  label,
+  button {
+    font-family: "DM Sans", serif;
+    color: black;
+    border: none;
+    background-color: transparent;
+  }
   .dashboard--right {
     position: relative;
     background-color: white;
@@ -35,7 +44,7 @@
       gap: 10px;
       align-items: center;
       width: 100%;
-      padding:0px 10px;
+      padding: 0px 10px;
       .bell-icon {
         width: 20px;
       }

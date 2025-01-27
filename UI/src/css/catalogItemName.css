@@ -1,0 +1,22 @@
+.catalogItemName{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin: 10px 0px;
+    /* margin-left: 30px; */
+    input {
+        font-size: 30px;
+        font-weight: 600;
+        min-width: 20px; /* Maximum width */
+        padding: 4px;
+        padding-left: 0px;
+        border-radius: 5px
+      }
+      input:focus {
+        outline: 2px solid var(--primary);
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+}

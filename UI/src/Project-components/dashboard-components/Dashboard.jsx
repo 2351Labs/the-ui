@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import "../../css/dashboard.css";
 import { useState } from "react";
 import sidebarIcon from "../../assets/dashboard/sidebar.svg";
-import Catalog from "./Catalog";
+import Catalog from "./catalog-components/Catalog";
 import FilterBar from "./FilterBar";
 // for defining sidebar:
 import homeIcon from "../../assets/dashboard/home.svg";
@@ -21,7 +21,7 @@ export default function Dashboard() {
   const [toggleSidebar, setToggleSidebar] = useState(true);
   const [filterConfiguration, setFilterConfiguration] = useState({});
   const sidebarOptions = {
-    Catalog: {label:"Catalog", element: <Catalog />, img: catalogIcon },
+    Catalog: {label:"Catalog", element: <Catalog/>, img: catalogIcon },
     Reports: {label:"Reports", element: <div>EMPTY</div>, img: reportsIcon },
     People: {label:"People", element: <div>EMPTY</div>, img: peopleIcon },
     // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },

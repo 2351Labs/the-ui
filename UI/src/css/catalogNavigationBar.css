@@ -1,0 +1,35 @@
+.catalogNavigationBar {
+  display: flex;
+  gap: 40px;
+  margin-top: 70px;
+  /* background-color: rgb(230, 230, 230); */
+  border-bottom: 2px solid rgb(185, 185, 185);
+  /* border-radius: 5px; */
+  justify-content: left;
+  /* border-radius: 5px; */
+  .bar-option-btn:hover {
+    /* background-color: var(--primary); */
+    opacity: 1;
+    border-bottom: 2px solid black;
+  }
+  .bar-option-btn {
+    translate: 0px 2px;
+    font-size: 14px;
+    font-weight: 550;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    padding-top: 8px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    .bar-option {
+      /* color: var(--primary); */
+    }
+  }
+}

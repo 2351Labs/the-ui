@@ -40,7 +40,7 @@ export default function FilterBar(props) {
         label={"Dependencies"}
         list={["Active", "Offline"]}
         listState={filterConfigurationState.value}
-        onClickHandler={optionClickHandler}
+        optionClickHandler={optionClickHandler}
       />
     </div>
   );
