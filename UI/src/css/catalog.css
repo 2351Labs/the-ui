@@ -2,34 +2,64 @@
   /*seperate container to add padding to scrollbar at bottom of catalog element  */
 
   height: 100%;
-  border: 2px solid var(--dashboard-grey-hover);
-    padding-bottom: 5px;
+  /* border: 2px solid var(--dashboard-grey-hover); */
+  background-color: var(--dashboard-grey);
+  /* background-color: #f1f1f1; */
+  padding-bottom: 5px;
   border-radius: 10px;
   overflow: hidden;
+  width: 100%;
 }
 .catalog {
   /* background-color: red; */
+   /* background-color: #f1f1f1; */
   overflow: auto;
   scrollbar-color: grey transparent;
   /* scrollbar-width: thin; */
   height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .list-container {
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: 100%;
+    .row-container:first-child{
+    }
+    .row-container {
+      width: 100%;
+      border-radius: 5px;
+      /* color: var(--primary); */
+      background-color: white;
+      /* border-left:3px solid var(--dashboard-grey); */
+      margin: 0px 5px;
+      display: flex;
+      cursor: pointer;
+      font-weight: 550;
+      border-bottom: 2px solid var(--dashboard-grey);
+    }
+  }
+
   .catalog--keys-container {
     display: flex;
     width: 100%;
     user-select: none;
+    border-bottom: 2px solid var(--dashboard-grey);
+    padding: 5px;
     .catalog--key:not(:last-child) {
-      border-right: 2px solid var(--dashboard-grey-hover);
+      /* border-right: 2px solid var(--dashboard-grey-hover); */
     }
     .catalog--key {
+      border-radius: 10px;
       /* border: 2px solid var(--dashboard-grey-hover); */
       padding: 15px;
       display: flex;
       gap: 10px;
       align-items: center;
       font-weight: 600;
-      border-bottom: 2px solid var(--dashboard-grey-hover);
       background-color: var(--dashboard-grey);
-      flex: 1;
+      /* flex: 1; */
       .sort-container {
         display: flex;
         gap: 3px;

@@ -11,6 +11,7 @@ export default function Catalog() {
       owner: "OrderCompany",
       type: "Microservice",
       created: "1/9/25",
+      status: "Online",
       description:
         "Automates order handling. It integrates with inventory, payments, and shipping for efficient operations.",
     },
@@ -19,16 +20,17 @@ export default function Catalog() {
       owner: "OrderCompany",
       type: "Microservice",
       created: "1/14/25",
+      status: "Offline",
       description:
         "Automates order handling, from creation to fulfillment, with real-time updates. It integrates with inventory, payments, and shipping for efficient operations.",
     },
   });
 
   const CatalogKeys = [
-    { name: "Name", width: "200px" },
-    { name: "Owner", width: "100px" },
-    { name: "Type", width: "100px" },
-    { name: "Created", width: "100px" },
+    { name: "name", width: "200px" },
+    { name: "owner", width: "200px" },
+    { name: "type", width: "120px" },
+    { name: "created", width: "200px" },
   ];
 
   const [sortByKeySelection, setSortByKeySelection] = useState();
@@ -49,20 +51,30 @@ export default function Catalog() {
                     }}
                     width={key.width}
                     name={key.name}
-                  ></CatalogKey>
+                  />
                 );
               })}
             </div>
-            <div>
+            <div className="list-container">
               {Object.keys(catalogData).map((itemID, index) => {
                 return (
                   <div
+                    className="row-container"
                     onClick={() => {
                       setCatalogItemSelection(itemID);
                     }}
                     key={index}
                   >
-                    {catalogData[itemID].name}
+                    {CatalogKeys.map((keyObj, index) => {
+                      return (
+                        <div
+                          key={index}
+                          style={{ width: keyObj.width, padding: "15px" }}
+                        >
+                          {catalogData[itemID][keyObj.name]}
+                        </div>
+                      );
+                    })}
                   </div>
                 );
               })}
@@ -84,6 +96,11 @@ function CatalogKey(props) {
   const { sortByKeysState, name, width } = props;
   const isActiveFilter = name == sortByKeysState.value;
   const [toggleFilterMode, setToggleFilterMode] = useState(0);
+
+  function capitalizeFirstLetter(str) {
+    if (!str) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   return (
     <div
       onClick={(e) => {
@@ -107,14 +124,15 @@ function CatalogKey(props) {
       className="catalog--key"
       style={
         !isActiveFilter
-          ? { width: `${width}` }
+          ? { width: `${width}`, opacity: ".7" }
           : {
               width: `${width}`,
+              opacity: "1",
               backgroundColor: "var(--dashboard-grey-hover)",
             }
       }
     >
-      <div> {name}</div>
+      <div> {capitalizeFirstLetter(name)}</div>
       <div className="sort-container">
         <img
           style={
