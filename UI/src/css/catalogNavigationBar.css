@@ -1,7 +1,12 @@
 .catalogNavigationBar {
   display: flex;
+  box-sizing: border-box;
   gap: 40px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-top: 70px;
+  
   /* background-color: rgb(230, 230, 230); */
   border-bottom: 2px solid rgb(185, 185, 185);
   /* border-radius: 5px; */

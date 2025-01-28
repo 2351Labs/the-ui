@@ -5,7 +5,6 @@ const GrowingInput = (props) => {
   //   const [inputValue, setInputValue] = useState('');
   const [inputWidth, setInputWidth] = useState(1); // Start with a minimum width
 
-  console.log("input value", inputValue);
   return (
     <div style={{ display: "inline-block" }}>
       <input

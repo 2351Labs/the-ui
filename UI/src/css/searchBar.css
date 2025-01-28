@@ -28,6 +28,8 @@
       /* width: 100px; */
       
       .dropdown-list {
+        animation: dropdown 0.2s ease-in-out;
+
         overflow: hidden;
         background-color: var(--dashboard-grey);
         position: absolute;
@@ -70,6 +72,8 @@
     }
     img {
       width: 20px;
+      transition: .2s ease-in-out all;
+
     }
     .search-icon {
       /* margin-right: 10px; */

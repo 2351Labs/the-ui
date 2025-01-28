@@ -78,6 +78,8 @@
     }
   }
   .option {
+    color:black;
+    text-decoration: none;
     padding: 15px 30px;
     /* border-top: 1px solid var(--dashboard-grey-hover); */
     /* transition: 0.4s ease-in-out; */

@@ -25,9 +25,11 @@
   .dropdown-icon {
     width: 20px;
     translate: 0px 1px;
+    transition: .2s ease-in-out all;
   }
 
   .dropdown-list {
+    animation: dropdown 0.2s ease-in-out;
     z-index: 2;
     /* background-color: var(--dashboard-grey);*/
     background-color: white;

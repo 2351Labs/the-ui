@@ -12,6 +12,8 @@ import sIcon from "../../assets/dashboard/s.svg";
 import settingsIcon from "../../assets/dashboard/settings.svg";
 import peopleIcon from "../../assets/dashboard/people.svg";
 import reportsIcon from "../../assets/dashboard/reports.svg";
+
+import { Outlet } from "react-router-dom";
 export default function Dashboard() {
   // sidebar selection controls content element displayed:
   const [sidebarSelection, setsidebarSelection] = useState({
@@ -21,9 +23,9 @@ export default function Dashboard() {
   const [toggleSidebar, setToggleSidebar] = useState(true);
   const [filterConfiguration, setFilterConfiguration] = useState({});
   const sidebarOptions = {
-    Catalog: {label:"Catalog", element: <Catalog/>, img: catalogIcon },
-    Reports: {label:"Reports", element: <div>EMPTY</div>, img: reportsIcon },
-    People: {label:"People", element: <div>EMPTY</div>, img: peopleIcon },
+    Catalog: { label: "Catalog", element: <Catalog />, img: catalogIcon },
+    Reports: { label: "Reports", element: <div>EMPTY</div>, img: reportsIcon },
+    People: { label: "People", element: <div>EMPTY</div>, img: peopleIcon },
     // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
   };
   return (
@@ -49,6 +51,7 @@ export default function Dashboard() {
           </button>
           <SearchBar />
           <FilterBar
+            toggleSidebar={toggleSidebar}
             filterConfigurationState={{
               value: filterConfiguration,
               setter: setFilterConfiguration,
@@ -57,7 +60,10 @@ export default function Dashboard() {
         </div>
         {/* CONTENT: */}
         <div className="dashboard--content">
-          {sidebarSelection?.element}
+          {/* {sidebarSelection?.element} */}
+
+          {/* react router will insert elements using Outlet according to URL path: */}
+          <Outlet />
         </div>
       </div>
 

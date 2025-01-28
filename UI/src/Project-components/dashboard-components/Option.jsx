@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 export default function Option(props) {
   const { img, name, id, sidebarState, style, element } = props;
   return (
-    <div
+    <Link
+    to={name.toLowerCase()}
       onClick={() => {
         sidebarState.setter({ name: name, element: element });
+        // location.href  = '/dashboard'\
       }}
       style={
         sidebarState.value.name == name
@@ -27,6 +31,6 @@ export default function Option(props) {
       <div style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}>
         {name}
       </div>
-    </div>
+    </Link>
   );
 }

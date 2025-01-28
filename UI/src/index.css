@@ -22,7 +22,8 @@
   --primary-light: rgb(195, 238, 212);
 }
 
-html, body {
+html,
+body {
   /* height: 97.3vh; */
   height: 100%;
   margin: 0px;
@@ -35,6 +36,19 @@ html, body {
   width: 100%;
   padding: none;
   margin: none;
+}
+
+@keyframes dropdown {
+  0% {
+    opacity: 0;
+    translate: 0px -5px;
+
+  }
+
+  100% {
+    opacity: 1;
+    translate: 0px 0px;
+  }
 }
 
 @keyframes fade-in {
@@ -60,22 +74,19 @@ html, body {
 
 @keyframes shrinkWidth {
   from {
-      min-width: 270px;
+    min-width: 270px;
   }
   to {
-    min-width: 87px;    max-width: 87px;
-
+    min-width: 87px;
+    max-width: 87px;
   }
 }
 @keyframes growWidth {
   from {
     min-width: 87px;
     max-width: 87px;
-
   }
   to {
-    min-width:270px;
+    min-width: 270px;
   }
 }
-
-
