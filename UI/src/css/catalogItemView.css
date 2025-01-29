@@ -1,27 +1,84 @@
 .catalogItemView {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   /* margin: 0px 100px; */
+  .option-header {
+    font-size: 20px;
+    /* border-bottom: 2px solid var(--dashboard-grey); */
+    padding-bottom: 16px;
+  }
   .catalog-item-content {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
-    gap:50px;
-    .left-split{
+    gap: 50px;
+    height: 100%;
+    .left-split {
       flex: 1;
+      /* padding: 20px 0px; */
+      display: flex;
+      /* justify-content: center; */
     }
     .right-split {
-      width: 380px;
+      margin-top: 10px;
+      width: 350px;
       font-weight: 550;
-      .key{
-        opacity: .6;
+      .key {
+        opacity: 0.6;
       }
-      .value{
+      .link {
+        text-decoration: underline;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .value {
+        font-size: 20px;
+      }
+      .online {
+        padding: 5px 10px;
+        background-color: var(--primary);
+        border-radius: 10px;
+        color: white;
+      }
+      .score {
+        border: 2px solid var(--primary);
+        border-radius: 30px;
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+      .row-container-wrapper {
+        display: flex;
 
+        align-items: start;
+        border-bottom: 2px solid var(--dashboard-grey);
+        .row-container {
+          border: none;
+          flex: 1;
+        }
       }
-      .row-container{
+
+      .row-container {
+        /* height: 80px; */
+        .value-container {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .link-icon {
+          width: 20px;
+          height: 20px;
+        }
         display: flex;
         flex-direction: column;
         gap: 5px;
-        padding: 20px 5px;
+        /* padding: 20px 5px; */
+        padding: 15px 0px;
         border-bottom: 2px solid var(--dashboard-grey);
       }
     }
@@ -33,6 +90,14 @@
     align-items: center;
     /* opacity: 0.6; */
     font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: white;
+    /* width: fit-content; */
+    /* border-radius: 10px; */
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(201, 201, 201);
     button {
       padding: 5px;
       margin-right: 5px;

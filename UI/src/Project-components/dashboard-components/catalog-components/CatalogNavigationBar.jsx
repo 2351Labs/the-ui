@@ -2,13 +2,14 @@
 import "../../../css/catalogNavigationBar.css";
 
 export default function CatalogNavigationBar(props) {
-  const {navBarState, navBarOptions} = props
+  const { navBarState, navBarOptions } = props;
 
   return (
     <div className="catalogNavigationBar">
       {Object.keys(navBarOptions).map((optionKey, index) => {
         return (
           <button
+            key={index}
             onClick={() => {
               navBarState.setter(optionKey);
             }}
@@ -18,8 +19,8 @@ export default function CatalogNavigationBar(props) {
                     color: "var(--primary)",
                     borderBottom: "2px solid var(--primary)",
                     backgroundColor: "#f5f5f5",
-                    borderTopRightRadius:"5px",
-                    borderTopLeftRadius:"5px",
+                    borderTopRightRadius: "5px",
+                    borderTopLeftRadius: "5px",
                     // fontWeight: "600",
                     opacity: 1,
                   }

@@ -13,7 +13,7 @@ import historyIcon from "../../../assets/dashboard/catalog-assets/history.svg";
 import linkIcon from "../../../assets/dashboard/catalog-assets/link.svg";
 import treeStructureIcon from "../../../assets/dashboard/catalog-assets/tree-structure.svg";
 import keyIcon from "../../../assets/dashboard/catalog-assets/key.svg";
-
+import Dependencies from "./Dependencies";
 export default function CatalogItemView() {
   const { itemDataLoader, itemID } = useLoaderData();
   const [itemData, setItemData] = useState(itemDataLoader);
@@ -32,8 +32,9 @@ export default function CatalogItemView() {
     dependencies: {
       label: "Dependencies",
       img: treeStructureIcon,
-      element: <div>Dependencies</div>,
+      element: <Dependencies/>,
     },
+
     ownership: {
       label: "Ownership",
       img: keyIcon,
@@ -64,19 +65,44 @@ export default function CatalogItemView() {
         />
       </div>
       <div className="catalog-item-content">
-        <div className="left-split">{navBarOptions[navBarSelection].element}</div>
+        <div className="left-split">
+          {navBarOptions[navBarSelection].element}
+        </div>
         <div className="right-split">
           <div className="row-container">
             <div className="key">Repository</div>
-            <div className="value">github.com</div>
+            <div className="value-container">
+              <img className="link-icon" src={linkIcon} />
+              <div className="link">github.com/chakra-ui/chakra-ui</div>
+            </div>
+          </div>
+          <div className="row-container-wrapper">
+            <div className="row-container">
+              <div className="key">Version</div>
+              <div className="value-container">
+                {/* <img className="link-icon" src={linkIcon} /> */}
+                <div className="value">3.2.1</div>
+              </div>
+            </div>
+            <div className="row-container">
+              <div className="key">Score</div>
+              <div className="value-container">
+                {/* <img className="link-icon" src={linkIcon} /> */}
+                <div className="score">7.8</div>
+              </div>
+            </div>
           </div>
           <div className="row-container">
-            <div className="key">Repository</div>
-            <div className="value">github.com</div>
+            <div className="key">Last updated</div>
+            <div className="value-container">
+              <div className="value">a year ago</div>
+            </div>
           </div>
           <div className="row-container">
-            <div className="key">Repository</div>
-            <div className="value">github.com</div>
+            <div className="key">Status</div>
+            <div className="value-container">
+              <div className="online">Online</div>
+            </div>
           </div>
         </div>
       </div>

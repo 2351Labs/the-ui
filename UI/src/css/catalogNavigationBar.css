@@ -3,10 +3,8 @@
   box-sizing: border-box;
   gap: 40px;
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
   margin-top: 70px;
-  
+  height: fit-content;
   /* background-color: rgb(230, 230, 230); */
   border-bottom: 2px solid rgb(185, 185, 185);
   /* border-radius: 5px; */
@@ -18,8 +16,8 @@
     border-bottom: 2px solid black;
   }
   .bar-option-btn {
-    translate: 0px 2px;
-    font-size: 14px;
+    translate: 0px 1px;
+    font-size: 16px;
     font-weight: 550;
     display: flex;
     align-items: center;

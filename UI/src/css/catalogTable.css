@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   /* border: 1px solid rgb(216, 216, 216); */
-  padding: 20px 30px;
+  /* padding: 20px 30px; */
   border-radius: 5px;
 
   .p-datatable {
@@ -21,14 +21,17 @@
   td {
     opacity: 0.7;
   }
+  .p-datatable-thead{
+    background-color: rgba(238, 238, 238, 0.76);
+  }
   .p-row-odd {
-    background-color: rgba(247, 247, 247, 0.76);
+    background-color: rgba(238, 238, 238, 0.76);
   }
   .p-column-header-content {
     gap: 7px;
   }
   .p-selectable-row:hover {
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(231, 231, 231);
   }
   .p-highlight {
     background-color: var(--primary-light);

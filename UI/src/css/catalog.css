@@ -49,6 +49,7 @@
       font-weight: 550;
       border-bottom: 2px solid var(--dashboard-grey);
       .catalog-table {
+        
         word-break: break-word;
         overflow-wrap: break-word;
       }

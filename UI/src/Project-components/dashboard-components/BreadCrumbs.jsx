@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function BreadCrumbs(props) {
     const {itemData, itemID} = props
   return (
-    <div className="catalog-bread-crumbs">
+    <div style={{zIndex:"1"}} className="catalog-bread-crumbs">
       <Link to={`/dashboard/catalog`}>
         <button
           style={{ opacity: ".6" }}
