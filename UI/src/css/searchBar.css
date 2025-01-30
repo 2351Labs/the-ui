@@ -3,10 +3,11 @@
   }
   .catalog-searchbar {
     z-index: 1;
-    width: 100%;
+    width: 60%;
     border: 2px solid transparent;
     background-color: var(--dashboard-grey);
     padding: 3px 15px;
+    /* max-width: 500px; */
     border-radius: 30px;
     display: flex;
     align-items: center;

@@ -13,13 +13,14 @@
   color: black;
   font-family: "DM Sans", serif;
   font-size: 14px;
-  background-color: white;
+  background-color: rgb(245, 245, 245) !important;
   cursor: pointer;
   .dropdown-label {
     text-wrap: nowrap;
-  }
+  }  border: 1px solid rgb(216, 216, 216);
+
   button {
-    background-color: white;
+    background-color: rgb(245, 245, 245);
     border: none;
   }
   .dropdown-icon {

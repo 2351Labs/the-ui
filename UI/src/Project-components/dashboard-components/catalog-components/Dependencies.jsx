@@ -412,7 +412,7 @@ export default function Dependencies() {
   ];
   return (
     <div className="dependencies">
-      <h3 className="option-header">Dependencies (2)</h3>
+      <h3 className="option-header">Dependencies (12)</h3>
       <button
         onClick={() => {
           setIsVisualizedEnabled(!isVisualizeEnabled);
@@ -434,13 +434,13 @@ export default function Dependencies() {
           <TreeTable
             paginator
             rows={5}
-            rowsPerPageOptions={[5, 10, 25]}
+            // rowsPerPageOptions={[5, 10, 25]}
             value={nodeData}
             //   togglerTemplate={togglerTemplate}
             tableStyle={{ minWidth: "50rem" }}
             sortMode={"multiple"}
             removableSort
-            paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            // paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
           >
             <Column sortable field="name" header="Name" expander></Column>
             <Column sortable field="Type" header="Size"></Column>
@@ -458,7 +458,25 @@ export default function Dependencies() {
         />
       )}
 
-      <h3 className="option-header">Dependents (3)</h3>
+      <h3 className="option-header">Dependents (5)</h3>
+      <div className="tree-table">
+        <TreeTable
+          paginator
+          rows={5}
+          // rowsPerPageOptions={[5, 10, 25]}
+          value={nodeData}
+          //   togglerTemplate={togglerTemplate}
+          tableStyle={{ minWidth: "50rem" }}
+          sortMode={"multiple"}
+          removableSort
+          // paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+        >
+          <Column sortable field="name" header="Name" expander></Column>
+          <Column sortable field="Type" header="Size"></Column>
+          <Column sortable field="type" header="Type"></Column>
+          {/* <Column body={actionTemplate} headerClassName="w-10rem" /> */}
+        </TreeTable>
+      </div>
     </div>
   );
 }

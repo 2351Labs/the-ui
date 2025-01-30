@@ -72,12 +72,105 @@ export default function CatalogTable(props) {
       description:
         "Automates order handling, from creation to fulfillment, with real-time updates. It integrates with inventory, payments, and shipping for efficient operations.",
     },
+    {
+      ID: 1,
+      name: "Order Service",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/9/25",
+      status: "Online",
+      description:
+        "Automates order handling. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 2,
+      name: "Printing Service5",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/14/25",
+      status: "Offline",
+      description:
+        "Automates order handling, from creation to fulfillment, with real-time updates. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 3,
+      name: "Order Service4",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/9/25",
+      status: "Online",
+      description:
+        "Automates order handling. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 4,
+      name: "Printing Service3",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/14/25",
+      status: "Offline",
+      description:
+        "Automates order handling, from creation to fulfillment, with real-time updates. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 5,
+      name: "Order Service2",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/9/25",
+      status: "Online",
+      description:
+        "Automates order handling. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 6,
+      name: "Printing Services",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/14/25",
+      status: "Offline",
+      description:
+        "Automates order handling, from creation to fulfillment, with real-time updates. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 1,
+      name: "Order Service",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/9/25",
+      status: "Online",
+      description:
+        "Automates order handling. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 2,
+      name: "Printing Service5",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/14/25",
+      status: "Offline",
+      description:
+        "Automates order handling, from creation to fulfillment, with real-time updates. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
+    {
+      ID: 3,
+      name: "Order Service4",
+      owner: "OrderCompany",
+      type: "Microservice",
+      created: "1/9/25",
+      status: "Online",
+      description:
+        "Automates order handling. It integrates with inventory, payments, and shipping for efficient operations.",
+    },
   ];
 
   return (
     <div className="catalogTable">
       <PrimeReactProvider>
         <DataTable
+          paginator
+          rows={12}
+          // rowsPerPageOptions={[]}
           selectionMode="single"
           selection={selectedProduct}
           removableSort

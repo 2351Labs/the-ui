@@ -11,8 +11,8 @@ import catalogIcon from "../../assets/dashboard/catalog.svg";
 import sIcon from "../../assets/dashboard/s.svg";
 import settingsIcon from "../../assets/dashboard/settings.svg";
 import peopleIcon from "../../assets/dashboard/people.svg";
+import userIcon from "../../assets/dashboard/user.svg";
 import reportsIcon from "../../assets/dashboard/reports.svg";
-
 import { Outlet } from "react-router-dom";
 export default function Dashboard() {
   // sidebar selection controls content element displayed:
@@ -21,7 +21,6 @@ export default function Dashboard() {
     element: <div>Home</div>,
   });
   const [toggleSidebar, setToggleSidebar] = useState(true);
-  const [filterConfiguration, setFilterConfiguration] = useState({});
   const sidebarOptions = {
     Catalog: { label: "Catalog", element: <Catalog />, img: catalogIcon },
     Reports: { label: "Reports", element: <div>EMPTY</div>, img: reportsIcon },
@@ -49,21 +48,21 @@ export default function Dashboard() {
           >
             <img className="sidebar-icon" src={sidebarIcon} />
           </button>
+          {/* <div
+            style={{ display: "flex", width: "100%", justifyContent: "center" }}
+          > */}
           <SearchBar />
-          <FilterBar
-            toggleSidebar={toggleSidebar}
-            filterConfigurationState={{
-              value: filterConfiguration,
-              setter: setFilterConfiguration,
-            }}
-          />
+          <img className="user-icon" src={userIcon} />
+          {/* </div> */}
         </div>
         {/* CONTENT: */}
         <div className="dashboard--content">
+          <div className="content-centered">
+            <Outlet />
+          </div>
           {/* {sidebarSelection?.element} */}
 
           {/* react router will insert elements using Outlet according to URL path: */}
-          <Outlet />
         </div>
       </div>
 

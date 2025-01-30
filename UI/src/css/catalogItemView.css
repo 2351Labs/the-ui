@@ -85,6 +85,29 @@
   }
   .name-container {
   }
+  .badge {
+    display: flex;
+    gap:6px;
+    background-color: rgb(203, 218, 248);
+    border: 2px solid rgb(91, 138, 224);
+    padding: 5px;
+    translate: 0px -4px;
+    /* height: 12px; */
+     img{
+      width: 20px;
+     }
+    .badge-text{
+      font-weight: 600;
+      color: rgb(91, 138, 224);
+
+    }
+  }
+  .catalogItemName-container {
+    display: flex;
+    align-items: baseline;
+    gap: 30px;
+   
+  }
   .catalog-bread-crumbs {
     display: flex;
     align-items: center;

@@ -15,15 +15,31 @@
   /* background-color: #f1f1f1; */
   box-sizing: border-box;
   /* padding:0px 5px; */
-  padding: 10px;
-  overflow: auto;
-  scrollbar-color: grey transparent;
+  /* padding: 10px; */
+  padding-right:2px;
   /* scrollbar-width: thin; */
   height: 100%;
   display: flex;
   width: 100%;
   flex-direction: column;
-  overflow-x: scroll;
+  gap: 20px;
+  .filterBar-container{
+    display: flex;
+    text-wrap: nowrap;
+    gap:30px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 5px;
+
+    border-bottom: 1px solid rgb(221, 221, 221);
+
+    .search-results-header{
+    }
+    .sort-by{
+      opacity: .7;
+      font-weight: 500;
+    }
+  }
   .list-container {
     box-sizing: border-box;
     display: flex;

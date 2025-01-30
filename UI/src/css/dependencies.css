@@ -113,6 +113,10 @@
       /* translate: 0px 7px; */
       background-color: white;
     }
+    .p-organizationchart-node-content,.p-oraganizationchart-lines{
+      border: 1px solid rgb(185, 185, 185);
+
+    }
     .p-organizationchart-line-down {
       background-color: rgb(185, 185, 185);
     }
@@ -122,7 +126,6 @@
     .p-organizationchart-selectable-node:first-child {
     }
     .p-organizationchart-node-content {
-      border: 1px solid rgb(185, 185, 185);
       padding: 10px;
       /* border-radius: 5px; */
     }
@@ -132,7 +135,6 @@
   }
   .p-oraganizationchart-lines {
     background-color: rgb(37, 37, 37);
-    border: 1px solid rgb(185, 185, 185);
   }
   .p-organizationchart-line-right p-organizationchart-line-top {
   }

@@ -4,7 +4,7 @@ import useViewportWidth from "../../helpers/useViewPortWidth";
 export default function FilterBar(props) {
   const { filterConfigurationState, toggleSidebar } = props;
 
-  const isPast1030pxAndSideBarClosed = useViewportWidth(1230) || !toggleSidebar;
+  // const isPast1030pxAndSideBarClosed = useViewportWidth(1230) || !toggleSidebar;
 
   
   function optionClickHandler(option, label, e) {
@@ -23,7 +23,6 @@ export default function FilterBar(props) {
 
   return (
     <div className="FilterBar">
-      {isPast1030pxAndSideBarClosed ? (
         <>
           <DropDown
             label={"Search By"}
@@ -50,9 +49,6 @@ export default function FilterBar(props) {
             optionClickHandler={optionClickHandler}
           />
         </>
-      ) : (
-        <div>test</div>
-      )}
     </div>
   );
 }

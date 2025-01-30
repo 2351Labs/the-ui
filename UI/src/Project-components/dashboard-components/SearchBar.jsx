@@ -6,7 +6,7 @@ import checkIcon from "../../assets/dashboard/check.svg";
 import useClickOutside from "../../helpers/useClickOutside";
 import "../../css/searchBar.css";
 export default function SearchBar() {
-  const filterOptions = ["Services", "Infrastructure", "Domains", "Teams"];
+  const filterOptions = ["Services", "Infrastructure", "Domains", "Teams","Libraries", "APIs"];
   const [isMainFilterOpen, setIsMainFilterOpen] = useState(false);
   const [mainFilterConfiguration, setMainFilterConfiguration] = useState({});
   const mainFilterRef = useRef(null);

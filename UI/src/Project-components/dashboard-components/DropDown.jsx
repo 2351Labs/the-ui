@@ -20,8 +20,8 @@ export default function DropDown(props) {
       }}
       style={
         isDropdown
-          ? { border: "2px solid var(--primary)" }
-          : { border: "2px solid var(--dashboard-grey)" }
+          ? { border: "1px solid var(--primary)" }
+          : { border: "1px solid rgb(216, 216, 216)" }
       }
       className="DropDown"
     >

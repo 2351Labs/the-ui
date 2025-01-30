@@ -3,9 +3,12 @@ import "../../../css/Catalog.css";
 import filterIcon from "../../../assets/dashboard/filter.svg";
 import CatalogItemView from "../catalog-components/CatalogItemView";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
+import FilterBar from "../FilterBar";
 import CatalogTable from "./CatalogTable";
 // import dropdownIcon from "../../assets/dashboard/dropdown.svg";
 export default function Catalog() {
+  const [filterConfiguration, setFilterConfiguration] = useState({});
+
   // const {itemID} = useLoaderData();
   // const [catalogItemSelection, setCatalogItemSelection] = useState(null);
   const [catalogData, setCatalogData] = useState({
@@ -39,7 +42,21 @@ export default function Catalog() {
   const [sortByKeySelection, setSortByKeySelection] = useState();
   //SUB COMPONENT AT BOTTOM OF FILE
   return (
-    <CatalogTable catalogData={catalogData}/>
+    <div className="catalog">
+      <div className="filterBar-container">
+        {/* <div className="sort-by">Sort By</div> */}
+        <h3 className="search-results-header">15+ results found</h3>
+        <FilterBar
+          // toggleSidebar={toggleSidebar}
+          filterConfigurationState={{
+            value: filterConfiguration,
+            setter: setFilterConfiguration,
+          }}
+        />
+      </div>
+
+      <CatalogTable catalogData={catalogData} />
+    </div>
     // <div className="catalog-container">
     //   <div className="catalog">
     //     <div className="catalog--keys-container">

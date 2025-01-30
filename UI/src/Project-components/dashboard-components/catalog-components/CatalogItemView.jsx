@@ -14,6 +14,7 @@ import linkIcon from "../../../assets/dashboard/catalog-assets/link.svg";
 import treeStructureIcon from "../../../assets/dashboard/catalog-assets/tree-structure.svg";
 import keyIcon from "../../../assets/dashboard/catalog-assets/key.svg";
 import Dependencies from "./Dependencies";
+import openSourceIcon from "../../../assets/dashboard/catalog-assets/open-source.svg";
 export default function CatalogItemView() {
   const { itemDataLoader, itemID } = useLoaderData();
   const [itemData, setItemData] = useState(itemDataLoader);
@@ -32,7 +33,7 @@ export default function CatalogItemView() {
     dependencies: {
       label: "Dependencies",
       img: treeStructureIcon,
-      element: <Dependencies/>,
+      element: <Dependencies />,
     },
 
     ownership: {
@@ -51,10 +52,16 @@ export default function CatalogItemView() {
       <BreadCrumbs itemID={itemID} itemData={itemData} />
 
       <div className="name-container">
-        <CatalogItemName
-          itemID={itemID}
-          itemDataState={{ value: itemData, setter: setItemData }}
-        />
+        <div className="catalogItemName-container">
+          <CatalogItemName
+            itemID={itemID}
+            itemDataState={{ value: itemData, setter: setItemData }}
+          />
+          {/* <div className="badge">
+            <img src={openSourceIcon} />
+            <div className="badge-text">Open source</div>
+          </div> */}
+        </div>
         <div className="description-container">
           <img style={{ rotate: "180deg" }} src={infoIcon} />
           <div>{itemData.description}</div>
@@ -92,10 +99,24 @@ export default function CatalogItemView() {
               </div>
             </div>
           </div>
-          <div className="row-container">
-            <div className="key">Last updated</div>
-            <div className="value-container">
-              <div className="value">a year ago</div>
+          <div className="row-container-wrapper">
+            <div className="row-container">
+              <div className="key">Last updated</div>
+              <div className="value-container">
+                <div className="value">a year ago</div>
+              </div>
+            </div>
+            <div className="row-container">
+              <div className="key">Availability</div>
+              <div className="value-container">
+                <div className="value">
+                  Open Source
+                  {/* <div className="badge">
+                    <img src={openSourceIcon} />
+                    <div className="badge-text">Open source</div>
+                  </div> */}
+                </div>
+              </div>
             </div>
           </div>
           <div className="row-container">
