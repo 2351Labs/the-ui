@@ -4,7 +4,7 @@ import "../../../css/catalogItemName.css";
 import GrowingInput from "../GrowingInput";
 import { useState, useRef, useEffect } from "react";
 export default function CatalogItemName(props) {
-  const { itemID, catalogDataState } = props;
+  const { itemID, itemDataState } = props;
   const nameRef = useRef(null);
   const [isEditingName, setIsEditingName] = useState(false);
 
@@ -19,10 +19,10 @@ export default function CatalogItemName(props) {
   }, [isEditingName]);
 
   function onChangeHandler(e) {
-    catalogDataState.setter((prev) => {
+    itemDataState.setter((prev) => {
       return {
         ...prev,
-        [itemID]: { ...catalogDataState.value[itemID], name: e.target.value },
+        name: e.target.value,
       };
     });
   }
@@ -31,15 +31,15 @@ export default function CatalogItemName(props) {
     <div className="catalogItemName">
       <GrowingInput
         inputRef={nameRef}
-        inputValue={catalogDataState.value[itemID].name}
+        inputValue={itemDataState.value.name}
         onChangeHandler={onChangeHandler}
         isDisabled={!isEditingName}
       />
       {!isEditingName && (
         <img
           style={{
-            opacity:".5",
-            cursor:"pointer"
+            opacity: ".5",
+            cursor: "pointer",
             // filter:"brightness(0) saturate(100%) invert(60%) sepia(86%) saturate(382%) hue-rotate(90deg) brightness(93%) contrast(94%)",
           }}
           onClick={() => {

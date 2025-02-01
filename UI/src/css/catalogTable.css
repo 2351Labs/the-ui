@@ -1,0 +1,76 @@
+.catalogTable {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid rgb(216, 216, 216); */
+  /* padding: 20px 30px; */
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 2px;
+  .p-dropdown {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    gap: 10px;
+  }
+  .p-paginator-bottom {
+    display: flex;
+    gap: 5px;
+  }
+  .p-paginator-element:hover {
+    background-color: rgb(243, 243, 243);
+  }
+
+  .p-paginator-element {
+    /* background-color: rgb(236, 236, 236); */
+    border-radius: 30px;
+    width: 42px;
+    height: 42px;
+    margin: 5px;
+  }
+  .p-datatable {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+  }
+  td,
+  th {
+    padding: 14px;
+    border-bottom: 2px solid rgb(233, 233, 233);
+  }
+  th {
+    opacity: 0.8;
+    /* border-top-right-radius: 5px; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* border-top-left-radius: 5px; */
+  }
+  td {
+    /* opacity: 0.7; */
+    /* font-weight: 550; */
+  }
+  .p-datatable-thead {
+    /* background-color: rgba(238, 238, 238, 0.76); */
+    /* opacity: .7; */
+  }
+  .p-row-odd {
+    background-color: white !important;
+  }
+  .p-column-header-content {
+    gap: 7px;
+  }
+  .p-selectable-row {
+    font-weight: 400;
+    background-color: rgba(247, 247, 247, 0.76);
+
+    /* color:red; */
+  }
+  .p-selectable-row:hover {
+    background-color: rgb(238, 238, 238) !important;
+  }
+  .p-highlight {
+    background-color: var(--primary-light);
+  }
+}

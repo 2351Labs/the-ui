@@ -19,6 +19,7 @@ export default function SideBar(props) {
     !isPast725px && sidebarState.setToggleSidebar(false);
   });
 
+
   const popupConfig = !(isPast725px && sidebarState.isEnabled)
     ? {
         position: "absolute",

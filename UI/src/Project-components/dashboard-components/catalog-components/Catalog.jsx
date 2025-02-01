@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../../css/Catalog.css";
 import filterIcon from "../../../assets/dashboard/filter.svg";
 import CatalogItemView from "../catalog-components/CatalogItemView";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
+import FilterBar from "../FilterBar";
+import CatalogTable from "./CatalogTable";
+import StyledComponent from "./StyledComponent";
+import StyledCatalogTableMUI from "./StyledCatalogTableMUI";
+import StyledBreadCrumbs from "../StyledBreadCrumbs";
+import { useLocation } from "react-router-dom";
+import MultiSelectPrime from "../MultiSelectPrime";
 // import dropdownIcon from "../../assets/dashboard/dropdown.svg";
 export default function Catalog() {
-  const [catalogItemSelection, setCatalogItemSelection] = useState(null);
+  const [filterConfiguration, setFilterConfiguration] = useState({});
+  const location = useLocation();
+  let params = new URLSearchParams(window.location.search);
+
+  useEffect(() => {
+    // detect changes to URL and trigger rerender to show updated elements
+    // for keeping search query indicator in sync with URL
+  }, [location]);
+
+  // const {itemID} = useLoaderData();
+  // const [catalogItemSelection, setCatalogItemSelection] = useState(null);
   const [catalogData, setCatalogData] = useState({
     1: {
       name: "Order Service",
@@ -27,68 +45,93 @@ export default function Catalog() {
   });
 
   const CatalogKeys = [
-    { name: "name", width: "200px" },
-    { name: "owner", width: "200px" },
+    { name: "name", width: "150px" },
+    { name: "owner", width: "150px" },
     { name: "type", width: "120px" },
-    { name: "created", width: "200px" },
+    { name: "created", width: "85px" },
   ];
 
   const [sortByKeySelection, setSortByKeySelection] = useState();
   //SUB COMPONENT AT BOTTOM OF FILE
   return (
-    <>
-      {!catalogItemSelection ? (
-        <div className="catalog-container">
-          <div className="catalog">
-            <div className="catalog--keys-container">
-              {CatalogKeys.map((key, index) => {
-                return (
-                  <CatalogKey
-                    key={index}
-                    sortByKeysState={{
-                      value: sortByKeySelection,
-                      setter: setSortByKeySelection,
-                    }}
-                    width={key.width}
-                    name={key.name}
-                  />
-                );
-              })}
-            </div>
-            <div className="list-container">
-              {Object.keys(catalogData).map((itemID, index) => {
-                return (
-                  <div
-                    className="row-container"
-                    onClick={() => {
-                      setCatalogItemSelection(itemID);
-                    }}
-                    key={index}
-                  >
-                    {CatalogKeys.map((keyObj, index) => {
-                      return (
-                        <div
-                          key={index}
-                          style={{ width: keyObj.width, padding: "15px" }}
-                        >
-                          {catalogData[itemID][keyObj.name]}
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+    <div className="catalog">
+      <StyledBreadCrumbs />
+      {/* <h3>Micro Service</h3> */}
+      {/* <StyledComponent/> */}
+      <div className="filterBar-container">
+        {/* <div className="sort-by">Sort By</div> */}
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <h3 className="search-results-header">
+            {params.get("q") ? "15+ results found" : "All Results"}
+          </h3>
+          {params.get("q") && (
+            <div className="search-query">{`"${params.get("q")}"`}</div>
+          )}
+          {console.log(params)}
         </div>
-      ) : (
-        <CatalogItemView
-          setCatalogItemSelection={setCatalogItemSelection}
-          catalogDataState={{ value: catalogData, setter: setCatalogData }}
-          itemID={catalogItemSelection}
+        <FilterBar
+          // toggleSidebar={toggleSidebar}
+          filterConfigurationState={{
+            value: filterConfiguration,
+            setter: setFilterConfiguration,
+          }}
         />
-      )}
-    </>
+      </div>
+      <StyledCatalogTableMUI />
+
+      {/* <CatalogTable catalogData={catalogData} /> */}
+    </div>
+    // <div className="catalog-container">
+    //   <div className="catalog">
+    //     <div className="catalog--keys-container">
+    //       {CatalogKeys.map((key, index) => {
+    //         return (
+    //           <CatalogKey
+    //             key={index}
+    //             sortByKeysState={{
+    //               value: sortByKeySelection,
+    //               setter: setSortByKeySelection,
+    //             }}
+    //             width={key.width}
+    //             name={key.name}
+    //           />
+    //         );
+    //       })}
+    //     </div>
+    //     <div className="list-container">
+    //       {Object.keys(catalogData).map((itemID, index) => {
+    //         return (
+    //           <Link
+    //             to={itemID}
+    //             className="row-container"
+    //             // onClick={() => {
+    //             //   setCatalogItemSelection(itemID);
+    //             // }}
+    //             key={index}
+    //           >
+    //             {CatalogKeys.map((keyObj, index) => {
+    //               return (
+    //                 <div
+    //                   className="catalog-table"
+    //                   key={index}
+    //                   style={{
+    //                     width: keyObj.width,
+    //                     padding: "15px",
+    //                     // color: `${
+    //                     //   keyObj.name == "name" ? "var(--primary)" : "black"
+    //                     // }`,
+    //                   }}
+    //                 >
+    //                   {catalogData[itemID][keyObj.name]}
+    //                 </div>
+    //               );
+    //             })}
+    //           </Link>
+    //         );
+    //       })}
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
@@ -124,7 +167,7 @@ function CatalogKey(props) {
       className="catalog--key"
       style={
         !isActiveFilter
-          ? { width: `${width}`, opacity: ".7" }
+          ? { width: `${width}` }
           : {
               width: `${width}`,
               opacity: "1",

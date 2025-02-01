@@ -1,0 +1,35 @@
+.changeHistory {
+  color: black;
+  width: 100%;
+  display: flex;
+  /* gap: 30px; */
+  flex-direction: column;
+  .p-timeline{
+    width: 100%
+  }
+  .p-timeline-event-separator {
+  }
+  .p-timeline-event-separator {
+    height: 70px;
+    width: 14px;
+  }
+  .p-timeline-event-marker {
+    background-color: var(--primary);
+    border-radius: 20px;
+    width: 12px;
+    height: 12px;
+  }
+  .p-timeline-event-connector {
+    height: 56px;
+    width: 2px;
+    background-color: rgb(231, 231, 231);
+  }
+  .p-timeline-event-content{
+    font-size:20px;
+   
+  }
+  .p-timeline-event-opposite,
+  .p-timeline-event-content {
+    /* translate: 0px -3.5px; */
+  }
+}

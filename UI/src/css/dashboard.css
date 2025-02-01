@@ -4,18 +4,20 @@
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "DM Sans", serif;
   display: flex;
-  padding: 15px 10px;
+  padding: 10px 10px;
   border-radius: 15px;
-  height: 100%;
   gap: 20px;
   width: 100%;
   color: black;
   background-color: white;
-  overflow: hidden;
+  box-sizing: border-box;
+  /* overflow: hidden; */
   height: 100%;
   input,
   label,
-  button {
+  button,
+  a {
+    text-decoration: none;
     font-family: "DM Sans", serif;
     color: black;
     border: none;
@@ -24,27 +26,50 @@
   .dashboard--right {
     position: relative;
     background-color: white;
-    border-radius: 15px;
-    /* padding: 20px; */
+    /* border-radius: 15px; */
     width: 100%;
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
+
+    box-sizing: border-box;
     .dashboard--content {
-      /* background-color: var(--dashboard-grey); */
+      /* padding-right:50px;
+      padding-left:20px; */
+      /* background-color: rgb(250, 250, 250); */
       height: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 20px;
+      margin: 10px;
+      margin-top: 20px;
+      display: flex;
+      /* padding: 10px; */
+      width: 100%;
+      border-radius: 10px;
+      box-sizing: border-box;
+      overflow-y: scroll;
+      scrollbar-color: rgb(88, 88, 88) transparent;
+      justify-content: center;
+
+      .content-centered{
+        margin-top: 30px;
+        display: flex;
+        max-width: 1500px;
+        width: 100%;
+      }
     }
     .top-container {
-      box-sizing: border-box;
       display: flex;
-      justify-content: left;
+      justify-content: space-between;
+      
       gap: 10px;
       align-items: center;
       width: 100%;
-      padding: 0px 10px;
+      padding: 2px;
+      height: fit-content;
+      .user-icon {
+        margin-right: 25px;
+        width: 32px;
+        filter: brightness(0) saturate(100%) invert(72%) sepia(40%)
+          saturate(860%) hue-rotate(84deg) brightness(89%) contrast(84%);
+      }
       .bell-icon {
         width: 20px;
       }

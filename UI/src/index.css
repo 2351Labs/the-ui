@@ -22,7 +22,8 @@
   --primary-light: rgb(195, 238, 212);
 }
 
-html, body {
+html,
+body {
   /* height: 97.3vh; */
   height: 100%;
   margin: 0px;
@@ -36,6 +37,7 @@ html, body {
   padding: none;
   margin: none;
 }
+
 
 @keyframes fade-in {
   100% {
@@ -60,22 +62,19 @@ html, body {
 
 @keyframes shrinkWidth {
   from {
-      min-width: 270px;
+    min-width: 270px;
   }
   to {
-    min-width: 87px;    max-width: 87px;
-
+    min-width: 87px;
+    max-width: 87px;
   }
 }
 @keyframes growWidth {
   from {
     min-width: 87px;
     max-width: 87px;
-
   }
   to {
-    min-width:270px;
+    min-width: 270px;
   }
 }
-
-

@@ -20,8 +20,8 @@ export default function DropDown(props) {
       }}
       style={
         isDropdown
-          ? { border: "2px solid var(--primary)" }
-          : { border: "2px solid var(--dashboard-grey)" }
+          ? { border: "1px solid var(--primary)" }
+          : { border: "1px solid rgb(216, 216, 216)" }
       }
       className="DropDown"
     >
@@ -50,8 +50,14 @@ export default function DropDown(props) {
                   <img
                     style={
                       listState[label]?.[option]
-                        ? { backgroundColor: "var(--primary)" }
-                        : { backgroundColor: "grey" }
+                        ? {
+                            backgroundColor: "var(--primary)",
+                            border: " 1px solid transparent",
+                          }
+                        : {
+                            backgroundColor: "white",
+                            border: " 1px solid rgb(207, 207, 207)",
+                          }
                     }
                     src={checkIcon}
                   />

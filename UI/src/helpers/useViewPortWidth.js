@@ -1,7 +1,8 @@
 // detect if viewport is within given width, returns boolean
 import { useState, useEffect } from "react";
 
-const useViewportWidth = (breakpoint = 725) => {
+const useViewportWidth = (breakpoint) => {
+  console.log("BREAKPOINT", breakpoint)
   const [isPastBreakpoint, setIsPastBreakpoint] = useState(window.innerWidth > breakpoint);
 
   useEffect(() => {

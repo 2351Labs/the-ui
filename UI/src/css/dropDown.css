@@ -1,4 +1,18 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    translate: 0px -15px;
+  }
+  to {
+    opacity: 1;
+    translate: 0px 0px;
+  }
+}
+.DropDown:hover{
+  background-color: rgb(238, 238, 238) !important;
+}
 .DropDown {
+  color:rgb(70, 70, 70) !important;
   display: flex;
   gap: 5px;
   box-sizing: border-box;
@@ -13,31 +27,38 @@
   color: black;
   font-family: "DM Sans", serif;
   font-size: 14px;
-  background-color: white;
+  /* background-color: var(--dashboard-grey) !important; */
+  background-color: rgb(245, 245, 245) !important;
   cursor: pointer;
   .dropdown-label {
     text-wrap: nowrap;
   }
+  border: 1px solid rgb(216, 216, 216);
+
   button {
-    background-color: white;
+    background-color: rgb(245, 245, 245);
+    /* background-color: var(--dashboard-grey) !important; */
+
     border: none;
   }
   .dropdown-icon {
     width: 20px;
     translate: 0px 1px;
+    transition: 0.2s ease-in-out all;
   }
 
   .dropdown-list {
+    animation: fadeIn 0.1s ease-in-out;
     z-index: 2;
-    /* background-color: var(--dashboard-grey);*/
-    background-color: white;
+    /* background-color: var(--dashboard-grey); */
     position: absolute;
     min-width: 100%;
     top: 40px;
     left: 0px;
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgb(175, 175, 175);
+    /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
     .option-btn:hover {
       background-color: var(--primary-light);
     }
@@ -57,7 +78,8 @@
         border-radius: 5px;
         width: 100%;
         /* padding: 5px 5px; */
-        color: black;
+        color:rgb(70, 70, 70);
+
         font-family: "DM Sans", serif;
         font-weight: 500;
         font-size: 14px;

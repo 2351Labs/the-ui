@@ -1,6 +1,6 @@
 .FilterBar {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   gap: 10px;
-  margin-left: 20px;
+  box-sizing: border-box;
 }
