@@ -1,100 +1,108 @@
 .catalog-searchbar:focus-within {
-    border: 2px solid var(--primary);
-  }
-  .catalog-searchbar {
-    z-index: 1;
-    width: 60%;
-    border: 2px solid transparent;
-    background-color: var(--dashboard-grey);
-    padding: 3px 15px;
-    /* max-width: 500px; */
-    border-radius: 30px;
+  border: 2px solid var(--primary);
+}
+.catalog-searchbar {
+  color:rgb(70, 70, 70);
+  z-index: 1;
+  width: 60%;
+  max-width: 900px;
+  border: 2px solid transparent;
+  background-color: var(--dashboard-grey);
+  padding: 3px 15px;
+  /* max-width: 500px; */
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  z-index: 5;
+  font-weight: 600;
+  .catalog-searchbar-container {
     display: flex;
     align-items: center;
-    font-size: 16px;
-    font-weight: 600;
-    .search-filter-container:hover{
-      background-color:var(--dashboard-grey-hover)
-    }
-    .search-filter-container {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      position: relative;
-      padding: 5px;
-      width: 140px;
-      border-radius: 5px;
-      user-select: none;
-      /* width: 100px; */
-      
-      .dropdown-list {
-        animation: dropdown 0.2s ease-in-out;
+  }
+  .search-filter-container:hover {
+    background-color: var(--dashboard-grey-hover);
+  }
+  .search-filter-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    position: relative;
+    padding: 5px;
+    width: 140px;
+    border-radius: 5px;
+    user-select: none;
+    /* width: 100px; */
 
-        overflow: hidden;
-        background-color: var(--dashboard-grey);
-        position: absolute;
-        top: 50px;
-        left: 0px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px 0px rgb(175, 175, 175);
-        .filter-option-container:hover{
-          background-color: var(--primary-light);
-        }
-        .filter-option-container {
+    .dropdown-list {
+      animation: dropdown 0.2s ease-in-out;
+
+      overflow: hidden;
+      background-color: var(--dashboard-grey);
+      position: absolute;
+      top: 45px;
+      left: 0px;
+      border-radius: 5px;
+      /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
+      box-shadow: 0px 4px 12px 0px rgba(41, 41, 41, 0.1);
+      animation: fadeIn 0.1s ease-in-out;
+
+      .filter-option-container:hover {
+        background-color: var(--primary-light);
+      }
+      .filter-option-container {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        padding: 2px 5px;
+        gap: 5px;
+        .checkbox-background {
           display: flex;
           align-items: center;
-          padding: 5px 5px;
-          gap:5px;
-          .checkbox-background{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary);
-            padding: 6px 6px;
-            margin: 5px;
-            border-radius: 5px;
-            height: 5px;
-            width:5px;
-            img{
-              width: 10px;
-            }
+          justify-content: center;
+          background-color: var(--primary);
+          padding: 6px 6px;
+          margin: 5px;
+          border-radius: 5px;
+          height: 5px;
+          width: 5px;
+          img {
+            width: 10px;
           }
         }
       }
-      .dropdown {
-        translate: 0px 1px;
-        /* transition: .2s ease-in-out all; */
-      }
     }
-  
-    .splitter {
-      height: 28px;
-    }
-    img {
-      width: 20px;
-      transition: .2s ease-in-out all;
-
-    }
-    .search-icon {
-      /* margin-right: 10px; */
-      padding: 0px 5px;
-    }
-    input {
-      background-color: transparent;
-      border: none;
-      font-size: 16px;
-      color:black;
-      width: 110px;
-    }
-    .filter-selection {
-      white-space: nowrap;
-    }
-    input:focus {
-      
-      /* outline: rgb(151, 151, 151) 1px solid; */
-      outline: none;
-      color: black;
+    .dropdown {
+      translate: 0px 1px;
+      /* transition: .2s ease-in-out all; */
     }
   }
-  
+
+  .splitter {
+    height: 28px;
+  }
+  img {
+    width: 20px;
+    transition: 0.2s ease-in-out all;
+  }
+  .search-icon {
+    /* margin-right: 10px; */
+    padding: 0px 5px;
+  }
+  input {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: black;
+    width: 110px;
+  }
+  .filter-selection {
+    white-space: nowrap;
+  }
+  input:focus {
+    /* outline: rgb(151, 151, 151) 1px solid; */
+    outline: none;
+    color: black;
+  }
+}

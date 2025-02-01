@@ -5,14 +5,22 @@ import { useRef, useState } from "react";
 import checkIcon from "../../assets/dashboard/check.svg";
 import useClickOutside from "../../helpers/useClickOutside";
 import "../../css/searchBar.css";
+import { useNavigate } from "react-router-dom";
+import MultiSelectPrime from "./MultiSelectPrime";
 export default function SearchBar() {
-  const filterOptions = ["Services", "Infrastructure", "Domains", "Teams","Libraries", "APIs"];
+  const filterOptions = [
+    "Services",
+    "Infrastructure",
+    "Domains",
+    "Teams",
+    "Libraries",
+    "APIs",
+  ];
   const [isMainFilterOpen, setIsMainFilterOpen] = useState(false);
   const [mainFilterConfiguration, setMainFilterConfiguration] = useState({});
   const mainFilterRef = useRef(null);
   const inputRef = useRef(null);
-
-
+  const navigate = useNavigate();
   useClickOutside(mainFilterRef, () => {
     setIsMainFilterOpen(false);
   });
@@ -22,83 +30,101 @@ export default function SearchBar() {
   );
   const mainFilterSelectionCount = mainFilterSelection.length;
   return (
-    <div
-      onClick={(e) => {
-        if (inputRef.current) {
-          inputRef.current.focus();
-        }
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log(inputRef.current.value);
+        navigate(`/dashboard/catalog?q=${inputRef.current.value}`, {
+          replace: true,
+        });
       }}
       className="catalog-searchbar"
     >
       <div
-        id="main-filter"
-        ref={mainFilterRef}
+        className="catalog-searchbar-container"
         onClick={(e) => {
-          e.stopPropagation();
-          console.log(e.target.id);
-          if (e.target.id == "main-filter") {
-            setIsMainFilterOpen(!isMainFilterOpen);
+          if (inputRef.current) {
+            inputRef.current.focus();
           }
         }}
-        style={
-          isMainFilterOpen
-            ? { border: "2px solid var(--primary)" }
-            : { border: "2px solid transparent" }
-        }
-        className="search-filter-container"
       >
-        <div id="main-filter" className="filter-selection">
-          {mainFilterSelectionCount == 0
-            ? "All items"
-            : `${
-                mainFilterSelectionCount == 1
-                  ? `${mainFilterSelection[0]}`
-                  : `${mainFilterSelectionCount} items`
-              }`}
-        </div>
-        <img
-          style={isMainFilterOpen ? { rotate: "180deg" } : {}}
+        {/* <MultiSelectPrime/> */}
+        <div
           id="main-filter"
-          className="dropdown"
-          src={dropdownIcon}
-        />
-        {isMainFilterOpen && (
-          <div id="dropdown" className="dropdown-list">
-            {filterOptions.map((option) => {
-              return (
-                <div
-                  onClick={() => {
-                    setMainFilterConfiguration((prev) => {
-                      return {
-                        ...prev,
-                        [option]: !mainFilterConfiguration[option],
-                      };
-                    });
-                  }}
-                  className="filter-option-container"
-                >
-                  <div
-                    id="inactive"
-                    style={
-                      mainFilterConfiguration[option]
-                        ? { backgroundColor: "var(--primary)" }
-                        : { backgroundColor: "grey" }
-                    }
-                    className="checkbox-background"
-                  >
-                    <img src={checkIcon} />
-                  </div>
-                  <div>{option}</div>
-                </div>
-              );
-            })}
+          ref={mainFilterRef}
+          onClick={(e) => {
+            e.stopPropagation();
+            console.log(e.target.id);
+            if (e.target.id == "main-filter") {
+              setIsMainFilterOpen(!isMainFilterOpen);
+            }
+          }}
+          style={
+            isMainFilterOpen
+              ? { border: "2px solid var(--primary)" }
+              : { border: "2px solid transparent" }
+          }
+          className="search-filter-container"
+        >
+          <div id="main-filter" className="filter-selection">
+            {mainFilterSelectionCount == 0
+              ? "All items"
+              : `${
+                  mainFilterSelectionCount == 1
+                    ? `${mainFilterSelection[0]}`
+                    : `${mainFilterSelectionCount} items`
+                }`}
           </div>
-        )}
-      </div>
+          <img
+            style={isMainFilterOpen ? { rotate: "180deg" } : {}}
+            id="main-filter"
+            className="dropdown"
+            src={dropdownIcon}
+          />
+          {isMainFilterOpen && (
+            <div id="dropdown" className="dropdown-list">
+              {filterOptions.map((option) => {
+                return (
+                  <div
+                    onClick={() => {
+                      setMainFilterConfiguration((prev) => {
+                        return {
+                          ...prev,
+                          [option]: !mainFilterConfiguration[option],
+                        };
+                      });
+                    }}
+                    className="filter-option-container"
+                  >
+                    <div
+                      id="inactive"
+                      style={
+                        mainFilterConfiguration[option]
+                          ? {
+                              backgroundColor: "var(--primary)",
+                              border: " 1px solid transparent",
+                            }
+                          : {
+                              backgroundColor: "white",
+                              border: " 1px solid rgb(207, 207, 207)",
+                            }
+                      }
+                      className="checkbox-background"
+                    >
+                      <img src={checkIcon} />
+                    </div>
+                    <div>{option}</div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
-      <img className="splitter" src={lineSVG} />
-      <img className="search-icon" src={searchIcon} />
-      <input ref={inputRef} placeholder="Search"></input>
-    </div>
+        <img className="splitter" src={lineSVG} />
+        <img className="search-icon" src={searchIcon} />
+        <input ref={inputRef} placeholder="Search"></input>
+      </div>
+    </form>
   );
 }

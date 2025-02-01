@@ -49,8 +49,9 @@
       justify-content: center;
 
       .content-centered{
+        margin-top: 30px;
         display: flex;
-        max-width: 1150px;
+        max-width: 1500px;
         width: 100%;
       }
     }

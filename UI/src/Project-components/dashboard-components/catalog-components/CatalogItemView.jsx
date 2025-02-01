@@ -5,7 +5,6 @@ import CatalogNavigationBar from "./CatalogNavigationBar";
 import descriptionIcon from "../../../assets/dashboard/catalog-assets/description.svg";
 import infoIcon from "../../../assets/dashboard/catalog-assets/info.svg";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import BreadCrumbs from "../BreadCrumbs";
 import ChangeHistory from "./ChangeHistory";
 import { Outlet } from "react-router-dom";
 import documentIcon from "../../../assets/dashboard/catalog-assets/document.svg";
@@ -15,6 +14,7 @@ import treeStructureIcon from "../../../assets/dashboard/catalog-assets/tree-str
 import keyIcon from "../../../assets/dashboard/catalog-assets/key.svg";
 import Dependencies from "./Dependencies";
 import openSourceIcon from "../../../assets/dashboard/catalog-assets/open-source.svg";
+import StyledBreadCrumbs from "../StyledBreadCrumbs";
 export default function CatalogItemView() {
   const { itemDataLoader, itemID } = useLoaderData();
   const [itemData, setItemData] = useState(itemDataLoader);
@@ -49,7 +49,7 @@ export default function CatalogItemView() {
 
   return (
     <div className="catalogItemView">
-      <BreadCrumbs itemID={itemID} itemData={itemData} />
+      <StyledBreadCrumbs itemID={itemID} itemData={itemData} />
 
       <div className="name-container">
         <div className="catalogItemName-container">
@@ -107,10 +107,10 @@ export default function CatalogItemView() {
               </div>
             </div>
             <div className="row-container">
-              <div className="key">Availability</div>
+              <div className="key">Liscense</div>
               <div className="value-container">
                 <div className="value">
-                  Open Source
+                  MIT LISCENSE
                   {/* <div className="badge">
                     <img src={openSourceIcon} />
                     <div className="badge-text">Open source</div>

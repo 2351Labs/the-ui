@@ -4,7 +4,6 @@ export default function Option(props) {
   // use URL to determine sidebar selection
   const url = window.location.pathname;
   const currentSidebarOption = url.substring(url.lastIndexOf("/") + 1);
-  console.log(currentSidebarOption);
 
   const { img, name, id, sidebarState, style, element } = props;
   return (
