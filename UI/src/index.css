@@ -8,7 +8,7 @@
   color-scheme: light dark;
   color: black;
   /* background-color: #242424; */
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,6 +20,16 @@
   --dashboard-grey-hover: rgb(223, 223, 223);
   --primary: #2dce6b;
   --primary-light: rgb(195, 238, 212);
+
+  --background-night: #070808;
+  --sidebar-background-night: #0e0e0e;
+  --sidebar-highlight-night: #202020;
+  --background-tint-night: #1a1e20;
+  --shadow-sidebar-night: 0px 4px 12px 0px rgba(0, 0, 0, 1);
+
+  /* invert target color to apply accurate styling */
+  --inversion-color-night: #d33094;
+  --inversion-color-night-shade: rgba(145, 61, 111, 0.9);
 }
 
 html,
@@ -37,7 +47,6 @@ body {
   padding: none;
   margin: none;
 }
-
 
 @keyframes fade-in {
   100% {

@@ -7,28 +7,37 @@ import Catalog from "./catalog-components/Catalog";
 import FilterBar from "./FilterBar";
 // for defining sidebar:
 import homeIcon from "../../assets/dashboard/home.svg";
-import catalogIcon from "../../assets/dashboard/catalog.svg";
 import sIcon from "../../assets/dashboard/s.svg";
 import settingsIcon from "../../assets/dashboard/settings.svg";
-import peopleIcon from "../../assets/dashboard/people.svg";
-import userIcon from "../../assets/dashboard/user.svg";
-import reportsIcon from "../../assets/dashboard/reports.svg";
+import UserSVG from "../../assets/dashboard/user.svg?react";
 import { Outlet } from "react-router-dom";
+import CatalogSVG from "../../assets/dashboard/catalog.svg?react";
+import ReportsSVG from "../../assets/dashboard/reports.svg?react";
+import PeopleSVG from "../../assets/dashboard/people.svg?react";
 export default function Dashboard() {
   // sidebar selection controls content element displayed:
   const [sidebarSelection, setsidebarSelection] = useState({
     name: "Home",
     element: <div>Home</div>,
   });
+  const [isNightMode, setIsNightMode] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(true);
   const sidebarOptions = {
-    Catalog: { label: "Catalog", element: <Catalog />, img: catalogIcon },
-    Reports: { label: "Reports", element: <div>EMPTY</div>, img: reportsIcon },
-    People: { label: "People", element: <div>EMPTY</div>, img: peopleIcon },
+    Catalog: {
+      label: "Catalog",
+      element: <Catalog />,
+      svg: <CatalogSVG />,
+    },
+    Reports: {
+      label: "Reports",
+      element: <div>EMPTY</div>,
+      svg: <ReportsSVG />,
+    },
+    People: { label: "People", element: <div>EMPTY</div>, svg: <PeopleSVG /> },
     // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
   };
   return (
-    <div className="dashboard--container">
+    <div id={isNightMode && "night-mode"} className="dashboard--container">
       <SideBar
         sidebarOptions={sidebarOptions}
         sidebarState={{
@@ -52,7 +61,14 @@ export default function Dashboard() {
             style={{ display: "flex", width: "100%", justifyContent: "center" }}
           > */}
           <SearchBar />
-          <img className="user-icon" src={userIcon} />
+          <button
+            onClick={() => {
+              setIsNightMode(!isNightMode);
+            }}
+          >
+            NIGHT MODE
+          </button>
+          <UserSVG className={"user-icon"} />
           {/* </div> */}
         </div>
         {/* CONTENT: */}

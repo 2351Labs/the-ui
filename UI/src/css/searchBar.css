@@ -2,7 +2,7 @@
   border: 2px solid var(--primary);
 }
 .catalog-searchbar {
-  color:rgb(70, 70, 70);
+  color: rgb(70, 70, 70);
   z-index: 1;
   width: 60%;
   max-width: 900px;
@@ -33,6 +33,10 @@
     width: 140px;
     border-radius: 5px;
     user-select: none;
+    border: 2px solid transparent;
+    &.highlighted {
+      border: 2px solid var(--primary);
+    }
     /* width: 100px; */
 
     .dropdown-list {
@@ -45,11 +49,11 @@
       left: 0px;
       border-radius: 5px;
       /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
-      box-shadow: 0px 4px 12px 0px rgba(41, 41, 41, 0.1);
+      box-shadow: 0px 4px 12px 0px rgba(41, 41, 41, 0.05);
       animation: fadeIn 0.1s ease-in-out;
 
       .filter-option-container:hover {
-        background-color: var(--primary-light);
+        /* background-color: var(--primary-light); */
       }
       .filter-option-container {
         font-weight: 500;
@@ -57,18 +61,18 @@
         align-items: center;
         padding: 2px 5px;
         gap: 5px;
-        .checkbox-background {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: var(--primary);
-          padding: 6px 6px;
+        .dropdown-checkbox {
+          background-color: rgb(255, 255, 255);
+          padding: 4px 4px;
           margin: 5px;
+          cursor: pointer;
+          width: 10px;
+          height: 10px;
           border-radius: 5px;
-          height: 5px;
-          width: 5px;
-          img {
-            width: 10px;
+          border: 1px solid rgb(207, 207, 207);
+          &.checked {
+            background-color: var(--primary);
+            border: 1px solid transparent;
           }
         }
       }
@@ -104,5 +108,21 @@
     /* outline: rgb(151, 151, 151) 1px solid; */
     outline: none;
     color: black;
+  }
+}
+
+#night-mode .catalog-searchbar {
+  /* background-color: var(--background-tint-night) !important; */
+  .search-filter-container {
+    &.highlighted {
+      border-color: var(--inversion-color-night);
+    }
+  }
+  .dropdown-list{
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.05);
+  }
+  .checked {
+    background-color: var(--inversion-color-night);
+    border: 1px solid transparent;
   }
 }

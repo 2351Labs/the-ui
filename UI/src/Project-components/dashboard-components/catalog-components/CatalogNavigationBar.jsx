@@ -13,30 +13,14 @@ export default function CatalogNavigationBar(props) {
             onClick={() => {
               navBarState.setter(optionKey);
             }}
-            style={
-              optionKey === navBarState.value
-                ? {
-                    color: "var(--primary)",
-                    borderBottom: "2px solid var(--primary)",
-                    backgroundColor: "#f5f5f5",
-                    borderTopRightRadius: "5px",
-                    borderTopLeftRadius: "5px",
-                    // fontWeight: "600",
-                    opacity: 1,
-                  }
-                : {}
-            }
-            className="bar-option-btn"
+            className={`bar-option-btn ${
+              optionKey === navBarState.value && "highlighted"
+            }`}
           >
+            {navBarOptions[optionKey].svg}
             <img
-              style={
-                optionKey === navBarState.value
-                  ? {
-                      filter:
-                        "brightness(0) saturate(100%) invert(60%) sepia(86%) saturate(382%) hue-rotate(90deg) brightness(93%) contrast(94%)",
-                    }
-                  : {}
-              }
+              className={optionKey === navBarState.value && "highlighted"}
+              style={optionKey === navBarState.value ? {} : {}}
               src={navBarOptions[optionKey].img}
             />
             <div className="bar-option" key={index}>

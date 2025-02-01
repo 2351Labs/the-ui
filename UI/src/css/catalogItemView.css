@@ -35,11 +35,11 @@
       .value {
         font-size: 20px;
       }
-      .online {
+      .status {
         padding: 5px 10px;
         background-color: var(--primary);
         border-radius: 10px;
-        color: white;
+        color: rgb(255, 255, 255);
       }
       .score {
         border: 2px solid var(--primary);
@@ -87,43 +87,63 @@
   }
   .badge {
     display: flex;
-    gap:6px;
+    gap: 6px;
     background-color: rgb(203, 218, 248);
     border: 2px solid rgb(91, 138, 224);
     padding: 5px;
     translate: 0px -4px;
     /* height: 12px; */
-     img{
+    img {
       width: 20px;
-     }
-    .badge-text{
+    }
+    .badge-text {
       font-weight: 600;
       color: rgb(91, 138, 224);
-
     }
   }
   .catalogItemName-container {
     display: flex;
     align-items: baseline;
     gap: 30px;
-   
   }
-  
+
   .description-container {
     display: flex;
     gap: 10px;
     max-width: 500px;
     align-items: start;
-    img {
+    .infoSVG {
+      rotate: 180deg;
       margin-top: 4px;
-      width: 20px;
-      height: 20px;
-      filter: brightness(0) saturate(100%) invert(60%) sepia(86%) saturate(382%)
-        hue-rotate(90deg) brightness(93%) contrast(94%);
+      min-width: 20px;
+      min-height: 20px;
+      path {
+        fill: var(--primary);
+      }
     }
     div {
       opacity: 0.6;
       font-style: italic;
+    }
+  }
+}
+
+/* night mode: */
+#night-mode .catalogItemView {
+  /* filter: invert(1); */
+  /* background-color: var(--background-tint-night); */
+  /* box-shadow: var(--shadow-sidebar-night); */
+  .score {
+    border-color: var(--inversion-color-night);
+  }
+  .status {
+    background-color: var(--inversion-color-night);
+  }
+  .description-container {
+  }
+  .infoSVG {
+    path {
+      fill: var(--inversion-color-night);
     }
   }
 }
