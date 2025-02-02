@@ -21,11 +21,11 @@
   --primary: #2dce6b;
   --primary-light: rgb(195, 238, 212);
 
-  --background-night: #070808;
+  /* --background-night: #070808;
   --sidebar-background-night: #0e0e0e;
   --sidebar-highlight-night: #202020;
-  --background-tint-night: #1a1e20;
-  --shadow-sidebar-night: 0px 4px 12px 0px rgba(0, 0, 0, 1);
+  --background-tint-night: #1a1e20; */
+  /* --shadow-sidebar-night: 0px 4px 12px 0px rgba(0, 0, 0, 1); */
 
   /* invert target color to apply accurate styling */
   --inversion-color-night: #d33094;

@@ -112,6 +112,9 @@
 }
 
 #night-mode .catalog-searchbar {
+  &:focus-within {
+    border: 2px solid var(--inversion-color-night);
+  }
   /* background-color: var(--background-tint-night) !important; */
   .search-filter-container {
     &.highlighted {

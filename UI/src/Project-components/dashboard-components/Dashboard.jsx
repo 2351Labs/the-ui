@@ -14,6 +14,7 @@ import { Outlet } from "react-router-dom";
 import CatalogSVG from "../../assets/dashboard/catalog.svg?react";
 import ReportsSVG from "../../assets/dashboard/reports.svg?react";
 import PeopleSVG from "../../assets/dashboard/people.svg?react";
+import NightModeSwitch from "./NightModeSwitch";
 export default function Dashboard() {
   // sidebar selection controls content element displayed:
   const [sidebarSelection, setsidebarSelection] = useState({
@@ -61,14 +62,20 @@ export default function Dashboard() {
             style={{ display: "flex", width: "100%", justifyContent: "center" }}
           > */}
           <SearchBar />
-          <button
+          <div style={{ display: "flex", alignItems: "center", gap:"40px" }}>
+            <NightModeSwitch
+              nightModeState={{ value: isNightMode, setter: setIsNightMode }}
+            />
+            {/* <UserSVG className={"user-icon"} /> */}
+          </div>
+
+          {/* <button
             onClick={() => {
               setIsNightMode(!isNightMode);
             }}
           >
             NIGHT MODE
-          </button>
-          <UserSVG className={"user-icon"} />
+          </button> */}
           {/* </div> */}
         </div>
         {/* CONTENT: */}

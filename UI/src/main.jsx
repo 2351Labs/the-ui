@@ -3,14 +3,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import LandingPage from "./Project-components/LandingPage.jsx";
 import NavBar from "./Project-components/NavBar.jsx";
-import { Provider } from "./components/ui/provider";
 import Dashboard from "./Project-components/dashboard-components/Dashboard.jsx";
 import ErrorPage from "./Project-components/ErrorPage.jsx";
 import Catalog from "./Project-components/dashboard-components/catalog-components/Catalog.jsx";
 import CatalogItemView from "./Project-components/dashboard-components/catalog-components/CatalogItemView.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-
 // for dev purposees
 const catalogData = {
   1: {
@@ -85,7 +83,6 @@ createRoot(document.getElementById("root")).render(
     {/* <LandingPage /> */}
       <RouterProvider router={router} />
       <Outlet />
-
     {/* <Dashboard /> */}
   </StrictMode>
 );
