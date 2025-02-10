@@ -21,7 +21,9 @@ export default function Dashboard() {
     name: "Home",
     element: <div>Home</div>,
   });
-  const [isNightMode, setIsNightMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
   const [toggleSidebar, setToggleSidebar] = useState(true);
   const sidebarOptions = {
     Catalog: {
@@ -38,7 +40,7 @@ export default function Dashboard() {
     // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
   };
   return (
-    <div id={isNightMode && "night-mode"} className="dashboard--container">
+    <div id={isDarkMode && "night-mode"} className="dashboard--container">
       <SideBar
         sidebarOptions={sidebarOptions}
         sidebarState={{
@@ -62,16 +64,16 @@ export default function Dashboard() {
             style={{ display: "flex", width: "100%", justifyContent: "center" }}
           > */}
           <SearchBar />
-          <div style={{ display: "flex", alignItems: "center", gap:"40px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
             <NightModeSwitch
-              nightModeState={{ value: isNightMode, setter: setIsNightMode }}
+              darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
             />
             {/* <UserSVG className={"user-icon"} /> */}
           </div>
 
           {/* <button
             onClick={() => {
-              setIsNightMode(!isNightMode);
+              setIsDarkMode(!isDarkMode);
             }}
           >
             NIGHT MODE

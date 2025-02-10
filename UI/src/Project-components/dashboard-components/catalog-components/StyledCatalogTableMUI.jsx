@@ -91,6 +91,12 @@ const Style = styled(CatalogTableMUI1)`
   .MuiTablePagination-actions {
     display: flex;
   }
+  .MuiDataGrid-row {
+    cursor: pointer;
+  }
+  .MuiDataGrid-row:hover {
+    background-color: rgb(235, 235, 235) !important;
+  }
 
   #night-mode && {
     .even {
@@ -100,6 +106,9 @@ const Style = styled(CatalogTableMUI1)`
       // color: white;
     }
     .MuiDataGrid-row {
+    }
+    .MuiDataGrid-row:hover {
+      background-color: var(--inversion-background-tint-2) !important;
     }
   }
 `;
