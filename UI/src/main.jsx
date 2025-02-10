@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import LoginPage from "./Project-components/LoginPage.jsx";
 import LandingPage from "./Project-components/LandingPage.jsx";
 import NavBar from "./Project-components/NavBar.jsx";
 import Dashboard from "./Project-components/dashboard-components/Dashboard.jsx";
@@ -75,14 +76,15 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "/login", element: <LoginPage />, errorElement: <ErrorPage /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <NavBar /> */}
     {/* <LandingPage /> */}
-      <RouterProvider router={router} />
-      <Outlet />
+    <RouterProvider router={router} />
+    <Outlet />
     {/* <Dashboard /> */}
   </StrictMode>
 );

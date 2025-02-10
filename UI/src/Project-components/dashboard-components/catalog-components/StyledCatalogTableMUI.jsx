@@ -75,7 +75,6 @@ const Style = styled(CatalogTableMUI1)`
     background-color: transparent;
   }
 
-
   .MuiDataGrid-columnHeaderTitle {
     font-weight: bold;
     color: rgb(59, 59, 59);
@@ -91,6 +90,17 @@ const Style = styled(CatalogTableMUI1)`
   }
   .MuiTablePagination-actions {
     display: flex;
+  }
+
+  #night-mode && {
+    .even {
+      background-color: var(--inversion-background-tint);
+    }
+    .MuiDataGrid-virtualScrollerContent {
+      // color: white;
+    }
+    .MuiDataGrid-row {
+    }
   }
 `;
 

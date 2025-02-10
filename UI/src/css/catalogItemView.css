@@ -146,4 +146,19 @@
       fill: var(--inversion-color-night);
     }
   }
+  .row-container-wrapper {
+    display: flex;
+
+    align-items: start;
+    border-bottom: 2px solid var(--inversion-background-tint);
+
+    .row-container {
+      border: none;
+      flex: 1;
+    }
+  }
+  .row-container{
+    border-bottom: 2px solid var(--inversion-background-tint);
+
+  }
 }

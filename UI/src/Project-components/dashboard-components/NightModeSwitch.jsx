@@ -4,8 +4,6 @@ import styled from "styled-components";
 import "../../css/nightModeSwitch.css";
 export default function NightModeSwitch(props) {
   const { nightModeState } = props;
-  console.log("SWITHCING", nightModeState.value);
-
   return (
     <div className="NightModeSwitch" style={{ height: "30px", width: "60px" }}>
       <div className={`toggle-switch`}>

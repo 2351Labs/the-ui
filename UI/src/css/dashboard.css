@@ -108,8 +108,8 @@
 #night-mode.dashboard--container {
   filter: invert(1);
   /* color: white; */
-  /* background-color: var(--background-night); */
-
+  /* background-color: var(--night-background); */
+  background-color: var(--inversion-background);
   .highlighted img {
   }
   /* color: white; */
@@ -122,9 +122,33 @@
       fill: var(--inversion-color-night);
     }
   }
+
+  
+/* FOR INVERTING HIGHLIGHTED TEXT */
+
+  /*** Works on common browsers ***/
+::selection {
+  background-color: var( --inverstion-text-highlight);
 }
-.highlighted img {
+
+/*** Mozilla based browsers ***/
+::-moz-selection {
+  background-color:var( --inverstion-text-highlight);
 }
-.highlighted {
-  /* color: var(--primary) !important; */
+
+/***For Other Browsers ***/
+::-o-selection {
+  background-color: var( --inverstion-text-highlight);
 }
+
+::-ms-selection {
+  background-color: var( --inverstion-text-highlight);
+}
+
+/*** For Webkit ***/
+::-webkit-selection {
+  background-color: var( --inverstion-text-highlight);
+}
+}
+
+

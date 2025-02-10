@@ -1,7 +1,10 @@
 .NightModeSwitch {
-    --light: #d8dbe0;
-    --dark: #28292c;
-    margin-right: 50px;
+  /* --light: #d8dbe0; */
+  /* --dark: #28292c; */
+
+  --light: #28292c;
+  --dark: var(--dashboard-grey);
+    margin-right: 40px;
   .toggle-switch {
     translate: -70px 0px;
     scale: 0.3;
@@ -55,10 +58,10 @@
 
   #night-mode &.NightModeSwitch {
     .slider::before {
-      background-color: rgb(236, 236, 236);
+      background-color:var(--light);
     }
     label{
-        background-color: rgb(99, 98, 98);
+        /* background-color: rgb(99, 98, 98); */
     }
   }
 }

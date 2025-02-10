@@ -30,6 +30,17 @@
   /* invert target color to apply accurate styling */
   --inversion-color-night: #d33094;
   --inversion-color-night-shade: rgba(145, 61, 111, 0.9);
+  --inversion-background:#e6e6e6;
+  --inversion-background-tint:#dfdfdf;
+  --inversion-background-tint-2:#d1d1d1;
+
+  --inverstion-text-highlight: #ff9f00;
+
+  --night-background: #161718;
+  --night-background-tint: #40474b;
+  --night-text-color:white;
+  --night-background-hover: #3b3c3d;
+
 }
 
 html,
@@ -38,6 +49,9 @@ body {
   height: 100%;
   margin: 0px;
   width: 100%;
+}
+button{
+  outline: none;
 }
 
 #root {

@@ -90,7 +90,7 @@ const Style = styled(BreadCrumbs)`
     }
   }
   #night-mode & {
- 
+    background-color: var(--inversion-background);
   }
 `;
 

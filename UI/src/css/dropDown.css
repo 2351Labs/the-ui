@@ -106,7 +106,28 @@
 }
 
 #night-mode .DropDown {
-  /* background-color: var(--background-tint-night) !important; */
+  background-color: var(--inversion-background-tint) !important;
+  .dropdown-list {
+    box-shadow: 0px 4px 12px 0px var(--inversion-background);
+  }
+  .dropdown-checkbox {
+    &.checked {
+      svg,
+      path {
+        /* stroke: rgb(255, 255, 255); */
+      }
+    }
+    &:not(.checked) {
+      background-color: var(--inversion-background);
+      svg,
+      path {
+        stroke: var(--inversion-background);
+      }
+    }
+  }
+  .option-btn {
+    background-color: var(--inversion-background-tint);
+  }
   &.highlighted {
     border-color: var(--inversion-color-night) !important;
   }

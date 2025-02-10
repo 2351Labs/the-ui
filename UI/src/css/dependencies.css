@@ -15,7 +15,7 @@
     position: absolute;
     top: 20px;
     right: 0px;
-    color: white;
+    color: rgb(255, 255, 255);
     display: flex;
     border-radius: 5px;
     align-items: center;
@@ -110,7 +110,7 @@
     width: 100%;
     .p-icon {
       /* translate: 0px 7px; */
-      background-color: white;
+      /* background-color: white; */
     }
     .p-organizationchart-node-content,
     .p-oraganizationchart-lines {
@@ -159,7 +159,16 @@
     background-color: var(--inversion-color-night);
   }
   .p-highlight {
-    background-color: var(--inversion-color-night-shade);
+    background-color: var(--inversion-background-tint);
     /* color: white; */
+  }
+  .p-treetable-thead {
+    background-color: var(--inversion-background);
+  }
+  .p-paginator-element:hover {
+    background-color: var(--inversion-background-tint);
+  }
+  .p-node-toggler {
+    background-color: var(--inversion-background);
   }
 }
