@@ -1,7 +1,7 @@
 import Option from "./Option";
 import homeIcon from "../../assets/dashboard/home.svg";
 import bookIcon from "../../assets/dashboard/catalog.svg";
-import sIcon from "../../assets/dashboard/s.svg";
+import LogoSVG from "../../assets/dashboard/s.svg?react";
 import settingsIcon from "../../assets/dashboard/settings.svg";
 import peopleIcon from "../../assets/dashboard/people.svg";
 import reportsIcon from "../../assets/dashboard/reports.svg";
@@ -10,7 +10,7 @@ import useViewportWidth from "../../helpers/useViewPortWidth";
 import useClickOutside from "../../helpers/useClickOutside";
 import { useRef } from "react";
 import bellIcon from "../../assets/dashboard/bell.svg";
-import userIcon from "../../assets/dashboard/user.svg";
+import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
   const { sidebarState, sidebarOptions } = props;
   const sidebarRef = useRef(null);
@@ -18,7 +18,6 @@ export default function SideBar(props) {
   useClickOutside(sidebarRef, () => {
     !isPast725px && sidebarState.setToggleSidebar(false);
   });
-
 
   const popupConfig = !(isPast725px && sidebarState.isEnabled)
     ? {
@@ -57,7 +56,7 @@ export default function SideBar(props) {
         >
           <div className="top">
             <div className="top--icon-header-container">
-              <img className="logo" src={sIcon} />
+              <LogoSVG className={"logo"} />
               <div
                 style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}
                 className="top--header"
@@ -84,7 +83,7 @@ export default function SideBar(props) {
                     sidebarOptions={sidebarOptions}
                     key={index}
                     sidebarState={sidebarState}
-                    img={sidebarOptions[objectKey].img}
+                    svg={sidebarOptions[objectKey].svg}
                     name={sidebarOptions[objectKey].label}
                     element={sidebarOptions[objectKey].element}
                   />
@@ -95,7 +94,7 @@ export default function SideBar(props) {
             <Option
               sidebarOptions={sidebarOptions}
               sidebarState={sidebarState}
-              img={userIcon}
+              svg={<UserSVG/>}
               name={"Jared Stoddard"}
               element={<div>IN DEV</div>}
             />

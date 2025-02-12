@@ -61,21 +61,23 @@ function CatalogTableMUI1({ className, children }) {
 
 const Style = styled(CatalogTableMUI1)`
   // max-width: 1500px;
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
   .MuiDataGrid-main {
     font-size: 16px;
   }
   .MuiDataGrid-cell {
     outline: none !important;
   }
-  .MuiDataGrid-virtualScrollerRenderZone:nth-child(even) {
-    background-color: red;
+
+  .css-1ggm5a5-MuiDataGrid-root .MuiDataGrid-container--top [role="row"],
+  .css-1ggm5a5-MuiDataGrid-root .MuiDataGrid-container--bottom [role="row"] {
+    background-color: transparent;
   }
 
   .MuiDataGrid-columnHeaderTitle {
     font-weight: bold;
-    color: rgb(73, 73, 73);
+    color: rgb(59, 59, 59);
   }
   .MuiTablePagination-toolbar {
     justify-content: end !important;
@@ -88,6 +90,26 @@ const Style = styled(CatalogTableMUI1)`
   }
   .MuiTablePagination-actions {
     display: flex;
+  }
+  .MuiDataGrid-row {
+    cursor: pointer;
+  }
+  .MuiDataGrid-row:hover {
+    background-color: rgb(235, 235, 235) !important;
+  }
+
+  #night-mode && {
+    .even {
+      background-color: var(--inversion-background-tint);
+    }
+    .MuiDataGrid-virtualScrollerContent {
+      // color: white;
+    }
+    .MuiDataGrid-row {
+    }
+    .MuiDataGrid-row:hover {
+      background-color: var(--inversion-background-tint-2) !important;
+    }
   }
 `;
 

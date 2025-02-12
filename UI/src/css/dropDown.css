@@ -8,11 +8,15 @@
     translate: 0px 0px;
   }
 }
-.DropDown:hover{
+.DropDown:hover {
   background-color: rgb(238, 238, 238) !important;
 }
+.DropDown.highlighted {
+  border: 1px solid var(--primary) !important;
+}
 .DropDown {
-  color:rgb(70, 70, 70) !important;
+  z-index: 2;
+  color: rgb(70, 70, 70) !important;
   display: flex;
   gap: 5px;
   box-sizing: border-box;
@@ -30,16 +34,14 @@
   /* background-color: var(--dashboard-grey) !important; */
   background-color: rgb(245, 245, 245) !important;
   cursor: pointer;
+  border: 1px solid rgb(216, 216, 216) !important;
+  /* border: "1px solid var(--primary)" */
   .dropdown-label {
     text-wrap: nowrap;
   }
-  border: 1px solid rgb(216, 216, 216);
-
   button {
     background-color: rgb(245, 245, 245);
     /* background-color: var(--dashboard-grey) !important; */
-
-    border: none;
   }
   .dropdown-icon {
     width: 20px;
@@ -59,9 +61,9 @@
     border-radius: 5px;
     /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
     box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
-    .option-btn:hover {
+    /* .option-btn:hover {
       background-color: var(--primary-light);
-    }
+    } */
     .option-btn {
       display: flex;
       align-items: center;
@@ -78,22 +80,67 @@
         border-radius: 5px;
         width: 100%;
         /* padding: 5px 5px; */
-        color:rgb(70, 70, 70);
+        color: rgb(70, 70, 70);
 
         font-family: "DM Sans", serif;
         font-weight: 500;
         font-size: 14px;
         gap: 5px;
-        img {
-          background-color: var(--primary);
+        .dropdown-checkbox {
+          background-color: rgb(255, 255, 255);
           padding: 4px 4px;
           margin: 5px;
           cursor: pointer;
           width: 10px;
           height: 10px;
           border-radius: 5px;
+          border: 1px solid rgb(207, 207, 207);
+          &.checked {
+            background-color: var(--primary);
+            border: 1px solid transparent;
+          }
         }
       }
     }
+  }
+}
+
+#night-mode .DropDown {
+  background-color: var(--inversion-background-tint) !important;
+  .dropdown-list {
+    box-shadow: 0px 4px 12px 0px var(--inversion-background);
+  }
+  .dropdown-checkbox {
+    &.checked {
+      svg,
+      path {
+        /* stroke: rgb(255, 255, 255); */
+      }
+    }
+    &:not(.checked) {
+      background-color: var(--inversion-background);
+      svg,
+      path {
+        stroke: var(--inversion-background);
+      }
+    }
+  }
+  .option-btn {
+    background-color: var(--inversion-background-tint);
+  }
+  &.highlighted {
+    border-color: var(--inversion-color-night) !important;
+  }
+  .checked {
+    background-color: var(--inversion-color-night);
+    border: 1px solid transparent;
+  }
+  /* .option-btn:hover {
+    background-color: var(--invession-color-night-shade);
+  } */
+  button {
+  }
+  .dropdown-label {
+    /* filter: invert(1); */
   }
 }

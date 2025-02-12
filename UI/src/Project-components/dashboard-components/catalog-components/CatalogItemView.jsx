@@ -3,15 +3,15 @@ import { useState } from "react";
 import CatalogItemName from "./CatalogItemName";
 import CatalogNavigationBar from "./CatalogNavigationBar";
 import descriptionIcon from "../../../assets/dashboard/catalog-assets/description.svg";
-import infoIcon from "../../../assets/dashboard/catalog-assets/info.svg";
+import InfoSVG from "../../../assets/dashboard/catalog-assets/info.svg?react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import ChangeHistory from "./ChangeHistory";
 import { Outlet } from "react-router-dom";
-import documentIcon from "../../../assets/dashboard/catalog-assets/document.svg";
-import historyIcon from "../../../assets/dashboard/catalog-assets/history.svg";
+import DocumentSVG from "../../../assets/dashboard/catalog-assets/document.svg?react";
+import HistorySVG from "../../../assets/dashboard/catalog-assets/history.svg?react";
 import linkIcon from "../../../assets/dashboard/catalog-assets/link.svg";
-import treeStructureIcon from "../../../assets/dashboard/catalog-assets/tree-structure.svg";
-import keyIcon from "../../../assets/dashboard/catalog-assets/key.svg";
+import TreeStructureSVG from "../../../assets/dashboard/catalog-assets/tree-structure.svg?react";
+import KeySVG from "../../../assets/dashboard/catalog-assets/key.svg?react";
 import Dependencies from "./Dependencies";
 import openSourceIcon from "../../../assets/dashboard/catalog-assets/open-source.svg";
 import StyledBreadCrumbs from "../StyledBreadCrumbs";
@@ -22,23 +22,23 @@ export default function CatalogItemView() {
   const navBarOptions = {
     documentation: {
       label: "Documentation",
-      img: documentIcon,
+      svg: <DocumentSVG />,
       element: <div>Documentation</div>,
     },
     changeHistory: {
       label: "Change History",
-      img: historyIcon,
+      svg: <HistorySVG />,
       element: <ChangeHistory />,
     },
     dependencies: {
       label: "Dependencies",
-      img: treeStructureIcon,
+      svg: <TreeStructureSVG />,
       element: <Dependencies />,
     },
 
     ownership: {
       label: "Ownership",
-      img: keyIcon,
+      svg: <KeySVG />,
       element: <div>Ownership</div>,
     },
   };
@@ -63,7 +63,7 @@ export default function CatalogItemView() {
           </div> */}
         </div>
         <div className="description-container">
-          <img style={{ rotate: "180deg" }} src={infoIcon} />
+          <InfoSVG className={"infoSVG"}/>
           <div>{itemData.description}</div>
         </div>
         <CatalogNavigationBar
@@ -122,7 +122,7 @@ export default function CatalogItemView() {
           <div className="row-container">
             <div className="key">Status</div>
             <div className="value-container">
-              <div className="online">Online</div>
+              <div className="status">Online</div>
             </div>
           </div>
         </div>

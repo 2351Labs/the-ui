@@ -1,16 +1,17 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import LoginPage from "./Project-components/LoginPage.jsx";
 import LandingPage from "./Project-components/LandingPage.jsx";
 import NavBar from "./Project-components/NavBar.jsx";
-import { Provider } from "./components/ui/provider";
 import Dashboard from "./Project-components/dashboard-components/Dashboard.jsx";
 import ErrorPage from "./Project-components/ErrorPage.jsx";
 import Catalog from "./Project-components/dashboard-components/catalog-components/Catalog.jsx";
 import CatalogItemView from "./Project-components/dashboard-components/catalog-components/CatalogItemView.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import SignupPage from "./Project-components/SignupPage.jsx";
 // for dev purposees
 const catalogData = {
   1: {
@@ -77,15 +78,19 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "/signup", element: <SignupPage />, errorElement: <ErrorPage /> },
+  { path: "/login", element: <LoginPage />, errorElement: <ErrorPage /> },
 ]);
-
+const client_id =
+  "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <NavBar /> */}
     {/* <LandingPage /> */}
+    <GoogleOAuthProvider clientId={client_id}>
       <RouterProvider router={router} />
       <Outlet />
-
+    </GoogleOAuthProvider>
     {/* <Dashboard /> */}
   </StrictMode>
 );

@@ -1,3 +1,4 @@
+/* NOT IN USE!! */
 .catalogTable {
   display: flex;
   width: 100%;
@@ -72,5 +73,10 @@
   }
   .p-highlight {
     background-color: var(--primary-light);
+  }
+}
+#night-mode .catalogTable {
+  .p-row-odd{
+    /* background-color: rgb(139, 47, 47) !important; */
   }
 }

@@ -24,7 +24,7 @@ function BreadCrumbs({ props, className }) {
       const urlPath = arrayToPath(pathArray);
 
       return (
-        <div key={index} style={{ opacity: ".6", cursor:"default" }}>
+        <div key={index} style={{ opacity: ".6", cursor: "default" }}>
           <Link to={urlPath}>
             <div style={{ cursor: "pointer" }} className="bread-crumb">
               {capitalizeFirstLetter(path)}
@@ -39,7 +39,7 @@ function BreadCrumbs({ props, className }) {
   return (
     <div
       className={className}
-      style={{ zIndex: "1", cursor:"default"  }}
+      style={{ zIndex: "1", cursor: "default" }}
       // className="catalog-bread-crumbs"
     >
       {/* <button
@@ -88,6 +88,9 @@ const Style = styled(BreadCrumbs)`
       width: 20px;
       rotate: 90deg;
     }
+  }
+  #night-mode & {
+    background-color: var(--inversion-background);
   }
 `;
 

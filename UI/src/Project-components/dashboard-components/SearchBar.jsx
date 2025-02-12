@@ -2,7 +2,7 @@ import searchIcon from "../../assets/dashboard/search.svg";
 import dropdownIcon from "../../assets/dashboard/dropdown.svg";
 import lineSVG from "../../assets/dashboard/line.svg";
 import { useRef, useState } from "react";
-import checkIcon from "../../assets/dashboard/check.svg";
+import CheckIcon from "../../assets/dashboard/check.svg?react";
 import useClickOutside from "../../helpers/useClickOutside";
 import "../../css/searchBar.css";
 import { useNavigate } from "react-router-dom";
@@ -59,12 +59,14 @@ export default function SearchBar() {
               setIsMainFilterOpen(!isMainFilterOpen);
             }
           }}
-          style={
-            isMainFilterOpen
-              ? { border: "2px solid var(--primary)" }
-              : { border: "2px solid transparent" }
-          }
-          className="search-filter-container"
+          // style={
+          //   isMainFilterOpen
+          //     ? { border: "2px solid var(--primary)" }
+          //     : { border: "2px solid transparent" }
+          // }
+          className={`search-filter-container ${
+            isMainFilterOpen && "highlighted"
+          }`}
         >
           <div id="main-filter" className="filter-selection">
             {mainFilterSelectionCount == 0
@@ -96,7 +98,7 @@ export default function SearchBar() {
                     }}
                     className="filter-option-container"
                   >
-                    <div
+                    {/* <div
                       id="inactive"
                       style={
                         mainFilterConfiguration[option]
@@ -112,7 +114,12 @@ export default function SearchBar() {
                       className="checkbox-background"
                     >
                       <img src={checkIcon} />
-                    </div>
+                    </div> */}
+                    <CheckIcon
+                      className={`dropdown-checkbox ${
+                        mainFilterConfiguration[option] && "checked"
+                      } `}
+                    />
                     <div>{option}</div>
                   </div>
                 );

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import checkIcon from "../../assets/dashboard/check.svg";
+import CheckIcon from "../../assets/dashboard/check.svg?react";
 import dropdownIcon from "../../assets/dashboard/dropdown.svg";
 import useClickOutside from "../../helpers/useClickOutside";
 import "../../css/dropDown.css";
@@ -18,12 +18,12 @@ export default function DropDown(props) {
       onClick={(e) => {
         setIsDropdown(!isDropdown);
       }}
-      style={
-        isDropdown
-          ? { border: "1px solid var(--primary)" }
-          : { border: "1px solid rgb(216, 216, 216)" }
-      }
-      className="DropDown"
+      className={`DropDown ${isDropdown && "highlighted"}`}
+      // style={
+      //   isDropdown
+      //     ? { border: "1px solid var(--primary)" }
+      //     : { border: "1px solid rgb(216, 216, 216)" }
+      // }
     >
       <span className="dropdown-label" htmlFor="dropdown-btn">
         {label}
@@ -47,7 +47,7 @@ export default function DropDown(props) {
                 className="option-btn"
               >
                 <label className="option-label" id={`option-btn-${index}`}>
-                  <img
+                  {/* <img
                     style={
                       listState[label]?.[option]
                         ? {
@@ -59,7 +59,10 @@ export default function DropDown(props) {
                             border: " 1px solid rgb(207, 207, 207)",
                           }
                     }
-                    src={checkIcon}
+                    src={CheckIcon}
+                  /> */}
+                  <CheckIcon
+                    className={`dropdown-checkbox ${listState[label]?.[option] && "checked"} `}
                   />
                   {option}
                 </label>

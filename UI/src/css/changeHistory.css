@@ -33,3 +33,17 @@
     /* translate: 0px -3.5px; */
   }
 }
+/* night mode: */
+#night-mode .changeHistory {
+  /* background-color: var(--background-tint-night); */
+  /* box-shadow: var(--shadow-sidebar-night); */
+  .p-timeline-event-connector{
+    background-color: var(--inversion-background-tint);
+    filter: brightness(.9);
+  }
+  .p-timeline-event-marker {
+    /* filter: brightness(1000); */
+    filter: brightness(0) saturate(100%) invert(60%) sepia(95%) saturate(6098%)
+      hue-rotate(302deg) brightness(85%) contrast(93%);
+  }
+}

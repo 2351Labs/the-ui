@@ -5,23 +5,23 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  .visualize-btn:hover{
+  .visualize-btn:hover {
     transform: scale(1.05);
     box-shadow: 5px 5px lightblue;
-    transition:.2s ease-in-out all;
-}
+    transition: 0.2s ease-in-out all;
+  }
   .visualize-btn {
     cursor: pointer;
     position: absolute;
     top: 20px;
     right: 0px;
-    color: white;
+    color: rgb(255, 255, 255);
     display: flex;
     border-radius: 5px;
     align-items: center;
     background-color: var(--primary);
     padding: 5px 10px;
-    gap:10px;
+    gap: 10px;
     font-size: 16px;
     font-weight: 500;
   }
@@ -29,35 +29,34 @@
     width: 24px;
   }
   .tree-table {
-    
-    .p-dropdown{
-        padding:5px 10px;
-        border-radius: 5px;
-        border: 1px solid rgb(185, 185, 185);
-        gap: 10px;
+    .p-dropdown {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid rgb(185, 185, 185);
+      gap: 10px;
     }
-    .p-paginator-bottom{
-        display: flex;
-        gap: 5px;
+    .p-paginator-bottom {
+      display: flex;
+      gap: 5px;
     }
-    .p-paginator-element:hover{
-        background-color: rgb(243, 243, 243);
+    .p-paginator-element:hover {
+      background-color: rgb(243, 243, 243);
     }
-  
-    .p-paginator-element{
-        /* background-color: rgb(236, 236, 236); */
-        border-radius: 30px;
-        width: 42px;
-        height: 42px;
-        margin: 5px;
+
+    .p-paginator-element {
+      /* background-color: rgb(236, 236, 236); */
+      border-radius: 30px;
+      width: 42px;
+      height: 42px;
+      margin: 5px;
     }
-    .p-column-header-content{
-        display: flex;
-        align-items: center;
-        gap: 5px;
+    .p-column-header-content {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
-    .p-highlight{
-        background-color: var(--primary-light);
+    .p-highlight {
+      background-color: var(--primary-light);
     }
     .p-treetable-thead {
       background-color: rgba(247, 247, 247, 0.76);
@@ -111,11 +110,11 @@
     width: 100%;
     .p-icon {
       /* translate: 0px 7px; */
-      background-color: white;
+      /* background-color: white; */
     }
-    .p-organizationchart-node-content,.p-oraganizationchart-lines{
+    .p-organizationchart-node-content,
+    .p-oraganizationchart-lines {
       border: 1px solid rgb(185, 185, 185);
-
     }
     .p-organizationchart-line-down {
       background-color: rgb(185, 185, 185);
@@ -151,5 +150,25 @@
   .p-organizationchart-lines {
     border: 1px solid rgb(185, 185, 185);
     opacity: 0.7;
+  }
+}
+
+#night-mode .dependencies {
+  .visualize-btn {
+    /* background-color: red; */
+    background-color: var(--inversion-color-night);
+  }
+  .p-highlight {
+    background-color: var(--inversion-background-tint);
+    /* color: white; */
+  }
+  .p-treetable-thead {
+    background-color: var(--inversion-background);
+  }
+  .p-paginator-element:hover {
+    background-color: var(--inversion-background-tint);
+  }
+  .p-node-toggler {
+    background-color: var(--inversion-background);
   }
 }

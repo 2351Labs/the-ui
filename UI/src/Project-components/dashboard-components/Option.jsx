@@ -5,7 +5,7 @@ export default function Option(props) {
   const url = window.location.pathname;
   const currentSidebarOption = url.substring(url.lastIndexOf("/") + 1);
 
-  const { img, name, id, sidebarState, style, element } = props;
+  const { svg, name, id, sidebarState, style, element } = props;
   return (
     <Link
       to={name.toLowerCase()}
@@ -19,19 +19,11 @@ export default function Option(props) {
           : { opacity: "50%", ...style }
       }
       id={id}
-      className="option"
+      className={`option ${
+        currentSidebarOption == name.toLowerCase() && "highlighted"
+      }`}
     >
-      <img
-        style={
-          currentSidebarOption == name.toLowerCase()
-            ? {
-                filter:
-                  " brightness(0) saturate(100%) invert(85%) sepia(29%) saturate(1149%) hue-rotate(75deg) brightness(83%) contrast(94%)",
-              }
-            : {}
-        }
-        src={img}
-      />
+      {svg}
       <div style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}>
         {name}
       </div>
