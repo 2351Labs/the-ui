@@ -10,6 +10,8 @@ import Catalog from "./Project-components/dashboard-components/catalog-component
 import CatalogItemView from "./Project-components/dashboard-components/catalog-components/CatalogItemView.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import SignupPage from "./Project-components/SignupPage.jsx";
 // for dev purposees
 const catalogData = {
   1: {
@@ -76,15 +78,19 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "/signup", element: <SignupPage />, errorElement: <ErrorPage /> },
   { path: "/login", element: <LoginPage />, errorElement: <ErrorPage /> },
 ]);
-
+const client_id =
+  "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <NavBar /> */}
     {/* <LandingPage /> */}
-    <RouterProvider router={router} />
-    <Outlet />
+    <GoogleOAuthProvider clientId={client_id}>
+      <RouterProvider router={router} />
+      <Outlet />
+    </GoogleOAuthProvider>
     {/* <Dashboard /> */}
   </StrictMode>
 );
