@@ -7,6 +7,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validatePassword from "../helpers/validatePassword";
 import validateEmail from "../helpers/validateEmail";
+
+// for microsoft OAUTH:
+const MICROSOFT_CLIENT_ID = "3063a465-dc3d-4f51-b0eb-c13634cba3b2";
+const MICROSOFT_REDIRECT_URI = "http://localhost:5174/auth/microsoftAuthCallback";
+const MICROSOFT_AUTH_URL = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${MICROSOFT_CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
+  MICROSOFT_REDIRECT_URI
+)}&scope=openid profile email&response_mode=query`;
+
 export default function SignupPage() {
   const navigate = useNavigate();
   const [requestError, setRequestError] = useState();
@@ -26,6 +34,9 @@ export default function SignupPage() {
         localStorage.setItem("token", response.data.token); // Store token
         navigate("/dashboard");
       } catch (error) {
+        if (!error?.response?.data?.error) {
+          setRequestError("Could not connect to server. Try again.");
+        }
         console.log(error);
       }
     },
@@ -52,11 +63,14 @@ export default function SignupPage() {
           ...form,
         });
         localStorage.setItem("token", response.data.token); // Store token
-        navigate("/dashboard")
+        navigate("/dashboard");
       } catch (error) {
-        const errorString = error.response.data.error;
-
-        setRequestError(errorString);
+        if (!error?.response?.data?.error) {
+          setRequestError("Could not connect to server. Try again.");
+        } else {
+          const errorString = error.response.data.error;
+          setRequestError(errorString);
+        }
       }
     }
   }
@@ -152,7 +166,12 @@ export default function SignupPage() {
               <img className="social-icon" src={googleIcon} alt="Google Icon" />
               <div>Continue with Google</div>
             </button>
-            <button className="login-option microsoft">
+            <button
+              onClick={() => {
+                window.location.href = MICROSOFT_AUTH_URL;
+              }}
+              className="login-option microsoft"
+            >
               <img
                 className="social-icon"
                 src={microsoftIcon}

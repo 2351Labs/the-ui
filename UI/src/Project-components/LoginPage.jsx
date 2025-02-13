@@ -7,6 +7,15 @@ import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+// for microsoft OAUTH:
+const MICROSOFT_CLIENT_ID = "3063a465-dc3d-4f51-b0eb-c13634cba3b2";
+const MICROSOFT_REDIRECT_URI =
+  "http://localhost:5174/auth/microsoftAuthCallback";
+const MICROSOFT_AUTH_URL = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${MICROSOFT_CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
+  MICROSOFT_REDIRECT_URI
+)}&scope=openid profile email&response_mode=query`;
+
 export default function LoginPage(props) {
   const navigate = useNavigate();
   const [requestError, setRequestError] = useState();
@@ -14,15 +23,21 @@ export default function LoginPage(props) {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
-      const response = await axios.post(
-        "http://localhost:3000/user/oauth/google",
-        {
-          // http://localhost:3001/auth/google backend that will exchange the code
-          code,
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/user/oauth/google",
+          {
+            code,
+          }
+        );
+        localStorage.setItem("token", response.data.token); // Store token
+        navigate("/dashboard");
+      } catch (error) {
+        if (!error?.response?.data?.error) {
+          setRequestError("Could not connect to server. Try again.");
         }
-      );
-      localStorage.setItem("token", response.data.token); // Store token
-      navigate("/dashboard")
+        console.log(error);
+      }
     },
     flow: "auth-code",
   });
@@ -34,18 +49,25 @@ export default function LoginPage(props) {
         ...form,
       });
       localStorage.setItem("token", response.data.token); // Store token
-      
-      navigate("/dashboard")
+
+      navigate("/dashboard");
     } catch (error) {
-      if (error.response.data.error == "data and hash arguments required") {
+      if (!error?.response?.data?.error) {
+        setRequestError("Could not connect to server. Try again.");
+      } else if (
+        error.response.data.error == "data and hash arguments required."
+      ) {
         setRequestError(
           "Error. Try using Google or Microsoft account to sign in."
         );
       } else {
+        console.log("JERE");
+        console.log("err", error);
         setRequestError(error.response.data.error);
       }
     }
   }
+
   return (
     <div className="LoginPage">
       <h1 className="login-header">Scrollos</h1>
@@ -76,7 +98,12 @@ export default function LoginPage(props) {
               <img className="social-icon" src={googleIcon} alt="Google Icon" />
               <div>Continue with Google</div>
             </button>
-            <button className="login-option microsoft">
+            <button
+              onClick={() => {
+                window.location.href = MICROSOFT_AUTH_URL;
+              }}
+              className="login-option microsoft"
+            >
               <img
                 className="social-icon"
                 src={microsoftIcon}

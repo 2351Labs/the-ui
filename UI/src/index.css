@@ -81,7 +81,20 @@ button {
   padding: none;
   margin: none;
 }
-
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-in; /* Start slow */
+  }
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: ease-out; /* Speed up */
+  }
+  100% {
+    transform: rotate(360deg);
+    animation-timing-function: ease-in; /* Slow down again */
+  }
+}
 @keyframes fade-in {
   100% {
     background: linear-gradient(

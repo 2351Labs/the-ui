@@ -11,6 +11,7 @@ import CatalogItemView from "./Project-components/dashboard-components/catalog-c
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import MicrosoftAuthCallback from "./Project-components/MicrosoftAuthCallback.jsx";
 import SignupPage from "./Project-components/SignupPage.jsx";
 // for dev purposees
 const catalogData = {
@@ -33,7 +34,6 @@ const catalogData = {
       "Automates order handling, from creation to fulfillment, with real-time updates. It integrates with inventory, payments, and shipping for efficient operations.",
   },
 };
-
 
 const router = createBrowserRouter([
   {
@@ -80,7 +80,15 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/signup", element: <SignupPage />, errorElement: <ErrorPage /> },
-  { path: "/login", element: <LoginPage />, errorElement: <ErrorPage /> },
+  {
+    path: "/login",
+
+    // loader: async ({ params }) => {
+    // },
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+  { path: "/auth/microsoftAuthCallback", element: <MicrosoftAuthCallback /> },
 ]);
 const client_id =
   "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";
