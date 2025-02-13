@@ -16,6 +16,7 @@ export default function UserButton(props) {
     setIsOpen(false);
   });
 
+  console.log("BUTTN DATAS", userData)
   return (
     <div className="UserButton">
       {userData && (
@@ -26,7 +27,7 @@ export default function UserButton(props) {
             }}
             className="circle"
           >
-            <div className="letter">{userData.profile.firstName.charAt(0)}</div>
+            <div className="letter">{userData.profile.firstName.charAt(0).toUpperCase()}</div>
           </button>
 
           {isOpen && (

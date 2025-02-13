@@ -55,6 +55,7 @@ export default function Dashboard() {
     axios
       .get("http://localhost:3000/user/getUser")
       .then((response) => {
+        console.log("RESPONSE DATA", response)
         setUserData(response.data);
       })
       .catch((error) => {
