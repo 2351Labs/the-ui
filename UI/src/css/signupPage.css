@@ -3,7 +3,10 @@
   background-color: white;
   height: 100%;
   width: 100%;
-
+  .microsoft {
+    opacity: .5;
+    cursor: default !important;
+  }
   .input-feedback {
     /* margin: 0px 5px; */
     background-color: #ffeeed;
@@ -124,7 +127,7 @@
         text-align: center;
       }
       .sign-up-btn {
-        color: black;
+        color: var(--primary);
       }
     }
   }

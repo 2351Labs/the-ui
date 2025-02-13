@@ -15,6 +15,7 @@ import CatalogSVG from "../../assets/dashboard/catalog.svg?react";
 import ReportsSVG from "../../assets/dashboard/reports.svg?react";
 import PeopleSVG from "../../assets/dashboard/people.svg?react";
 import NightModeSwitch from "./NightModeSwitch";
+import LoggedInChecker from "../LoggedInChecker";
 export default function Dashboard() {
   // sidebar selection controls content element displayed:
   const [sidebarSelection, setsidebarSelection] = useState({
@@ -40,7 +41,7 @@ export default function Dashboard() {
     // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
   };
   return (
-    <div id={isDarkMode && "night-mode"} className="dashboard--container">
+    <div id={isDarkMode ? "night-mode" : undefined} className="dashboard--container">
       <SideBar
         sidebarOptions={sidebarOptions}
         sidebarState={{
@@ -94,6 +95,7 @@ export default function Dashboard() {
       {/* possible search param-eters:
       type, date, name
       */}
-    </div>
+      <LoggedInChecker/>
+      </div>
   );
 }

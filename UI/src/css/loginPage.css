@@ -11,7 +11,10 @@
     padding: 5px 10px;
     margin-top: 10px;
   }
-
+  .microsoft {
+    opacity: .5;
+    cursor: default !important;
+  }
   .divider-container {
     width: 100%;
     display: flex;
@@ -24,7 +27,6 @@
       width: 100%;
       border-bottom: 1px solid var(--login-outlines);
     }
-   
   }
   .login-header {
     align-items: start;
@@ -52,9 +54,9 @@
         gap: 15px;
         width: 100%;
 
-        form{
-            display: flex;
-            flex-direction: column;
+        form {
+          display: flex;
+          flex-direction: column;
         }
 
         .login-option {
@@ -66,8 +68,8 @@
           border-radius: 30px;
           height: 52px;
           cursor: pointer;
-        
-        transition: .2s ease-in-out all;
+
+          transition: 0.2s ease-in-out all;
           &&:hover {
             background-color: rgb(231, 231, 231);
           }
@@ -78,7 +80,7 @@
           }
         }
       }
-    
+
       .login-btn {
         background-color: var(--primary);
         font-size: 16px;
@@ -87,8 +89,8 @@
         width: 100%;
         border-radius: 10px;
       }
-      label{
-        color:grey;
+      label {
+        color: grey;
       }
       input {
         font-size: 16px;
@@ -100,7 +102,7 @@
         padding: 16px 15px;
         border-radius: 10px;
         color: black;
-        transition: .2s ease-in-out all;
+        transition: 0.2s ease-in-out all;
 
         &&:focus {
           border: 1px solid var(--primary);
@@ -112,7 +114,7 @@
         text-align: center;
       }
       .sign-up-btn {
-        color: black;
+        color: var(--primary);
       }
     }
   }

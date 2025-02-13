@@ -14,15 +14,15 @@ export default function LoginPage() {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
-      const tokens = await axios.post(
+      const response = await axios.post(
         "http://localhost:3000/user/oauth/google",
         {
           // http://localhost:3001/auth/google backend that will exchange the code
           code,
         }
       );
-      // expects response for tokens
-      console.log(tokens);
+      localStorage.setItem("token", response.data.token); // Store token
+      navigate("/dashboard")
     },
     flow: "auth-code",
   });
@@ -34,6 +34,7 @@ export default function LoginPage() {
         ...form,
       });
       localStorage.setItem("token", response.data.token); // Store token
+      navigate("/dashboard")
     } catch (error) {
       if (error.response.data.error == "data and hash arguments required") {
         setRequestError(
@@ -74,7 +75,7 @@ export default function LoginPage() {
               <img className="social-icon" src={googleIcon} alt="Google Icon" />
               <div>Continue with Google</div>
             </button>
-            <button className="login-option">
+            <button className="login-option microsoft">
               <img
                 className="social-icon"
                 src={microsoftIcon}

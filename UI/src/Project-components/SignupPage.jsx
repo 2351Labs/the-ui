@@ -24,6 +24,7 @@ export default function SignupPage() {
         );
         //recieves JWT token after registering/autheticating user
         localStorage.setItem("token", response.data.token); // Store token
+        navigate("/dashboard");
       } catch (error) {
         console.log(error);
       }
@@ -46,12 +47,12 @@ export default function SignupPage() {
       return;
     } else {
       // login req sent to backend
-      console.log("BACKEND ELSE!");
       try {
         const response = await axios.post("http://localhost:3000/user/signup", {
           ...form,
         });
-        console.log("response", response);
+        localStorage.setItem("token", response.data.token); // Store token
+        navigate("/dashboard")
       } catch (error) {
         const errorString = error.response.data.error;
 
@@ -151,7 +152,7 @@ export default function SignupPage() {
               <img className="social-icon" src={googleIcon} alt="Google Icon" />
               <div>Continue with Google</div>
             </button>
-            <button className="login-option">
+            <button className="login-option microsoft">
               <img
                 className="social-icon"
                 src={microsoftIcon}
