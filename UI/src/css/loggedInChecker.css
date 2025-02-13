@@ -1,0 +1,58 @@
+.LoggedInChecker {
+  background-color: rgba(5, 5, 5, 0.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  .container {
+    background-color: rgb(68, 68, 68);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 15px;
+    flex-direction: column;
+    .header {
+      font-size: 24px;
+      margin-bottom: 4px;
+      font-weight: 400;
+    }
+    .message {
+      margin-bottom: 30px;
+      font-size: 18px;
+      font-weight: 250;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      .login {
+        color: black;
+        background-color: white;
+      }
+      .signup {
+        border: 1px solid rgb(110, 110, 110);
+      }
+      button {
+        font-size: 14px;
+        color: white;
+        width: 320px;
+        padding: 12px 16px;
+        border-radius: 30px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+#night-mode .LoggedInChecker {
+  filter: invert(1);
+  /* background-color: red !important; */
+}

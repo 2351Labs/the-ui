@@ -5,7 +5,6 @@
   font-family: "DM Sans", serif;
   display: flex;
   padding: 10px 10px;
-  border-radius: 15px;
   gap: 20px;
   width: 100%;
   color: black;
@@ -110,6 +109,10 @@
   /* color: white; */
   /* background-color: var(--night-background); */
   background-color: var(--inversion-background);
+  
+  .sidebar-toggle-btn:hover {
+    background-color: var( --inversion-background-tint);
+  }
   .highlighted img {
   }
   /* color: white; */

@@ -31,7 +31,7 @@ export default function NightModeSwitch(props) {
             checked={darkModeState.value}
             type="checkbox"
           ></input>
-          <span class="slider"></span>
+          <span className="slider"></span>
         </label>
       </div>
     </div>

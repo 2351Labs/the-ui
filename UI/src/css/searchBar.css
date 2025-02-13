@@ -49,8 +49,9 @@
       left: 0px;
       border-radius: 5px;
       /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
-      box-shadow: 0px 4px 12px 0px rgba(41, 41, 41, 0.05);
+      box-shadow:var(--box-shadow);
       animation: fadeIn 0.1s ease-in-out;
+      border: 1px solid var(--main-tint-2);
 
       .filter-option-container:hover {
         /* background-color: var(--primary-light); */
@@ -124,7 +125,8 @@
   }
   .dropdown-list{
     background-color: var(--inversion-background-tint);
-    box-shadow: 0px 4px 12px 0px var(--inversion-background);
+    box-shadow: var(--inversion-box-shadow);
+    border: 1px solid var(--inversion-background-tint-2);
   }
   .dropdown-checkbox {
     &.checked {

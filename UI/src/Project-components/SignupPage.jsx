@@ -1,38 +1,64 @@
 import "../css/signupPage.css";
 import googleIcon from "../assets/google-logo.svg";
 import microsoftIcon from "../assets/microsoft-logo.svg";
-import { GoogleLogin } from "@react-oauth/google";
-import { useGoogleOneTapLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import validatePassword from "../helpers/validatePassword";
+import validateEmail from "../helpers/validateEmail";
 export default function SignupPage() {
   const navigate = useNavigate();
-
+  const [requestError, setRequestError] = useState();
   const [form, setForm] = useState({ email: null, password: null });
-
+  const [hasError, setHasError] = useState({ email: false, password: false });
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
-      const tokens = await axios.post(
-        "http://localhost:3000/user/oauth/google",
-        {
-          // http://localhost:3001/auth/google backend that will exchange the code
-          code,
-        }
-      );
-      // expects response for tokens
-      console.log(tokens);
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/user/oauth/google",
+          {
+            // http://localhost:3001/auth/google backend that will exchange the code
+            code,
+          }
+        );
+        //recieves JWT token after registering/autheticating user
+        localStorage.setItem("token", response.data.token); // Store token
+        navigate("/dashboard");
+      } catch (error) {
+        console.log(error);
+      }
     },
     flow: "auth-code",
   });
 
   async function submitForm() {
-    // login req sent to backend
-    const response = await axios.post("http://localhost:3000/user/signup", {
-      ...form,
-    });
-    console.log("response", response);
+    // validate password on frontend to avoid unnecessary requests
+    const invalidPasswordResponse = validatePassword(form.password);
+    const invalidEmailResponse = validateEmail(form.email);
+    if (invalidPasswordResponse) {
+      setHasError((prev) => ({ ...prev, password: true }));
+      setRequestError(invalidPasswordResponse);
+      return;
+    }
+    if (invalidEmailResponse) {
+      setHasError((prev) => ({ ...prev, email: true }));
+      setRequestError(invalidEmailResponse);
+      return;
+    } else {
+      // login req sent to backend
+      try {
+        const response = await axios.post("http://localhost:3000/user/signup", {
+          ...form,
+        });
+        localStorage.setItem("token", response.data.token); // Store token
+        navigate("/dashboard")
+      } catch (error) {
+        const errorString = error.response.data.error;
+
+        setRequestError(errorString);
+      }
+    }
   }
   return (
     <div className="SignupPage">
@@ -44,27 +70,48 @@ export default function SignupPage() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              setRequestError();
+              setHasError((prev) => {
+                const newState = {};
+                Object.keys(prev).forEach((key) => {
+                  newState[key] = false; // Set each key to false
+                });
+                return newState;
+              });
               submitForm();
             }}
           >
-            <label htmlFor="email">Email address</label>
-            <input
-              onChange={(e) => {
-                setForm((prev) => {
-                  return { ...prev, email: e.target.value };
-                });
-              }}
-              id="email"
-            ></input>
-            <label htmlFor="password">Password</label>
-            <input
-              onChange={(e) =>
-                setForm((prev) => {
-                  return { ...prev, password: e.target.value };
-                })
-              }
-              id="password"
-            ></input>
+            <div className="input-field-container">
+              <label htmlFor="email">Email address</label>
+              <input
+                onFocus={() =>
+                  setHasError((prev) => ({ ...prev, email: false }))
+                }
+                className={hasError?.email && "error"}
+                onChange={(e) => {
+                  setForm((prev) => {
+                    return { ...prev, email: e.target.value };
+                  });
+                }}
+                id="email"
+              ></input>
+            </div>
+            <div className="input-field-container">
+              <label htmlFor="password">Password</label>
+              <input
+                onFocus={() =>
+                  setHasError((prev) => ({ ...prev, password: false }))
+                }
+                className={hasError.password && "error"}
+                onChange={(e) =>
+                  setForm((prev) => {
+                    return { ...prev, password: e.target.value };
+                  })
+                }
+                id="password"
+              ></input>
+            </div>
+
             <button
               className="login-btn"
               onClick={() => {
@@ -73,6 +120,9 @@ export default function SignupPage() {
             >
               Continue
             </button>
+            {requestError && (
+              <div className="input-feedback">{requestError}</div>
+            )}
           </form>
           <div className="divider-container">
             <div className="line"></div>
@@ -80,7 +130,7 @@ export default function SignupPage() {
             <div className="line"></div>
           </div>
           <div className="login-options-list">
-            <GoogleLogin
+            {/* <GoogleLogin
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse.credential);
                 getUserInfo(credentialResponse.credential);
@@ -91,7 +141,7 @@ export default function SignupPage() {
               useOneTap
               auto_select
               flow={"auth-code"}
-            />
+            /> */}
             <button
               onClick={() => {
                 // oauthSignIn();
@@ -102,7 +152,7 @@ export default function SignupPage() {
               <img className="social-icon" src={googleIcon} alt="Google Icon" />
               <div>Continue with Google</div>
             </button>
-            <button className="login-option">
+            <button className="login-option microsoft">
               <img
                 className="social-icon"
                 src={microsoftIcon}

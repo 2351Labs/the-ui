@@ -60,7 +60,9 @@
     overflow: hidden;
     border-radius: 5px;
     /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--main-tint-2);
+
     /* .option-btn:hover {
       background-color: var(--primary-light);
     } */
@@ -71,6 +73,9 @@
       gap: 5px;
       min-width: 100%;
       /* font-weight: 600; */
+      &&:hover {
+        background-color: var(--main-tint-1);
+      }
       .option-label {
         display: flex;
         align-items: center;
@@ -108,7 +113,7 @@
 #night-mode .DropDown {
   background-color: var(--inversion-background-tint) !important;
   .dropdown-list {
-    box-shadow: 0px 4px 12px 0px var(--inversion-background);
+    box-shadow: var(--inversion-box-shadow);
   }
   .dropdown-checkbox {
     &.checked {
@@ -127,6 +132,9 @@
   }
   .option-btn {
     background-color: var(--inversion-background-tint);
+    &&:hover {
+      background-color: var(--inversion-background-tint-2);
+    }
   }
   &.highlighted {
     border-color: var(--inversion-color-night) !important;
