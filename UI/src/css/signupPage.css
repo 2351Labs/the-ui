@@ -1,111 +1,131 @@
 .SignupPage {
-    --login-outlines: rgb(175, 175, 175);
-    background-color: white;
-    height: 100%;
+  --login-outlines: rgb(175, 175, 175);
+  background-color: white;
+  height: 100%;
+  width: 100%;
+
+  .input-feedback {
+    /* margin: 0px 5px; */
+    background-color: #ffeeed;
+    color: red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 10px;
+  }
+
+  .divider-container {
     width: 100%;
-    .divider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 12px;
+    margin: 25px 0px;
+    .line {
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      font-size: 12px;
-      margin: 25px 0px;
-      .line {
-        width: 100%;
-        border-bottom: 1px solid var(--login-outlines);
-      }
-     
+      border-bottom: 1px solid var(--login-outlines);
     }
-    .login-header {
-      align-items: start;
-      margin: 0px;
-      padding-top: 10px;
-      padding-left: 20px;
-    }
-    .login-wrapper {
+  }
+
+  .login-header {
+    align-items: start;
+    margin: 0px;
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+  .login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .login-container {
       display: flex;
+      flex-direction: column;
+      width: 400px;
       align-items: center;
+      padding: 40px 40px;
+      /* padding-top: 0px; */
       justify-content: center;
-  
-      .login-container {
+      box-sizing: border-box;
+
+      form {
         display: flex;
         flex-direction: column;
-        width: 400px;
-        align-items: center;
-        padding: 40px 40px;
-        /* padding-top: 0px; */
-        justify-content: center;
-        box-sizing: border-box;
-        .login-options-list {
+        width: 100%;
+        .input-field-container {
           display: flex;
           flex-direction: column;
-          gap: 15px;
-          width: 100%;
-  
-          form{
-              display: flex;
-              flex-direction: column;
-          }
-  
-          .login-option {
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            color: black;
-            border: 1px solid var(--login-outlines);
-            border-radius: 30px;
-            height: 52px;
-            cursor: pointer;
-          
-          transition: .2s ease-in-out all;
-            &&:hover {
-              background-color: rgb(231, 231, 231);
-            }
-            .social-icon {
-              width: 20px;
-              height: 20px;
-              padding: 15px;
-            }
-          }
-        }
-      
-        .login-btn {
-          background-color: var(--primary);
-          font-size: 16px;
-          padding: 20px;
-          color: white;
-          width: 100%;
-          border-radius: 10px;
-        }
-        label{
-          color:grey;
-        }
-        input {
-          font-size: 16px;
           margin-bottom: 15px;
-          background-color: transparent;
-          border: 1px solid var(--login-outlines);
           width: 100%;
-          box-sizing: border-box;
-          padding: 16px 15px;
-          border-radius: 10px;
+        }
+      }
+
+      .login-options-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+
+        .login-option {
+          font-size: 16px;
+          display: flex;
+          align-items: center;
           color: black;
-          transition: .2s ease-in-out all;
-  
-          &&:focus {
-            border: 1px solid var(--primary);
-            outline: none;
+          border: 1px solid var(--login-outlines);
+          border-radius: 30px;
+          height: 52px;
+          cursor: pointer;
+
+          transition: 0.2s ease-in-out all;
+          &&:hover {
+            background-color: rgb(231, 231, 231);
+          }
+          .social-icon {
+            width: 20px;
+            height: 20px;
+            padding: 15px;
           }
         }
-        .signup-container {
-          font-size: 14px;
-          text-align: center;
+      }
+
+      .login-btn {
+        background-color: var(--primary);
+        font-size: 16px;
+        padding: 20px;
+        color: white;
+        width: 100%;
+        border-radius: 10px;
+      }
+      label {
+        color: grey;
+      }
+      input {
+        font-size: 16px;
+        background-color: transparent;
+        border: 1px solid var(--login-outlines);
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px 15px;
+        border-radius: 10px;
+        color: black;
+        transition: 0.2s ease-in-out all;
+
+        &&.error{
+         border: 1px solid red;
         }
-        .sign-up-btn {
-          color: black;
+
+        &&:focus {
+          border: 1px solid var(--primary);
+          outline: none;
         }
+      }
+      .signup-container {
+        font-size: 14px;
+        text-align: center;
+      }
+      .sign-up-btn {
+        color: black;
       }
     }
   }
-  
+}

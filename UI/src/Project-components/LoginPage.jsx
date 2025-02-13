@@ -9,78 +9,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 export default function LoginPage() {
   const navigate = useNavigate();
+  const [requestError, setRequestError] = useState();
   const [form, setForm] = useState({ email: null, password: null });
-  /*
-   * Create form to request access token from Google's OAuth 2.0 server.
-   */
-
-  const client_id =
-    "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";
-  const redirect_uri = "http://localhost:5174/dashboard";
-
-  // function oauthSignIn() {
-  //   // Google's OAuth 2.0 endpoint for requesting an access token
-  //   var oauth2Endpoint = "https://accounts.google.com/o/oauth2/v2/auth";
-
-  //   // Create <form> element to submit parameters to OAuth 2.0 endpoint.
-  //   var form = document.createElement("form");
-  //   form.setAttribute("method", "GET"); // Send as a GET request.
-  //   form.setAttribute("action", oauth2Endpoint);
-
-  //   // Parameters to pass to OAuth 2.0 endpoint.
-  //   var params = {
-  //     client_id: client_id,
-  //     redirect_uri: redirect_uri,
-  //     response_type: "token",
-  //     scope:
-  //       "https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/calendar.readonly",
-  //     include_granted_scopes: "true",
-  //     state: "pass-through value",
-  //   };
-
-  //   // Add form parameters as hidden input values.
-  //   for (var p in params) {
-  //     var input = document.createElement("input");
-  //     input.setAttribute("type", "hidden");
-  //     input.setAttribute("name", p);
-  //     input.setAttribute("value", params[p]);
-  //     form.appendChild(input);
-  //   }
-
-  //   // Add form to page and submit it to open the OAuth 2.0 endpoint.
-  //   document.body.appendChild(form);
-  //   form.submit();
-  // }
-
-  // async function getUserInfo(token) {
-  //   try {
-  //     const response = await fetch(
-  //       "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-
-  //     const userInfo = await response.json();
-  //     console.log("User Info:", userInfo);
-  //     return userInfo;
-  //   } catch (error) {
-  //     console.error("Error fetching user info:", error);
-  //     return null;
-  //   }
-  // }
-
-  // // Example usage
-  // const accessToken = "YOUR_ACCESS_TOKEN_HERE"; // Replace with a valid OAuth access token
-  // getUserInfo(accessToken);
 
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
@@ -99,11 +29,20 @@ export default function LoginPage() {
 
   async function submitForm() {
     // login req sent to backend
-    const response = await axios.post("http://localhost:3000/user/login", {
-      ...form,
-    });
-    console.log("response", response);
-
+    try {
+      const response = await axios.post("http://localhost:3000/user/login", {
+        ...form,
+      });
+      localStorage.setItem("token", response.data.token); // Store token
+    } catch (error) {
+      if (error.response.data.error == "data and hash arguments required") {
+        setRequestError(
+          "Error. Try using Google or Microsoft account to sign in."
+        );
+      } else {
+        setRequestError(error.response.data.error);
+      }
+    }
   }
   return (
     <div className="LoginPage">
@@ -151,6 +90,7 @@ export default function LoginPage() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
+                setRequestError(null);
                 submitForm();
               }}
             >
@@ -180,12 +120,20 @@ export default function LoginPage() {
               >
                 Continue
               </button>
+              {requestError && (
+                <div className="input-feedback">{requestError}</div>
+              )}
             </form>
             <div className="signup-container">
               Don't have an account?
-              <button onClick={()=>{
-                navigate('/signup')
-              }} className="sign-up-btn">Sign Up</button>
+              <button
+                onClick={() => {
+                  navigate("/signup");
+                }}
+                className="sign-up-btn"
+              >
+                Sign Up
+              </button>
             </div>
           </div>
         </div>
