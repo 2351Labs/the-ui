@@ -34,6 +34,7 @@ const catalogData = {
   },
 };
 
+
 const router = createBrowserRouter([
   {
     path: "/dashboard",

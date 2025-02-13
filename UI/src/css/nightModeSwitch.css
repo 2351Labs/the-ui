@@ -4,7 +4,6 @@
 
   --light: #28292c;
   --dark: var(--dashboard-grey);
-    margin-right: 40px;
   .toggle-switch {
     translate: -70px 0px;
     scale: 0.3;

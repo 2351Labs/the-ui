@@ -17,11 +17,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --dashboard-shadow: rgb(187, 187, 187);
   --dashboard-grey: #eeeeee;
+  --dashboard-shadow: rgb(187, 187, 187);
   --dashboard-grey-hover: rgb(223, 223, 223);
   --primary: #2dce6b;
   --primary-light: rgb(195, 238, 212);
+
+  --main:#eeeeee;
+  --main-tint-1:rgb(233, 233, 233);
+  --main-tint-2:#cfcfcf;
+  --box-shadow:0px 4px 8px rgba(48, 48, 48, 0.12);
+
 
   /* --background-night: #070808;
   --sidebar-background-night: #0e0e0e;
@@ -36,12 +42,21 @@
   --inversion-background-tint: #dfdfdf;
   --inversion-background-tint-2: #d1d1d1;
 
+  --inversion-box-shadow:0 4px 8px rgba(255, 255, 255, 0.12);
   --inverstion-text-highlight: #ff9f00;
 
-  --night-background: #161718;
+  --night-background: #191919;
+  --night-background-tint: #202020;
+  --night-background-tint-2: #2e2e2e;
+  
+  --night-box-shadow:0 4px 8px rgba(0, 0, 0, 0.12);
+
+
+
+  /* --night-background: #161718;
   --night-background-tint: #40474b;
   --night-text-color: white;
-  --night-background-hover: #3b3c3d;
+  --night-background-hover: #3b3c3d; */
 }
 
 html,

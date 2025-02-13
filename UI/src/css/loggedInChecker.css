@@ -1,6 +1,5 @@
 .LoggedInChecker {
   background-color: rgba(5, 5, 5, 0.5);
-  filter: invert(1);
   position: fixed;
   height: 100%;
   width: 100%;
@@ -51,4 +50,9 @@
       }
     }
   }
+}
+
+#night-mode .LoggedInChecker {
+  filter: invert(1);
+  /* background-color: red !important; */
 }

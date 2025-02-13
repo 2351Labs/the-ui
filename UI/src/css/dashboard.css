@@ -109,6 +109,10 @@
   /* color: white; */
   /* background-color: var(--night-background); */
   background-color: var(--inversion-background);
+  
+  .sidebar-toggle-btn:hover {
+    background-color: var( --inversion-background-tint);
+  }
   .highlighted img {
   }
   /* color: white; */

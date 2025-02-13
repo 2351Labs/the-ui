@@ -1,7 +1,7 @@
 import SideBar from "./SideBar";
 import SearchBar from "./SearchBar";
 import "../../css/dashboard.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import sidebarIcon from "../../assets/dashboard/sidebar.svg";
 import Catalog from "./catalog-components/Catalog";
 import FilterBar from "./FilterBar";
@@ -16,7 +16,11 @@ import ReportsSVG from "../../assets/dashboard/reports.svg?react";
 import PeopleSVG from "../../assets/dashboard/people.svg?react";
 import NightModeSwitch from "./NightModeSwitch";
 import LoggedInChecker from "../LoggedInChecker";
+import UserButton from "./UserButton";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
+  const navigate = useNavigate();
   // sidebar selection controls content element displayed:
   const [sidebarSelection, setsidebarSelection] = useState({
     name: "Home",
@@ -26,6 +30,7 @@ export default function Dashboard() {
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
   const [toggleSidebar, setToggleSidebar] = useState(true);
+  const [userData, setUserData] = useState();
   const sidebarOptions = {
     Catalog: {
       label: "Catalog",
@@ -40,8 +45,29 @@ export default function Dashboard() {
     People: { label: "People", element: <div>EMPTY</div>, svg: <PeopleSVG /> },
     // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
   };
+
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${localStorage.getItem("token")}`;
+  axios.defaults.headers.common["Content-Type"] = "application/json";
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/user/getUser")
+      .then((response) => {
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        // navigate("/login")
+      });
+  }, []);
+
   return (
-    <div id={isDarkMode ? "night-mode" : undefined} className="dashboard--container">
+    <div
+      id={isDarkMode ? "night-mode" : undefined}
+      className="dashboard--container"
+    >
       <SideBar
         sidebarOptions={sidebarOptions}
         sidebarState={{
@@ -66,9 +92,16 @@ export default function Dashboard() {
           > */}
           <SearchBar />
           <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
-            <NightModeSwitch
+            {/* <NightModeSwitch
               darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
-            />
+            /> */}
+            <div style={{marginRight:"20px"}}>
+              <UserButton
+                darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
+                userData={userData}
+              />
+            </div>
+
             {/* <UserSVG className={"user-icon"} /> */}
           </div>
 
@@ -95,7 +128,7 @@ export default function Dashboard() {
       {/* possible search param-eters:
       type, date, name
       */}
-      <LoggedInChecker/>
-      </div>
+      <LoggedInChecker />
+    </div>
   );
 }

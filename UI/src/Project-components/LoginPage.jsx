@@ -7,7 +7,7 @@ import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function LoginPage() {
+export default function LoginPage(props) {
   const navigate = useNavigate();
   const [requestError, setRequestError] = useState();
   const [form, setForm] = useState({ email: null, password: null });
@@ -34,6 +34,7 @@ export default function LoginPage() {
         ...form,
       });
       localStorage.setItem("token", response.data.token); // Store token
+      
       navigate("/dashboard")
     } catch (error) {
       if (error.response.data.error == "data and hash arguments required") {
