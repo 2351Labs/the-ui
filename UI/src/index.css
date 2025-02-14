@@ -21,24 +21,37 @@
   --dashboard-shadow: rgb(187, 187, 187);
   --dashboard-grey-hover: rgb(223, 223, 223);
   --primary: #2dce6b;
-  --primary-light: rgb(195, 238, 212);
+  --primary-light: rgb(224, 255, 236);
 
-  --main: rgb(255, 255, 255);
-  --main-tint-1:#f1f1f1;
-  --main-tint-2:#dfdfdf;
-/*   
+  
+  --main:#fcfcfc;
+  --main-tint-1: #f0f0f0;
+  --main-tint-2: #e0e0e0;
+  --main-color-1: black;
+  --main-color-2:rgb(54, 54, 54); 
+
+
+  /* --main: #eceef0;
+  --main-tint-1: #fcfcfc;
+  --main-tint-2: #dce1e6;
+  --main-color-1: black;
+  --main-color-2:rgb(70, 70, 70);  */
+
+  /*   OLD:
   --main: white;
   --main-tint-1:#f1f1f1;
   --main-tint-2:#dfdfdf;
+    --border: 1px solid var(--main-tint-2);
 
    */
 
-  --box-shadow:0px 4px 8px rgba(48, 48, 48, 0.12);
-  --border: 1px solid var(--main-tint-2);
+  --box-shadow: 0px 4px 8px rgba(48, 48, 48, 0.12);
+  --border: 1px solid rgb(216, 215, 215);
 
-/* dark light mid */
-/* light dark mid */
-/* main tint 2 tint 1 */
+  
+  /* dark light mid */
+  /* light dark mid */
+  /* main tint 2 tint 1 */
 
   /* --background-night: #070808;
   --sidebar-background-night: #0e0e0e;
@@ -52,18 +65,17 @@
   --inversion-background: #e6e6e6;
   --inversion-background-tint: #dfdfdf;
   --inversion-background-tint-2: #d1d1d1;
+  --inversion-color-2: #c9c9c9;
 
-  --inversion-box-shadow:0 4px 8px rgba(255, 255, 255, 0.12);
+  --inversion-box-shadow: 0 4px 8px rgba(255, 255, 255, 0.12);
   --inverstion-text-highlight: #ff9f00;
   --inversion-border: 1px solid var(--inversion-background-tint-2);
 
   --night-background: #191919;
   --night-background-tint: #202020;
   --night-background-tint-2: #2e2e2e;
-  
-  --night-box-shadow:0 4px 8px rgba(0, 0, 0, 0.12);
 
-
+  --night-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 
   /* --night-background: #161718;
   --night-background-tint: #40474b;
@@ -83,7 +95,6 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-
 }
 
 #root {

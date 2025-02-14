@@ -2,7 +2,7 @@
   border: 2px solid var(--primary);
 }
 .catalog-searchbar {
-  color: rgb(70, 70, 70);
+  color: var(--main-color-2);
   z-index: 1;
   width: 60%;
   max-width: 900px;
@@ -21,7 +21,7 @@
     align-items: center;
   }
   .search-filter-container:hover {
-    background-color: var(--dashboard-grey-hover);
+    background-color: var(--main-tint-2);
   }
   .search-filter-container {
     display: flex;
@@ -41,7 +41,6 @@
 
     .dropdown-list {
       animation: dropdown 0.2s ease-in-out;
-
       overflow: hidden;
       background-color: var(--main-tint-1);
       position: absolute;
@@ -49,7 +48,7 @@
       left: 0px;
       border-radius: 5px;
       /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
-      box-shadow:var(--box-shadow);
+      box-shadow: var(--box-shadow);
       animation: fadeIn 0.1s ease-in-out;
       border: 1px solid var(--main-tint-2);
 
@@ -64,7 +63,7 @@
         padding: 2px 5px;
         gap: 5px;
         .dropdown-checkbox {
-          background-color: var(--main);
+          background-color: white;
           padding: 4px 4px;
           margin: 5px;
           cursor: pointer;
@@ -79,8 +78,12 @@
         }
       }
     }
+   
     .dropdown {
       translate: 0px 1px;
+      svg,path {
+        fill: var(--main-color-2);
+      }
       /* transition: .2s ease-in-out all; */
     }
   }
@@ -88,10 +91,12 @@
   .splitter {
     height: 28px;
   }
-  img {
+  img,
+  svg {
     width: 20px;
     transition: 0.2s ease-in-out all;
   }
+
   .search-icon {
     /* margin-right: 10px; */
     padding: 0px 5px;
@@ -120,6 +125,9 @@
   }
   /* background-color: var(--background-tint-night) !important; */
   .search-filter-container {
+    &&:hover{
+      background-color: var(--inversion-background-tint-1);
+    }
     &.highlighted {
       border-color: var(--inversion-color-night);
     }
@@ -128,7 +136,7 @@
     /* background-color: var(--primary-light); */
     background-color: var(--inversion-background-tint-2);
   }
-  .dropdown-list{
+  .dropdown-list {
     background-color: var(--inversion-background-tint);
     box-shadow: var(--inversion-box-shadow);
     border: 1px solid var(--inversion-background-tint-2);
@@ -150,5 +158,4 @@
       }
     }
   }
- 
 }

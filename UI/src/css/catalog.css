@@ -40,8 +40,7 @@
     justify-content: space-between;
     /* margin: 0px 5px; */
     height: 65px;
-    border-bottom: 1px solid rgb(221, 221, 221);
-
+    border-bottom: var(--border);
     .search-results-header {
     }
     .sort-by {

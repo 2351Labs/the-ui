@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import CheckIcon from "../../assets/dashboard/check.svg?react";
-import dropdownIcon from "../../assets/dashboard/dropdown.svg";
+import DropdownIcon from "../../assets/dashboard/dropdown.svg?react";
 import useClickOutside from "../../helpers/useClickOutside";
 import "../../css/dropDown.css";
 export default function DropDown(props) {
@@ -29,11 +29,9 @@ export default function DropDown(props) {
         {label}
       </span>
 
-      <img
+      <DropdownIcon
         style={isDropdown ? { rotate: "180deg" } : {}}
-        //   id="main-filter"
         className="dropdown-icon"
-        src={dropdownIcon}
       />
       {isDropdown && (
         <div id="dropdown" className="dropdown-list">
@@ -62,7 +60,9 @@ export default function DropDown(props) {
                     src={CheckIcon}
                   /> */}
                   <CheckIcon
-                    className={`dropdown-checkbox ${listState[label]?.[option] && "checked"} `}
+                    className={`dropdown-checkbox ${
+                      listState[label]?.[option] && "checked"
+                    } `}
                   />
                   {option}
                 </label>

@@ -1,5 +1,5 @@
 import searchIcon from "../../assets/dashboard/search.svg";
-import dropdownIcon from "../../assets/dashboard/dropdown.svg";
+import DropdownIcon from "../../assets/dashboard/dropdown.svg?react";
 import lineSVG from "../../assets/dashboard/line.svg";
 import { useRef, useState } from "react";
 import CheckIcon from "../../assets/dashboard/check.svg?react";
@@ -77,11 +77,10 @@ export default function SearchBar() {
                     : `${mainFilterSelectionCount} items`
                 }`}
           </div>
-          <img
+          <DropdownIcon
             style={isMainFilterOpen ? { rotate: "180deg" } : {}}
             id="main-filter"
             className="dropdown"
-            src={dropdownIcon}
           />
           {isMainFilterOpen && (
             <div id="dropdown" className="dropdown-list">

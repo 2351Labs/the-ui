@@ -68,12 +68,19 @@ const Style = styled(CatalogTableMUI1)`
   }
   .MuiDataGrid-cell {
     outline: none !important;
-    border-top:var(--border) !important;
+    border-top: var(--border) !important;
   }
-.css-1ggm5a5-MuiDataGrid-root .MuiDataGrid-row--borderBottom .MuiDataGrid-columnHeader, .css-1ggm5a5-MuiDataGrid-root .MuiDataGrid-row--borderBottom .MuiDataGrid-filler, .css-1ggm5a5-MuiDataGrid-root .MuiDataGrid-row--borderBottom .MuiDataGrid-scrollbarFiller{
+  .css-1ggm5a5-MuiDataGrid-root
+    .MuiDataGrid-row--borderBottom
+    .MuiDataGrid-columnHeader,
+  .css-1ggm5a5-MuiDataGrid-root
+    .MuiDataGrid-row--borderBottom
+    .MuiDataGrid-filler,
+  .css-1ggm5a5-MuiDataGrid-root
+    .MuiDataGrid-row--borderBottom
+    .MuiDataGrid-scrollbarFiller {
     border-bottom: none !important;
-
-}
+  }
   .css-1ggm5a5-MuiDataGrid-root .MuiDataGrid-container--top [role="row"],
   .css-1ggm5a5-MuiDataGrid-root .MuiDataGrid-container--bottom [role="row"] {
     background-color: transparent;
@@ -98,6 +105,8 @@ const Style = styled(CatalogTableMUI1)`
   }
   .MuiDataGrid-row {
     cursor: pointer;
+    transition: 0.15s ease-in-out all;
+
   }
   .MuiDataGrid-row:hover {
     background-color: var(--main-tint-2) !important;
@@ -111,6 +120,10 @@ const Style = styled(CatalogTableMUI1)`
       // color: white;
     }
     .MuiDataGrid-row {
+    }
+    .MuiDataGrid-cell {
+      outline: none !important;
+      border-top: var(--inversion-border) !important;
     }
     .MuiDataGrid-row:hover {
       background-color: var(--inversion-background-tint-2) !important;

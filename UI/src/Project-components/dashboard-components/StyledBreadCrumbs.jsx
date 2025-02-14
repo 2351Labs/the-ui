@@ -24,7 +24,7 @@ function BreadCrumbs({ props, className }) {
       const urlPath = arrayToPath(pathArray);
 
       return (
-        <div key={index} style={{ opacity: ".6", cursor: "default" }}>
+        <div key={index} style={{ opacity: ".65", cursor: "default" }}>
           <Link to={urlPath}>
             <div style={{ cursor: "pointer" }} className="bread-crumb">
               {capitalizeFirstLetter(path)}
@@ -65,11 +65,11 @@ const Style = styled(BreadCrumbs)`
   position: sticky;
   top: 0;
   z-index: 3;
-  background-color: white;
+  background-color: var(--main);
   /* width: fit-content; */
   /* border-radius: 10px; */
   padding-bottom: 10px;
-  border-bottom: 1px solid rgb(201, 201, 201);
+  border-bottom: var(--border);
   display: flex;
   align-items: center;
   div {
