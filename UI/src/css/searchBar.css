@@ -7,7 +7,7 @@
   width: 60%;
   max-width: 900px;
   border: 2px solid transparent;
-  background-color: var(--dashboard-grey);
+  background-color: var(--main-tint-1);
   padding: 3px 15px;
   /* max-width: 500px; */
   border-radius: 30px;
@@ -43,7 +43,7 @@
       animation: dropdown 0.2s ease-in-out;
 
       overflow: hidden;
-      background-color: var(--dashboard-grey);
+      background-color: var(--main-tint-1);
       position: absolute;
       top: 45px;
       left: 0px;
@@ -55,6 +55,7 @@
 
       .filter-option-container:hover {
         /* background-color: var(--primary-light); */
+        background-color: var(--main-tint-2);
       }
       .filter-option-container {
         font-weight: 500;
@@ -63,14 +64,14 @@
         padding: 2px 5px;
         gap: 5px;
         .dropdown-checkbox {
-          background-color: rgb(255, 255, 255);
+          background-color: var(--main);
           padding: 4px 4px;
           margin: 5px;
           cursor: pointer;
           width: 10px;
           height: 10px;
           border-radius: 5px;
-          border: 1px solid rgb(207, 207, 207);
+          border: var(--border);
           &.checked {
             background-color: var(--primary);
             border: 1px solid transparent;
@@ -123,12 +124,17 @@
       border-color: var(--inversion-color-night);
     }
   }
+  .filter-option-container:hover {
+    /* background-color: var(--primary-light); */
+    background-color: var(--inversion-background-tint-2);
+  }
   .dropdown-list{
     background-color: var(--inversion-background-tint);
     box-shadow: var(--inversion-box-shadow);
     border: 1px solid var(--inversion-background-tint-2);
   }
   .dropdown-checkbox {
+    border: var(--inversion-border);
     &.checked {
       background-color: var(--inversion-color-night);
       svg,

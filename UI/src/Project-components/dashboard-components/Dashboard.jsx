@@ -22,6 +22,8 @@ import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
   const navigate = useNavigate();
   // sidebar selection controls content element displayed:
+  const [isValidToken, setIsValidToken] = useState(true)
+  // assume token valid while waiting for response for user data from server
   const [sidebarSelection, setsidebarSelection] = useState({
     name: "Home",
     element: <div>Home</div>,
@@ -60,6 +62,7 @@ export default function Dashboard() {
       })
       .catch((error) => {
         console.error(error);
+        setIsValidToken(false)
         // navigate("/login")
       });
   }, []);
@@ -129,7 +132,7 @@ export default function Dashboard() {
       {/* possible search param-eters:
       type, date, name
       */}
-      <LoggedInChecker />
+      <LoggedInChecker isValidToken={isValidToken}/>
     </div>
   );
 }

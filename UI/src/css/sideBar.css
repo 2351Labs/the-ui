@@ -12,11 +12,12 @@
   flex-direction: column;
   overflow-x: hidden;
   display: flex;
-  background-color: #f1f1f1;
+  background-color: var(--main-tint-1);
   /* padding: 20px; */
   border-radius: 15px;
   /* border: 1px solid rgb(228, 228, 228); */
-  box-shadow: 0px 0px 5px 0px var(--dashboard-shadow);
+  box-shadow:var(--box-shadow);
+  border: var(--border);
   .bell-icon {
     width: 20px;
   }
@@ -97,6 +98,7 @@
     text-wrap: nowrap;
     /* background-color: rgb(224, 224, 224); */
     height: 26px;
+    opacity: .5;
     svg {
       min-width: 20px;
       min-height: 20px;
@@ -108,7 +110,7 @@
     /* border-bottom: 1px solid  var(--dashboard-grey-hover); */
   }
   .option:hover {
-    background-color: var(--dashboard-grey-hover);
+    background-color: var(--main-tint-2);
     transition: 0.15s ease-in-out;
     cursor: pointer;
   }
@@ -125,6 +127,11 @@
     path {
       /* fill: white; */
     }
+  }
+  .highlighted{
+    opacity: 1;
+    background-color: var(--main-tint-2) !important;
+
   }
   .highlighted svg {
     fill: var(--primary);

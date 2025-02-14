@@ -32,7 +32,7 @@
   font-family: "DM Sans", serif;
   font-size: 14px;
   /* background-color: var(--dashboard-grey) !important; */
-  background-color: rgb(245, 245, 245) !important;
+  background-color: var(--main-tint-1) !important;
   cursor: pointer;
   border: 1px solid rgb(216, 216, 216) !important;
   /* border: "1px solid var(--primary)" */
@@ -61,7 +61,7 @@
     border-radius: 5px;
     /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
     box-shadow: var(--box-shadow);
-    border: 1px solid var(--main-tint-2);
+    border: var(--border);
 
     /* .option-btn:hover {
       background-color: var(--primary-light);
@@ -74,7 +74,7 @@
       min-width: 100%;
       /* font-weight: 600; */
       &&:hover {
-        background-color: var(--main-tint-1);
+        background-color: var(--main-tint-2);
       }
       .option-label {
         display: flex;
@@ -99,7 +99,7 @@
           width: 10px;
           height: 10px;
           border-radius: 5px;
-          border: 1px solid rgb(207, 207, 207);
+          border: var(--border);
           &.checked {
             background-color: var(--primary);
             border: 1px solid transparent;
@@ -116,6 +116,7 @@
     box-shadow: var(--inversion-box-shadow);
   }
   .dropdown-checkbox {
+    border: var(--inversion-border);
     &.checked {
       svg,
       path {

@@ -25,6 +25,7 @@
     color: var(--primary);
     border-bottom: 2px solid var(--primary);
     background-color: #f5f5f5;
+    background-color: var(--main-tint-1);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }

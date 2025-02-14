@@ -16,7 +16,7 @@ export default function Option(props) {
       style={
         currentSidebarOption == name.toLowerCase()
           ? { backgroundColor: "var(--dashboard-grey-hover)", ...style }
-          : { opacity: "50%", ...style }
+          : { ...style }
       }
       id={id}
       className={`option ${

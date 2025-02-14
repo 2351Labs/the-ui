@@ -13,7 +13,7 @@ export default function DropDown(props) {
   });
 
   return (
-    <button
+    <div
       ref={dropdownRef}
       onClick={(e) => {
         setIsDropdown(!isDropdown);
@@ -71,6 +71,6 @@ export default function DropDown(props) {
           })}
         </div>
       )}
-    </button>
+    </div>
   );
 }

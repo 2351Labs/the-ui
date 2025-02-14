@@ -23,11 +23,22 @@
   --primary: #2dce6b;
   --primary-light: rgb(195, 238, 212);
 
-  --main:#eeeeee;
-  --main-tint-1:rgb(233, 233, 233);
-  --main-tint-2:#cfcfcf;
-  --box-shadow:0px 4px 8px rgba(48, 48, 48, 0.12);
+  --main: rgb(255, 255, 255);
+  --main-tint-1:#f1f1f1;
+  --main-tint-2:#dfdfdf;
+/*   
+  --main: white;
+  --main-tint-1:#f1f1f1;
+  --main-tint-2:#dfdfdf;
 
+   */
+
+  --box-shadow:0px 4px 8px rgba(48, 48, 48, 0.12);
+  --border: 1px solid var(--main-tint-2);
+
+/* dark light mid */
+/* light dark mid */
+/* main tint 2 tint 1 */
 
   /* --background-night: #070808;
   --sidebar-background-night: #0e0e0e;
@@ -44,6 +55,7 @@
 
   --inversion-box-shadow:0 4px 8px rgba(255, 255, 255, 0.12);
   --inverstion-text-highlight: #ff9f00;
+  --inversion-border: 1px solid var(--inversion-background-tint-2);
 
   --night-background: #191919;
   --night-background-tint: #202020;

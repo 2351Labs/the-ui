@@ -4,7 +4,7 @@
   height: 100%;
   width: 100%;
   .microsoft {
-    opacity: .5;
+    /* opacity: .5; */
     cursor: default !important;
   }
   .input-feedback {

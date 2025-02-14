@@ -1,14 +1,15 @@
 import "../css/LoggedInChecker.css";
 import { useNavigate } from "react-router-dom";
-export default function LoggedInChecker() {
+export default function LoggedInChecker(props) {
+  const {isValidToken} = props
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   return (
     <>
     {/* if no token present, prompt user to log in */}
-      {!token && (
+      {!isValidToken && (
         <div className="LoggedInChecker">
           <div className="container">
             <div className="header">Welcome Back</div>
