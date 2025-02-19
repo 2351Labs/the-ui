@@ -4,9 +4,8 @@ import useViewportWidth from "../../helpers/useViewPortWidth";
 export default function FilterBar(props) {
   const { filterConfigurationState, toggleSidebar } = props;
 
-  // const isPast1030pxAndSideBarClosed = useViewportWidth(1230) || !toggleSidebar;
+  const isPastWidthAndSideBarClosed = useViewportWidth(640) && !toggleSidebar;
 
-  
   function optionClickHandler(option, label, e) {
     e.stopPropagation();
     // update main filter configuration state stored at dashboard level
@@ -23,6 +22,7 @@ export default function FilterBar(props) {
 
   return (
     <div className="FilterBar">
+      {isPastWidthAndSideBarClosed ? (
         <>
           <DropDown
             label={"Search By"}
@@ -49,6 +49,14 @@ export default function FilterBar(props) {
             optionClickHandler={optionClickHandler}
           />
         </>
+      ) : (
+        <DropDown
+          label={"Filter By"}
+          list={["Tags", "Status", "Criticality", "Dependencies"]}
+          listState={filterConfigurationState.value}
+          optionClickHandler={optionClickHandler}
+        />
+      )}
     </div>
   );
 }

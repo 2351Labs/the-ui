@@ -1,11 +1,13 @@
-// import messageIcon from "../../../assets/message.svg";
 import "../../../css/catalogNavigationBar.css";
 
 export default function CatalogNavigationBar(props) {
-  const { navBarState, navBarOptions } = props;
+  const { navBarState, navBarOptions, isPastWidth } = props;
 
   return (
-    <div className="catalogNavigationBar">
+    <div
+      style={!isPastWidth ? { flexDirection: "column" } : {}}
+      className="catalogNavigationBar"
+    >
       {Object.keys(navBarOptions).map((optionKey, index) => {
         return (
           <button
@@ -18,11 +20,11 @@ export default function CatalogNavigationBar(props) {
             }`}
           >
             {navBarOptions[optionKey].svg}
-            <img
+            {/* <img
               className={optionKey === navBarState.value && "highlighted"}
               style={optionKey === navBarState.value ? {} : {}}
               src={navBarOptions[optionKey].img}
-            />
+            /> */}
             <div className="bar-option" key={index}>
               {navBarOptions[optionKey].label}
             </div>

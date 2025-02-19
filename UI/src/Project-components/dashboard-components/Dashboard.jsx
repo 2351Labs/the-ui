@@ -99,7 +99,7 @@ export default function Dashboard() {
             {/* <NightModeSwitch
               darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
             /> */}
-            <div style={{marginRight:"20px"}}>
+            <div style={{marginRight:"5px"}}>
               <UserButton
                 darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
                 userData={userData}

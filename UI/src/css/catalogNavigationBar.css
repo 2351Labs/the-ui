@@ -1,7 +1,7 @@
 .catalogNavigationBar {
   display: flex;
   box-sizing: border-box;
-  gap: 40px;
+  column-gap: 40px;
   width: 100%;
   margin-top: 70px;
   height: fit-content;
@@ -30,6 +30,7 @@
     border-top-right-radius: 5px;
   }
   .bar-option-btn {
+    height: 50px;
     translate: 0px 2px;
     font-size: 16px;
     font-weight: 550;
@@ -42,8 +43,10 @@
     cursor: pointer;
     opacity: 0.5;
     svg {
-      width: 20px;
-      height: 20px;
+      min-width: 20px;
+      min-height: 20px;
+      max-width: 20px;
+      min-width:20px;
     }
     &.highlighted {
       path,

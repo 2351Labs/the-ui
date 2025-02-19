@@ -37,6 +37,11 @@ const catalogData = {
 
 const router = createBrowserRouter([
   {
+    path: "/",
+    element: <div>HOME</div>,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/dashboard",
     element: <Dashboard />,
     errorElement: <ErrorPage />,

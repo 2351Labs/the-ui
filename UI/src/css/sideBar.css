@@ -18,6 +18,7 @@
   /* border: 1px solid rgb(228, 228, 228); */
   box-shadow: var(--box-shadow);
   border: var(--border);
+  /* z-index: 100; */
   .bell-icon {
     width: 20px;
   }

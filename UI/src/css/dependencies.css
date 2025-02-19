@@ -108,6 +108,8 @@
   }
   .p-organizationchart {
     width: 100%;
+    display: flex;
+    overflow: auto;
     .p-icon {
       /* translate: 0px 7px; */
       /* background-color: white; */

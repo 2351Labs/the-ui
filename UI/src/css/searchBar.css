@@ -3,9 +3,11 @@
 }
 .catalog-searchbar {
   color: var(--main-color-2);
-  z-index: 1;
-  width: 60%;
-  max-width: 900px;
+  z-index:2;
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  /* max-width: 60%; */
   border: 2px solid transparent;
   background-color: var(--main-tint-1);
   padding: 3px 15px;
@@ -14,7 +16,6 @@
   display: flex;
   align-items: center;
   font-size: 16px;
-  z-index: 5;
   font-weight: 600;
   .catalog-searchbar-container {
     display: flex;
@@ -40,7 +41,7 @@
     /* width: 100px; */
 
     .dropdown-list {
-      animation: dropdown 0.2s ease-in-out;
+      animation: fadeIn 0.15s ease-in-out;
       overflow: hidden;
       background-color: var(--main-tint-1);
       position: absolute;
@@ -49,7 +50,6 @@
       border-radius: 5px;
       /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
       box-shadow: var(--box-shadow);
-      animation: fadeIn 0.1s ease-in-out;
       border: 1px solid var(--main-tint-2);
 
       .filter-option-container:hover {
@@ -81,20 +81,21 @@
    
     .dropdown {
       translate: 0px 1px;
+      transition: 0.2s ease-in-out all;
       svg,path {
         fill: var(--main-color-2);
       }
-      /* transition: .2s ease-in-out all; */
     }
   }
 
   .splitter {
     height: 28px;
   }
+  
+
   img,
   svg {
     width: 20px;
-    transition: 0.2s ease-in-out all;
   }
 
   .search-icon {
@@ -105,8 +106,9 @@
     background-color: transparent;
     border: none;
     font-size: 16px;
-    color: black;
+    color: rgb(0, 0, 0);
     width: 110px;
+    margin-left: 10px;
   }
   .filter-selection {
     white-space: nowrap;
@@ -114,7 +116,7 @@
   input:focus {
     /* outline: rgb(151, 151, 151) 1px solid; */
     outline: none;
-    color: black;
+    color: rgb(0, 0, 0);
   }
 }
 

@@ -64,7 +64,6 @@ const Style = styled(BreadCrumbs)`
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 3;
   background-color: var(--main);
   /* width: fit-content; */
   /* border-radius: 10px; */
@@ -72,6 +71,8 @@ const Style = styled(BreadCrumbs)`
   border-bottom: var(--border);
   display: flex;
   align-items: center;
+  box-shadow: var(-night-box-shadow);
+
   div {
     display: flex;
     .bread-crumb:hover {

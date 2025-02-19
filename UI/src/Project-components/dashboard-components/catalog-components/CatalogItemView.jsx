@@ -14,8 +14,11 @@ import TreeStructureSVG from "../../../assets/dashboard/catalog-assets/tree-stru
 import KeySVG from "../../../assets/dashboard/catalog-assets/key.svg?react";
 import Dependencies from "./Dependencies";
 import openSourceIcon from "../../../assets/dashboard/catalog-assets/open-source.svg";
+import useViewportWidth from "../../../helpers/useViewPortWidth";
 import StyledBreadCrumbs from "../StyledBreadCrumbs";
 export default function CatalogItemView() {
+  const isPastWidth = useViewportWidth(880);
+
   const { itemDataLoader, itemID } = useLoaderData();
   const [itemData, setItemData] = useState(itemDataLoader);
 
@@ -63,19 +66,26 @@ export default function CatalogItemView() {
           </div> */}
         </div>
         <div className="description-container">
-          <InfoSVG className={"infoSVG"}/>
+          <InfoSVG className={"infoSVG"} />
           <div>{itemData.description}</div>
         </div>
         <CatalogNavigationBar
+          isPastWidth={isPastWidth}
           navBarOptions={navBarOptions}
           navBarState={{ value: navBarSelection, setter: setNavBarSelection }}
         />
       </div>
-      <div className="catalog-item-content">
+      <div
+        style={!isPastWidth ? { flexDirection: "column" } : {}}
+        className="catalog-item-content"
+      >
         <div className="left-split">
           {navBarOptions[navBarSelection].element}
         </div>
-        <div className="right-split">
+        <div
+          style={!isPastWidth ? { width: "100%" } : {}}
+          className="right-split"
+        >
           <div className="row-container">
             <div className="key">Repository</div>
             <div className="value-container">

@@ -1,13 +1,4 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    translate: 0px -15px;
-  }
-  to {
-    opacity: 1;
-    translate: 0px 0px;
-  }
-}
+
 .DropDown:hover {
   background-color: rgb(238, 238, 238) !important;
 }
@@ -16,7 +7,6 @@
 }
 .DropDown {
   user-select: none;
-  z-index: 2;
   color: var(--main-color-2) !important;
   display: flex;
   gap: 5px;
@@ -56,7 +46,7 @@
   }
 
   .dropdown-list {
-    animation: fadeIn 0.1s ease-in-out;
+    animation: fadeIn 0.15s ease-in-out;
     z-index: 2;
     /* background-color: var(--dashboard-grey); */
     position: absolute;

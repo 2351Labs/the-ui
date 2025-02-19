@@ -14,12 +14,12 @@ import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
   const { sidebarState, sidebarOptions } = props;
   const sidebarRef = useRef(null);
-  const isPast725px = useViewportWidth(725);
+  const isPastWidth = useViewportWidth(770);
   useClickOutside(sidebarRef, () => {
-    !isPast725px && sidebarState.setToggleSidebar(false);
+    !isPastWidth && sidebarState.setToggleSidebar(false);
   });
 
-  const popupConfig = !(isPast725px && sidebarState.isEnabled)
+  const popupConfig = !(isPastWidth && sidebarState.isEnabled)
     ? {
         position: "absolute",
         height: "100%",
@@ -34,7 +34,7 @@ export default function SideBar(props) {
   return (
     <>
       {/* hide sidebar if under 725px and sidebar closed */}
-      {(isPast725px || sidebarState.isEnabled) && (
+      {(isPastWidth || sidebarState.isEnabled) && (
         <div
           ref={sidebarRef}
           style={
