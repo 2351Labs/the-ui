@@ -8,16 +8,28 @@ import reportsIcon from "../../assets/dashboard/reports.svg";
 import "../../css/sideBar.css";
 import useViewportWidth from "../../helpers/useViewPortWidth";
 import useClickOutside from "../../helpers/useClickOutside";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import bellIcon from "../../assets/dashboard/bell.svg";
 import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
-  const { sidebarState, sidebarOptions } = props;
+  const { sidebarState, sidebarOptions, handleToggleSidebar } = props;
   const sidebarRef = useRef(null);
-  const isPastWidth = useViewportWidth(770);
+  const isPastWidth = useViewportWidth(800);
   useClickOutside(sidebarRef, () => {
-    !isPastWidth && sidebarState.setToggleSidebar(false);
+    !isPastWidth && handleToggleSidebar();
   });
+  useEffect(() => {
+    console.log("Tracking popup sidebar");
+    if (!isPastWidth) {
+      document
+        .querySelector(".dashboard--container")
+        .setAttribute("sidebar-popup-mode", `${true}`);
+    } else {
+      document
+        .querySelector(".dashboard--container")
+        .setAttribute("sidebar-popup-mode", `${false}`);
+    }
+  }, [sidebarState.isEnabled]);
 
   const popupConfig = !(isPastWidth && sidebarState.isEnabled)
     ? {
@@ -94,7 +106,7 @@ export default function SideBar(props) {
             <Option
               sidebarOptions={sidebarOptions}
               sidebarState={sidebarState}
-              svg={<UserSVG/>}
+              svg={<UserSVG />}
               name={"Jared Stoddard"}
               element={<div>IN DEV</div>}
             />

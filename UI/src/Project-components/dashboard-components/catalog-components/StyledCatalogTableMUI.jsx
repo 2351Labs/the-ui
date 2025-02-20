@@ -1,7 +1,7 @@
 // import * as React from 'react';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 const rows = [
   { id: 1, col1: "Hello", col2: "World" },
@@ -21,10 +21,65 @@ const columns = [
 ];
 
 function CatalogTableMUI1({ className, children }) {
-  const navigate = useNavigate();
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
 
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const [popupModeIsEnabled, setIsPopupModeEnabled] = useState(false);
+  useEffect(() => {
+    const element = document.querySelector(".dashboard--container");
+
+    // Check the initial state of the attribute
+    const checkAttribute = () => {
+      if (element && element.getAttribute("sidebar-state") === "true") {
+        setSidebarIsOpen(true);
+      } else {
+        setSidebarIsOpen(false);
+      }
+
+      console.log(
+        "getting attribute",
+        element.getAttribute("sidebar-popup-mode") === "true"
+      );
+      setIsPopupModeEnabled(
+        element.getAttribute("sidebar-popup-mode") === "true"
+      );
+    };
+
+    // Create a mutation observer to detect changes to attributes
+    const observer = new MutationObserver(() => {
+      checkAttribute(); // Check if the attribute exists after any changes
+    });
+
+    // Start observing the element for attribute changes
+    if (element) {
+      observer.observe(element, { attributes: true });
+    }
+
+    // Check the initial state of the attribute when the component mounts
+    checkAttribute();
+
+    // Cleanup observer when component unmounts
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
+  const navigate = useNavigate();
+  console.log("POPUP-MODE", popupModeIsEnabled);
   return (
-    <div className={className}>
+    <div
+      style={
+        !popupModeIsEnabled
+          ? sidebarIsOpen
+            ? { width: `${viewportWidth - (500 - 183)}px` }
+            : { width: `${viewportWidth - 131}px` }
+          : {width: `${viewportWidth-25}px`}
+      }
+      className={`${className} tableMUI`}
+    >
       <DataGrid
         sx={{ border: "none" }}
         // disableColumnSelector={true}
@@ -63,6 +118,16 @@ const Style = styled(CatalogTableMUI1)`
   // max-width: 1500px;
   height: 100%;
   width: 100%;
+  transition: 1s ease-in-out-all;
+  // [sidebar-state="true"] && {
+  //   background-color: green !important;
+  //   animation: growWidthTable 1s ease-in-out;
+  // }
+  // [sidebar-state="false"] && {
+  //   background-color: green !important;
+  //   animation: shrinkWidthTable 1s ease-in-out;
+  // }
+
   .MuiDataGrid-main {
     font-size: 16px;
   }
@@ -70,6 +135,7 @@ const Style = styled(CatalogTableMUI1)`
     outline: none !important;
     border-top: var(--border) !important;
   }
+
   .css-1ggm5a5-MuiDataGrid-root
     .MuiDataGrid-row--borderBottom
     .MuiDataGrid-columnHeader,
@@ -106,7 +172,6 @@ const Style = styled(CatalogTableMUI1)`
   .MuiDataGrid-row {
     cursor: pointer;
     transition: 0.15s ease-in-out all;
-
   }
   .MuiDataGrid-row:hover {
     background-color: var(--main-tint-2) !important;

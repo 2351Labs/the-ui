@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
   const navigate = useNavigate();
   // sidebar selection controls content element displayed:
-  const [isValidToken, setIsValidToken] = useState(true)
+  const [isValidToken, setIsValidToken] = useState(true);
   // assume token valid while waiting for response for user data from server
   const [sidebarSelection, setsidebarSelection] = useState({
     name: "Home",
@@ -53,19 +53,39 @@ export default function Dashboard() {
   ] = `Bearer ${localStorage.getItem("token")}`;
   axios.defaults.headers.common["Content-Type"] = "application/json";
 
+  // useEffect(() => {
+  //   if (toggleSidebar) {
+  //     document.body.classList.add("sidebar-is-open");
+  //     console.log("ADD")
+  //   } else {
+  //     document.body.classList.remove("sidebar-is-open");
+  //   }
+
+  //   return () => {
+  //     document.body.classList.remove("sidebar-is-open");
+  //   };
+  // }, [toggleSidebar]);
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/user/getUser")
       .then((response) => {
-        console.log("RESPONSE DATA", response)
+        console.log("RESPONSE DATA", response);
         setUserData(response.data);
       })
       .catch((error) => {
         console.error(error);
-        setIsValidToken(false)
+        setIsValidToken(false);
         // navigate("/login")
       });
   }, []);
+
+  function handleToggleSidebar() {
+    setToggleSidebar(!toggleSidebar);
+    document
+      .querySelector(".dashboard--container")
+      .setAttribute("sidebar-state", `${!toggleSidebar}`);
+  }
 
   return (
     <div
@@ -73,6 +93,7 @@ export default function Dashboard() {
       className="dashboard--container"
     >
       <SideBar
+        handleToggleSidebar={handleToggleSidebar}
         sidebarOptions={sidebarOptions}
         sidebarState={{
           value: sidebarSelection,
@@ -83,12 +104,7 @@ export default function Dashboard() {
       />
       <div className="dashboard--right">
         <div className="top-container">
-          <button
-            onClick={(e) => {
-              setToggleSidebar(!toggleSidebar);
-            }}
-            className="sidebar-toggle-btn"
-          >
+          <button onClick={handleToggleSidebar} className="sidebar-toggle-btn">
             <img className="sidebar-icon" src={sidebarIcon} />
           </button>
           {/* <div
@@ -99,7 +115,7 @@ export default function Dashboard() {
             {/* <NightModeSwitch
               darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
             /> */}
-            <div style={{marginRight:"5px"}}>
+            <div style={{ marginRight: "5px" }}>
               <UserButton
                 darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
                 userData={userData}
@@ -132,7 +148,7 @@ export default function Dashboard() {
       {/* possible search param-eters:
       type, date, name
       */}
-      <LoggedInChecker isValidToken={isValidToken}/>
+      <LoggedInChecker isValidToken={isValidToken} />
     </div>
   );
 }

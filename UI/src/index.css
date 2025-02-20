@@ -7,7 +7,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-
   color-scheme: light dark;
   color: black;
   /* background-color: #242424; */
@@ -24,13 +23,11 @@
   --primary: #2dce6b;
   --primary-light: rgb(224, 255, 236);
 
-  
-  --main:#fcfcfc;
+  --main: #fcfcfc;
   --main-tint-1: #f0f0f0;
   --main-tint-2: #e0e0e0;
   --main-color-1: black;
-  --main-color-2:rgb(54, 54, 54); 
-
+  --main-color-2: rgb(54, 54, 54);
 
   /* --main: #eceef0;
   --main-tint-1: #fcfcfc;
@@ -49,7 +46,6 @@
   --box-shadow: 0px 4px 8px rgba(48, 48, 48, 0.12);
   --border: 1px solid rgb(216, 215, 215);
 
-  
   /* dark light mid */
   /* light dark mid */
   /* main tint 2 tint 1 */
@@ -156,6 +152,25 @@ button {
   }
   to {
     min-width: 270px;
+  }
+}
+
+@keyframes growWidthTable {
+  from {
+    min-width: 87px;
+    max-width: 87px;
+  }
+  to {
+    min-width: 270px;
+  }
+}
+@keyframes shrinkWidthTable {
+  from {
+    width:100%;
+  }
+  to {
+    width: 87px;
+    /* max-width: 87px; */
   }
 }
 

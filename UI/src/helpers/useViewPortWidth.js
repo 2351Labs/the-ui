@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 
 const useViewportWidth = (breakpoint) => {
-  console.log("BREAKPOINT", breakpoint)
   const [isPastBreakpoint, setIsPastBreakpoint] = useState(window.innerWidth > breakpoint);
 
   useEffect(() => {

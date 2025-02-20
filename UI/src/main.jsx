@@ -13,6 +13,7 @@ import { Outlet } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MicrosoftAuthCallback from "./Project-components/MicrosoftAuthCallback.jsx";
 import SignupPage from "./Project-components/SignupPage.jsx";
+import Test from "./Project-components/Test.jsx";
 // for dev purposees
 const catalogData = {
   1: {
@@ -94,6 +95,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   { path: "/auth/microsoftAuthCallback", element: <MicrosoftAuthCallback /> },
+  {
+    path: "/test",
+
+    // loader: async ({ params }) => {
+    // },
+    element: <Test />,
+    errorElement: <ErrorPage />,
+  }
 ]);
 const client_id =
   "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";

@@ -4,7 +4,7 @@ import useViewportWidth from "../../helpers/useViewPortWidth";
 export default function FilterBar(props) {
   const { filterConfigurationState, toggleSidebar } = props;
 
-  const isPastWidthAndSideBarClosed = useViewportWidth(640) && !toggleSidebar;
+  const isPastWidthAndSideBarClosed = useViewportWidth(700) && !toggleSidebar;
 
   function optionClickHandler(option, label, e) {
     e.stopPropagation();

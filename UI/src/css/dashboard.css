@@ -25,9 +25,10 @@
   }
   .dashboard--right {
     position: relative;
+    flex-grow: 1;
     /* background-color: white; */
     /* border-radius: 15px; */
-    width: 100%;
+    /* width: calc(100% - 270px); */
     display: flex;
     flex-direction: column;
     box-sizing: border-box;

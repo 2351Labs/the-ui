@@ -16,7 +16,6 @@ export default function UserButton(props) {
     setIsOpen(false);
   });
 
-  console.log("BUTTN DATAS", userData)
   return (
     <div className="UserButton">
       {userData && (
