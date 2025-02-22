@@ -72,7 +72,6 @@ function CatalogTableMUI1({ className, children }) {
     // );
     function handleResize() {
       // if sidebar NOT in mobile mode:
-
       if (window.innerWidth >= 800) {
         // if sidebar open:
         if (
@@ -84,6 +83,7 @@ function CatalogTableMUI1({ className, children }) {
             window.innerWidth - sidebarWidthAndPadding - 174
           }px`;
         } else {
+          console.log("CLOSED", window.innerWidth)
           // if sidebar closed:
           tableElement.style.width = `${
             window.innerWidth - sidebarWidthAndPadding + 5
