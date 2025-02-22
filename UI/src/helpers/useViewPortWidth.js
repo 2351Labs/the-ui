@@ -16,7 +16,7 @@ const useViewportWidth = (breakpoint) => {
     };
   }, [breakpoint]);
 
-  return isPastBreakpoint;
+  return [isPastBreakpoint];
 };
 
 export default useViewportWidth;

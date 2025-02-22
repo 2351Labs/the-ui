@@ -3,6 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
   /* margin: 0px 100px; */
   .option-header {
     font-size: 20px;

@@ -55,7 +55,7 @@ export default function Catalog() {
   //SUB COMPONENT AT BOTTOM OF FILE
   return (
     <div className="catalog">
-      <StyledBreadCrumbs />
+      {/* <StyledBreadCrumbs /> */}
       {/* <h3>Micro Service</h3> */}
       {/* <StyledComponent/> */}
       <div className="filterBar-container">
@@ -70,7 +70,6 @@ export default function Catalog() {
           {console.log(params)}
         </div>
         <FilterBar
-          // toggleSidebar={toggleSidebar}
           filterConfigurationState={{
             value: filterConfiguration,
             setter: setFilterConfiguration,

@@ -41,8 +41,10 @@
       margin-top: 20px;
       display: flex;
       /* padding: 10px; */
+      justify-content: start;
+      align-items: start;
       width: 100%;
-      border-radius: 10px;
+      /* border-radius: 10px; */
       box-sizing: border-box;
       overflow-y: scroll;
       scrollbar-color: rgb(88, 88, 88) transparent;
@@ -50,10 +52,19 @@
       box-sizing: border-box;
 
       .content-centered {
-        margin-top: 30px;
+        /* margin-top: 30px; */
         display: flex;
         max-width: 1500px;
         width: 100%;
+        justify-content: start;
+        align-items: start;
+
+        /* bread crumbs adjustment to hide background */
+        .BreadCrumbs{
+          position: fixed;
+          top: 75px;
+          width: calc(100% - 20px);
+        }
       }
     }
     .top-container {
@@ -111,9 +122,9 @@
   /* color: white; */
   /* background-color: var(--night-background); */
   background-color: var(--inversion-background);
-  
+
   .sidebar-toggle-btn:hover {
-    background-color: var( --inversion-background-tint);
+    background-color: var(--inversion-background-tint);
   }
   .highlighted img {
   }
@@ -128,32 +139,29 @@
     }
   }
 
-  
-/* FOR INVERTING HIGHLIGHTED TEXT */
+  /* FOR INVERTING HIGHLIGHTED TEXT */
 
   /*** Works on common browsers ***/
-::selection {
-  background-color: var( --inverstion-text-highlight);
-}
+  ::selection {
+    background-color: var(--inverstion-text-highlight);
+  }
 
-/*** Mozilla based browsers ***/
-::-moz-selection {
-  background-color:var( --inverstion-text-highlight);
-}
+  /*** Mozilla based browsers ***/
+  ::-moz-selection {
+    background-color: var(--inverstion-text-highlight);
+  }
 
-/***For Other Browsers ***/
-::-o-selection {
-  background-color: var( --inverstion-text-highlight);
-}
+  /***For Other Browsers ***/
+  ::-o-selection {
+    background-color: var(--inverstion-text-highlight);
+  }
 
-::-ms-selection {
-  background-color: var( --inverstion-text-highlight);
-}
+  ::-ms-selection {
+    background-color: var(--inverstion-text-highlight);
+  }
 
-/*** For Webkit ***/
-::-webkit-selection {
-  background-color: var( --inverstion-text-highlight);
+  /*** For Webkit ***/
+  ::-webkit-selection {
+    background-color: var(--inverstion-text-highlight);
+  }
 }
-}
-
-

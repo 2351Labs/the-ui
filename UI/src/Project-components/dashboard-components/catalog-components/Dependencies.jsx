@@ -1,6 +1,6 @@
 import { OrganizationChart } from "primereact/organizationchart";
 import "../../../css/dependencies.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TreeTable } from "primereact/treetable";
 import { Column } from "primereact/column";
 import wandIcon from "../../../assets/dashboard/wand.svg";
@@ -410,6 +410,27 @@ export default function Dependencies() {
       ],
     },
   ];
+
+  useEffect(() => {
+    function handleResize() {
+      const viewportWidth = window.innerWidth;
+      const sidebarWidthAndPadding = 117;
+      const targetElements = document.querySelectorAll(".tree-table");
+      // map over all  treetables and apply styling
+      Array.from(targetElements).forEach((element) => {
+        if (viewportWidth >= 800) {
+          element.style.width = `${viewportWidth - sidebarWidthAndPadding}px`;
+        } else {
+          element.style.width = `${viewportWidth-20}px`;
+        }
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // initialize
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="dependencies">
       <h3 className="option-header">Dependencies (12)</h3>

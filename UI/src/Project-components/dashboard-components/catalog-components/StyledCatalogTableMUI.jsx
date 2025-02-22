@@ -21,28 +21,22 @@ const columns = [
 ];
 
 function CatalogTableMUI1({ className, children }) {
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [popupModeIsEnabled, setIsPopupModeEnabled] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState(0);
   useEffect(() => {
     const element = document.querySelector(".dashboard--container");
 
     // Check the initial state of the attribute
     const checkAttribute = () => {
-      if (element && element.getAttribute("sidebar-state") === "true") {
+      if (element && element?.getAttribute("sidebar-state") === "true") {
         setSidebarIsOpen(true);
       } else {
         setSidebarIsOpen(false);
       }
 
-      console.log(
-        "getting attribute",
-        element.getAttribute("sidebar-popup-mode") === "true"
-      );
       setIsPopupModeEnabled(
-        element.getAttribute("sidebar-popup-mode") === "true"
+        element?.getAttribute("sidebar-popup-mode") === "true"
       );
     };
 
@@ -67,17 +61,71 @@ function CatalogTableMUI1({ className, children }) {
     };
   }, []);
 
+  useEffect(() => {
+    const tableElement = document.querySelector(".tableMUI");
+    const sidebarWidthAndPadding = 140;
+    // console.log(
+    //   "GETTING",
+    //   document
+    //     .querySelector("dashboard--container")
+
+    // );
+    function handleResize() {
+      // if sidebar NOT in mobile mode:
+
+      if (window.innerWidth >= 800) {
+        // if sidebar open:
+        if (
+          document
+            .querySelector(".dashboard--container")
+            .getAttribute("sidebar-state") === "true"
+        ) {
+          tableElement.style.width = `${
+            window.innerWidth - sidebarWidthAndPadding - 174
+          }px`;
+        } else {
+          // if sidebar closed:
+          tableElement.style.width = `${
+            window.innerWidth - sidebarWidthAndPadding + 5
+          }px`;
+        }
+        // if sidebar in mobile mode
+      } else {
+        tableElement.style.width = `${window.innerWidth - 22}px`;
+      }
+      setViewportWidth(window.innerWidth);
+    }
+
+    // Create a MutationObserver to update table sizing if attribute changes
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === "attributes") {
+          handleResize();
+        }
+      }
+    });
+    // Start observing the target element for attribute changes
+    observer.observe(document.querySelector('.dashboard--container'), { attributes: true });
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const navigate = useNavigate();
-  console.log("POPUP-MODE", popupModeIsEnabled);
   return (
     <div
-      style={
-        !popupModeIsEnabled
-          ? sidebarIsOpen
-            ? { width: `${viewportWidth - (500 - 183)}px` }
-            : { width: `${viewportWidth - 131}px` }
-          : {width: `${viewportWidth-25}px`}
-      }
+      // style={
+      //   !popupModeIsEnabled
+      //     ? sidebarIsOpen
+      //       ? { width: `${viewportWidth - (500 - 183)}px` }
+      //       : { width: `${viewportWidth - 131}px` }
+      //     : { width: `${viewportWidth - 25}px` }
+      // }
       className={`${className} tableMUI`}
     >
       <DataGrid

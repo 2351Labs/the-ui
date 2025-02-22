@@ -8,28 +8,38 @@ import reportsIcon from "../../assets/dashboard/reports.svg";
 import "../../css/sideBar.css";
 import useViewportWidth from "../../helpers/useViewPortWidth";
 import useClickOutside from "../../helpers/useClickOutside";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import bellIcon from "../../assets/dashboard/bell.svg";
 import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
   const { sidebarState, sidebarOptions, handleToggleSidebar } = props;
+  const maxWidth = 800;
+  const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= maxWidth) {
+        setIsPastWidth(false);
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${false}`);
+      } else {
+        setIsPastWidth(true);
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${true}`);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const sidebarRef = useRef(null);
-  const isPastWidth = useViewportWidth(800);
   useClickOutside(sidebarRef, () => {
     !isPastWidth && handleToggleSidebar();
   });
-  useEffect(() => {
-    console.log("Tracking popup sidebar");
-    if (!isPastWidth) {
-      document
-        .querySelector(".dashboard--container")
-        .setAttribute("sidebar-popup-mode", `${true}`);
-    } else {
-      document
-        .querySelector(".dashboard--container")
-        .setAttribute("sidebar-popup-mode", `${false}`);
-    }
-  }, [sidebarState.isEnabled]);
 
   const popupConfig = !(isPastWidth && sidebarState.isEnabled)
     ? {

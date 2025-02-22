@@ -29,6 +29,8 @@
     width: 24px;
   }
   .tree-table {
+    width: 100%;
+    overflow: auto;
     .p-dropdown {
       padding: 5px 10px;
       border-radius: 5px;

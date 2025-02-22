@@ -20,7 +20,7 @@ function BreadCrumbs({ props, className }) {
 
       // Example usage:
       const pathsCopy = [...paths];
-      const pathArray = pathsCopy.splice(0, index + 1);
+      const pathArray = pathsCopy.splice(0, index + 1); 
       const urlPath = arrayToPath(pathArray);
 
       return (
@@ -38,7 +38,7 @@ function BreadCrumbs({ props, className }) {
   });
   return (
     <div
-      className={className}
+      className={`BreadCrumbs ${className}`}
       style={{ zIndex: "1", cursor: "default" }}
       // className="catalog-bread-crumbs"
     >
