@@ -9,18 +9,14 @@ function BreadCrumbs({ props, className }) {
   const paths = url.pathname.split("/").filter((segment) => segment !== "");
 
   const breadCrumbsExcludingLast = paths.map((path, index) => {
-    if (!(index + 1 == paths.length)) {
-      // exclude last
-
-      // create link for path item
-
+    if (!(index + 1 == paths.length) && !(index == 0)) {
+      // exclude last and first
       function arrayToPath(paths) {
         return "/" + paths.join("/");
       }
 
-      // Example usage:
       const pathsCopy = [...paths];
-      const pathArray = pathsCopy.splice(0, index + 1); 
+      const pathArray = pathsCopy.splice(0, index + 1);
       const urlPath = arrayToPath(pathArray);
 
       return (

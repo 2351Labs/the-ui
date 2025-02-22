@@ -23,8 +23,11 @@
   --primary: #2dce6b;
   --primary-light: rgb(224, 255, 236);
 
-  --main: #fcfcfc;
-  --main-tint-1: #f0f0f0;
+  /* --main: #fcfcfc; */
+  --main: #ffffff;
+  /* --main-tint-1: #ffffff; */
+  --main-tint-1: #f5f5f5;
+  /* --main-tint-2: #e0e0e0; */
   --main-tint-2: #e0e0e0;
   --main-tint-3: var(--main-tint-2);
   --main-color-1: black;

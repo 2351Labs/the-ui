@@ -105,6 +105,7 @@
     /* background-color: rgb(224, 224, 224); */
     height: 26px;
     opacity: 0.5;
+    border: 1px solid transparent;
 
     svg {
       min-width: 20px;
@@ -142,9 +143,10 @@
     opacity: 1;
     /* background-color: var(--primary) !important; */
     /* background-color: var(--main) !important; */
-    /* background-color: var(--main-tint-2) !important; */
-    background-color: var(--main-tint-3) !important;
-
+    /* background-color: var(--main) !important; */
+    background-color: transparent !important;
+    border: 1px solid var(--primary);
+    
   }
   .highlighted svg {
     fill: white;
@@ -192,6 +194,9 @@
       stroke: rgb(112, 112, 112);
     }
   }
+  .option{
+    border: 2px solid transparent;
+  }
   .option.highlighted {
     svg {
       path {
@@ -208,6 +213,7 @@
     /* color: var(--primary-light) */
     /* color: white; */
     color: var(--primary);
+    border: 2px solid transparent;
     /* background-color: var(--inversion-background-tint-2) !important; */
   }
 }
