@@ -141,8 +141,10 @@
     color: var(--primary);
     opacity: 1;
     /* background-color: var(--primary) !important; */
-    background-color: var(--main) !important;
-    /* background-color: var(--primary-light) !important; */
+    /* background-color: var(--main) !important; */
+    /* background-color: var(--main-tint-2) !important; */
+    background-color: var(--main-tint-3) !important;
+
   }
   .highlighted svg {
     fill: white;

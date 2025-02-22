@@ -36,7 +36,7 @@
     right: 0;
     translate: 0px 5px;
     /* background-color: var(--dashboard-grey); */
-    background-color: white;
+    /* background-color: white; */
     border-radius: 10px;
     padding: 10px;
     gap: 4px;
@@ -45,6 +45,7 @@
     border: 1px solid var(--main-tint-2);
     z-index: 10;
     box-shadow: var(--box-shadow);
+    background-color: var(--main-tint-1);
     .item-container {
       display: flex;
       gap: 15px;
@@ -95,7 +96,8 @@
     }
   }
   .drop-down {
-    background-color: var(--night-background);
+    background-color: var( --night-background-tint);
+    /* background-color: var(--main-tint-1); */
     box-shadow: var(--night-box-shadow);
   }
   .item-container {

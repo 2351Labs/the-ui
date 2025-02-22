@@ -89,9 +89,10 @@ export default function SearchBar() {
             />
             {isMainFilterOpen && (
               <div id="dropdown" className="dropdown-list">
-                {filterOptions.map((option) => {
+                {filterOptions.map((option, index) => {
                   return (
                     <div
+                      key={index}
                       onClick={() => {
                         setMainFilterConfiguration((prev) => {
                           return {

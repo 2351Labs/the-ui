@@ -26,6 +26,7 @@
   --main: #fcfcfc;
   --main-tint-1: #f0f0f0;
   --main-tint-2: #e0e0e0;
+  --main-tint-3: var(--main-tint-2);
   --main-color-1: black;
   --main-color-2: rgb(54, 54, 54);
 

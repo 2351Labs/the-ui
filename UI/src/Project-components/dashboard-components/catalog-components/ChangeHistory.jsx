@@ -13,7 +13,7 @@ export default function ChangeHistory() {
     },
     {
       status: "Added Dependencies",
-      date: "15/10/2020",
+      date: "4/10/2020",
     },
     {
       status: "Registered",
@@ -25,7 +25,7 @@ export default function ChangeHistory() {
     },
     {
       status: "Added Dependencies",
-      date: "15/10/2020",
+      date: "6/10/2020",
     },
     {
       status: "Registered",
@@ -37,14 +37,14 @@ export default function ChangeHistory() {
     },
     {
       status: "Added Dependencies",
-      date: "15/10/2020",
+      date: "5/10/2020",
     },
     {
       status: "OR",
     },
     {
       status: "Track git version history?",
-      date: "15/10/2020",
+      date: "5/10/2020",
     },
   ];
   return (
