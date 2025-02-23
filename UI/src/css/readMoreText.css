@@ -1,4 +1,8 @@
 .ReadMoreText {
+p{
+    letter-spacing: -.5px;
+
+    }
   button {
     opacity: 0.7;
     &&:hover {

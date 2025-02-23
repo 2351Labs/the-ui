@@ -47,7 +47,7 @@
       height: 100%;
       /* margin: 10px; */
       margin-top: 20px;
-      /* display: flex; */
+      display: flex;
       /* padding: 10px; */
       justify-content: start;
       width: 100%;
@@ -61,7 +61,9 @@
       .content-centered {
         /* margin-top: 30px; */
         display: flex;
-        /* max-width: 1500px; */
+        /* max-width: 1000px; */
+        /* padding: 10px 50px; */
+        box-sizing: border-box;
         height: 100%;
         width: 100%;
         justify-content: center;

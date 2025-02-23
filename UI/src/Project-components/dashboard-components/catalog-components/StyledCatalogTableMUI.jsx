@@ -78,7 +78,7 @@ function CatalogTableMUI1({ className, children }) {
       if (!isMobileMode) {
         // if sidebar NOT in mobile mode:
         tableElement.style.width = `${
-          window.innerWidth - sidebarWidthAndPadding + 4
+          window.innerWidth - sidebarWidthAndPadding
         }px`;
         // if sidebar in mobile mode
       } else {

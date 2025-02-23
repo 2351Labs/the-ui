@@ -21,7 +21,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // context for editing document:
 import { EditDocumentContext } from "../context/dashboardContext";
-import EditDocumentPopup from "./EditDocumentPopup";
+import EditDocumentPopup from "./catalog-components/EditDocumentPopup";
 export default function Dashboard() {
   // for edit document context:
   const [editingDocument, setEditingDocument] = useState({
@@ -62,19 +62,6 @@ export default function Dashboard() {
     "Authorization"
   ] = `Bearer ${localStorage.getItem("token")}`;
   axios.defaults.headers.common["Content-Type"] = "application/json";
-
-  // useEffect(() => {
-  //   if (toggleSidebar) {
-  //     document.body.classList.add("sidebar-is-open");
-  //     console.log("ADD")
-  //   } else {
-  //     document.body.classList.remove("sidebar-is-open");
-  //   }
-
-  //   return () => {
-  //     document.body.classList.remove("sidebar-is-open");
-  //   };
-  // }, [toggleSidebar]);
 
   useEffect(() => {
     axios
@@ -118,32 +105,16 @@ export default function Dashboard() {
           <button onClick={handleToggleSidebar} className="sidebar-toggle-btn">
             <img className="sidebar-icon" src={sidebarIcon} />
           </button>
-          {/* <div
-            style={{ display: "flex", width: "100%", justifyContent: "center" }}
-          > */}
+
           <SearchBar />
           <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
-            {/* <NightModeSwitch
-              darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
-            /> */}
             <div style={{ marginRight: "5px" }}>
               <UserButton
                 darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
                 userData={userData}
               />
             </div>
-
-            {/* <UserSVG className={"user-icon"} /> */}
           </div>
-
-          {/* <button
-            onClick={() => {
-              setIsDarkMode(!isDarkMode);
-            }}
-          >
-            NIGHT MODE
-          </button> */}
-          {/* </div> */}
         </div>
         {/* CONTENT: */}
         <div className="dashboard--content">
@@ -153,11 +124,9 @@ export default function Dashboard() {
             >
               {/* for edit document state */}
               <Outlet />
+              {/* react router will insert elements using Outlet according to URL path: */}
             </EditDocumentContext.Provider>
           </div>
-          {/* {sidebarSelection?.element} */}
-
-          {/* react router will insert elements using Outlet according to URL path: */}
         </div>
       </div>
 
@@ -165,13 +134,10 @@ export default function Dashboard() {
       type, date, name
       */}
       {editingDocument.isEnabled && (
-        <>
-        {console.log("CHECKER", editingDocument)}
-          <EditDocumentPopup
-            editingDocument={editingDocument}
-            setEditingDocument={setEditingDocument}
-          />
-        </>
+        <EditDocumentPopup
+          editingDocument={editingDocument}
+          setEditingDocument={setEditingDocument}
+        />
       )}
       <LoggedInChecker isValidToken={isValidToken} />
     </div>

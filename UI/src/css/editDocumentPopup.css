@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(39, 39, 39, 0.9) !important;
   ::selection {
     background-color: rgb(
       207,
@@ -24,7 +24,8 @@
   }
   textarea {
     font-family: "DM Sans", serif;
-    background-color: white;
+    background-color: #ffffff;
+
     color: rgb(0, 0, 0);
     font-size: 16px;
     letter-spacing: -0.5px;
@@ -49,8 +50,9 @@
     }
   }
   #night-mode && {
-    background-color: rgba(110, 110, 110, 0.5) !important;
+    background-color: rgba(22, 22, 22, 0.9) !important;
     filter: invert(1);
+  
     textarea {
       background-color: #e0e0e0;
     }

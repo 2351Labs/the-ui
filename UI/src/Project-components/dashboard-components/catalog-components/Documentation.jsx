@@ -1,5 +1,5 @@
 import "../../../css/documentation.css";
-import ReadMoreText from "../../ReadMoreText.jsx";
+import ReadMoreText from "./ReadMoreText.jsx";
 export default function Documentation({ itemData }) {
   console.log("itemData", itemData);
   const gitHubSVG = (

@@ -1,13 +1,11 @@
 import { useState, useContext } from "react";
-import { EditDocumentContext } from "./context/dashboardContext";
-import '../css/readMoreText.css'
+import { EditDocumentContext } from "../../context/dashboardContext";
+import '../../../css/readMoreText.css'
 const ReadMoreText = ({ text, title }) => {
   const { setEditingDocument, editingDocument } =
     useContext(EditDocumentContext);
 
   const [expanded, setExpanded] = useState(false);
-  const [textState, setTextState] = useState(text);
-
   const lineLimit = 3;
 
   const paragraphStyle = {

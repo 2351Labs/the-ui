@@ -30,6 +30,7 @@
   }
   .tree-table {
     width: 100%;
+    min-height: 500px;
     overflow: auto;
     .p-dropdown {
       padding: 5px 10px;

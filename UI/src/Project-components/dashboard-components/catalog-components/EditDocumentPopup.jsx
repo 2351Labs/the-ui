@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { EditDocumentContext } from "../context/dashboardContext";
-import "../../css/EditDocumentPopup.css";
+import { EditDocumentContext } from "../../context/dashboardContext";
+import "../../../css/EditDocumentPopup.css";
 export default function EditDocumentPopup(props) {
   const { editingDocument, setEditingDocument } = props;
   console.log("DEBYUG", editingDocument);
