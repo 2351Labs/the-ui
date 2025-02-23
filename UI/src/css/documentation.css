@@ -1,0 +1,54 @@
+.Documentation {
+  a {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+  }
+  .document-title {
+    /* text-decoration: underline; */
+    /* font-weight: 500; */
+  }
+  h4{
+    font-size: 18px;
+}
+p{
+    letter-spacing: -.4px;
+    margin-top: 0px;
+}
+  .external-documents-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    a {
+      cursor: pointer;
+
+      &&:hover .linkSVG {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .linkSVG {
+      width: 20px;
+      height: 20px;
+      opacity: 0.5;
+    }
+  }
+
+  #night-mode && {
+    filter: invert(1);
+    color: white;
+    a {
+      color: white;
+    }
+    .linkSVG,
+    .gitHubSVG {
+      filter: invert(1);
+    }
+  }
+}

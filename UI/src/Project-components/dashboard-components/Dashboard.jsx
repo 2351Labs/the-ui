@@ -19,7 +19,17 @@ import LoggedInChecker from "../LoggedInChecker";
 import UserButton from "./UserButton";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+// context for editing document:
+import { EditDocumentContext } from "../context/dashboardContext";
+import EditDocumentPopup from "./EditDocumentPopup";
 export default function Dashboard() {
+  // for edit document context:
+  const [editingDocument, setEditingDocument] = useState({
+    isEnabled: false,
+    header: null,
+    text: null,
+  });
+
   const navigate = useNavigate();
   // sidebar selection controls content element displayed:
   const [isValidToken, setIsValidToken] = useState(true);
@@ -138,7 +148,12 @@ export default function Dashboard() {
         {/* CONTENT: */}
         <div className="dashboard--content">
           <div className="content-centered">
-            <Outlet />
+            <EditDocumentContext.Provider
+              value={{ editingDocument, setEditingDocument }}
+            >
+              {/* for edit document state */}
+              <Outlet />
+            </EditDocumentContext.Provider>
           </div>
           {/* {sidebarSelection?.element} */}
 
@@ -149,6 +164,15 @@ export default function Dashboard() {
       {/* possible search param-eters:
       type, date, name
       */}
+      {editingDocument.isEnabled && (
+        <>
+        {console.log("CHECKER", editingDocument)}
+          <EditDocumentPopup
+            editingDocument={editingDocument}
+            setEditingDocument={setEditingDocument}
+          />
+        </>
+      )}
       <LoggedInChecker isValidToken={isValidToken} />
     </div>
   );

@@ -435,14 +435,13 @@ export default function Dependencies(props) {
       const settings = { width: `${viewPortWidth - 30}px` };
       return settings;
     } else {
+      console.log("ELSE!")
       const settings = isPastWidth
-        ? { width: `${viewPortWidth - 545}px` }
+        ? { width: `${viewPortWidth - 520}px` }
         : { width: `${viewPortWidth - 140}px` };
       return settings;
     }
   };
-  console.log("TERE", tableStyling());
-
   return (
     <div className="dependencies">
       <h3 className="option-header">Dependencies (12)</h3>

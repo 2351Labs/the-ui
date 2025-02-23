@@ -50,7 +50,6 @@ export default function ChangeHistory() {
   return (
     <div className="changeHistory">
       <h3 className="option-header">Timeline</h3>
-
       <Timeline
         value={events}
         opposite={(item) => item.status}

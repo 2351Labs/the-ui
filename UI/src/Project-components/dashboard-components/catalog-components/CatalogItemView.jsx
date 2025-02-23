@@ -16,6 +16,7 @@ import Dependencies from "./Dependencies";
 import openSourceIcon from "../../../assets/dashboard/catalog-assets/open-source.svg";
 import useViewportWidth from "../../../helpers/useViewPortWidth";
 import StyledBreadCrumbs from "../StyledBreadCrumbs";
+import Documentation from "./Documentation";
 export default function CatalogItemView() {
   const maxWidth = 880;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
@@ -46,7 +47,7 @@ export default function CatalogItemView() {
     documentation: {
       label: "Documentation",
       svg: <DocumentSVG />,
-      element: <div>Documentation</div>,
+      element: <Documentation itemData={itemData}/>,
     },
     changeHistory: {
       label: "Change History",
@@ -56,9 +57,7 @@ export default function CatalogItemView() {
     dependencies: {
       label: "Dependencies",
       svg: <TreeStructureSVG />,
-      element: (
-        <Dependencies isPastWidth={isPastWidth} />
-      ),
+      element: <Dependencies isPastWidth={isPastWidth} />,
     },
 
     ownership: {
@@ -110,9 +109,9 @@ export default function CatalogItemView() {
         >
           <div className="row-container">
             <div className="key">Repository</div>
-            <div className="value-container">
-              <img className="link-icon" src={linkIcon} />
+            <div className="value-container link-container">
               <div className="link">github.com/chakra-ui/chakra-ui</div>
+              <img className="link-icon" src={linkIcon} />
             </div>
           </div>
           <div className="row-container-wrapper">

@@ -66,14 +66,14 @@ export default function SideBar(props) {
           style={
             sidebarState.isEnabled
               ? {
-                  // animation: "growWidth .3s ease-in-out",
+                  animation: "growWidth .3s ease-in-out",
                   minWidth: "270px",
                   maxWidth: "270px",
 
                   ...popupConfig,
                 }
               : {
-                  // animation: "shrinkWidth .3s ease-in-out",
+                  animation: "shrinkWidth .3s ease-in-out",
                   minWidth: "87px",
                   maxWidth: "87px",
                 }
