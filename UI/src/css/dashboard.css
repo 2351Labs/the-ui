@@ -1,10 +1,17 @@
 /* DASHBOARD */
 
+[sidebar-popup-mode="false"] {
+  &&.dashboard--container {
+    padding-left: 10px !important;
+  }
+}
+
 .dashboard--container {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "DM Sans", serif;
   display: flex;
   padding: 10px 10px;
+  padding-left: 120px;
   gap: 20px;
   width: 100%;
   color: black;
@@ -53,17 +60,11 @@
       .content-centered {
         /* margin-top: 30px; */
         display: flex;
-        max-width: 1500px;
+        /* max-width: 1500px; */
+        height: 100%;
         width: 100%;
-        justify-content: start;
+        justify-content: center;
         align-items: start;
-
-        /* bread crumbs adjustment to hide background */
-        .BreadCrumbs{
-          position: fixed;
-          top: 75px;
-          width: calc(100% - 20px);
-        }
       }
     }
     .top-container {

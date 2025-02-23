@@ -12,22 +12,25 @@ import { useEffect, useRef, useState } from "react";
 import bellIcon from "../../assets/dashboard/bell.svg";
 import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
-  const { sidebarState, sidebarOptions, handleToggleSidebar } = props;
+  const { sidebarState, sidebarOptions, setToggleSidebar } = props;
   const maxWidth = 800;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
 
   useEffect(() => {
     function handleResize() {
+      console.log("HGERE", window.innerWidth, maxWidth);
       if (window.innerWidth <= maxWidth) {
-        setIsPastWidth(false);
+        console.log("setting FALSE");
         document
           .querySelector(".dashboard--container")
           .setAttribute("sidebar-popup-mode", `${false}`);
+        setIsPastWidth(false);
       } else {
-        setIsPastWidth(true);
+        console.log("setting TRUE");
         document
           .querySelector(".dashboard--container")
           .setAttribute("sidebar-popup-mode", `${true}`);
+        setIsPastWidth(true);
       }
     }
 
@@ -38,7 +41,10 @@ export default function SideBar(props) {
 
   const sidebarRef = useRef(null);
   useClickOutside(sidebarRef, () => {
-    !isPastWidth && handleToggleSidebar();
+    document
+      .querySelector(".dashboard--container")
+      .setAttribute("sidebar-state", `${false}`);
+    setToggleSidebar(false);
   });
 
   const popupConfig = !(isPastWidth && sidebarState.isEnabled)
@@ -62,14 +68,14 @@ export default function SideBar(props) {
           style={
             sidebarState.isEnabled
               ? {
-                  animation: "growWidth .3s ease-in-out",
+                  // animation: "growWidth .3s ease-in-out",
                   minWidth: "270px",
                   maxWidth: "270px",
 
                   ...popupConfig,
                 }
               : {
-                  animation: "shrinkWidth .3s ease-in-out",
+                  // animation: "shrinkWidth .3s ease-in-out",
                   minWidth: "87px",
                   maxWidth: "87px",
                 }

@@ -6,12 +6,23 @@
     }
   } */
 
+[sidebar-state="false"] {
+  .sidebar {
+    /* margin-right: 183px; */
+  }
+}
+
 .sidebar {
   /* min-width: 87px; */
   /* height: 100%; */
+  z-index: 3;
+  position: fixed;
+  top: 10px;
+  left: 10px;
   flex-direction: column;
   overflow-x: hidden;
   display: flex;
+  height: calc(100% - 20px);
   background-color: var(--main-tint-1);
   /* padding: 20px; */
   border-radius: 15px;
@@ -20,6 +31,7 @@
   border: var(--border);
   box-sizing: border-box;
   /* z-index: 100; */
+
   .bell-icon {
     width: 20px;
   }
@@ -147,7 +159,6 @@
     /* background-color: var(--main) !important; */
     background-color: transparent !important;
     border: 1px solid var(--primary);
-    
   }
   .highlighted svg {
     fill: white;
@@ -195,7 +206,7 @@
       stroke: rgb(112, 112, 112);
     }
   }
-  .option{
+  .option {
     border: 2px solid transparent;
   }
   .option.highlighted {

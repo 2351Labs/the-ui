@@ -91,9 +91,10 @@ export default function Dashboard() {
     <div
       id={isDarkMode ? "night-mode" : undefined}
       className="dashboard--container"
+      sidebar-state="true"
     >
       <SideBar
-        handleToggleSidebar={handleToggleSidebar}
+        setToggleSidebar={setToggleSidebar}
         sidebarOptions={sidebarOptions}
         sidebarState={{
           value: sidebarSelection,

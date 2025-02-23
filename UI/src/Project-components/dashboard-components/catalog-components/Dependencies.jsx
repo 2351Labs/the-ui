@@ -412,24 +412,89 @@ export default function Dependencies() {
   ];
 
   useEffect(() => {
+    const tableElement = document.querySelector(".tableMUI");
+    const sidebarWidthAndPadding = 150;
+    // console.log(
+    //   "GETTING",
+    //   document
+    //     .querySelector("dashboard--container")
+
+    // );
     function handleResize() {
-      const viewportWidth = window.innerWidth;
-      const sidebarWidthAndPadding = 117;
       const targetElements = document.querySelectorAll(".tree-table");
-      // map over all  treetables and apply styling
+      const sideInfoWidth = 400;
       Array.from(targetElements).forEach((element) => {
-        if (viewportWidth >= 800) {
-          element.style.width = `${viewportWidth - sidebarWidthAndPadding}px`;
+        // if sidebar NOT in mobile mode:
+        if (window.innerWidth >= 800) {
+          // if sidebar open:
+          if (
+            document
+              .querySelector(".dashboard--container")
+              .getAttribute("sidebar-state") === "true"
+          ) {
+            element.style.width = `${
+              window.innerWidth - sidebarWidthAndPadding  -sideInfoWidth
+            }px`;
+          } else {
+            console.log("CLOSED!", window.innerWidth);
+            // if sidebar closed:
+
+            element.style.width = `${
+              window.innerWidth - sidebarWidthAndPadding  - sideInfoWidth
+            }px`;
+          }
+          // if sidebar in mobile mode
         } else {
-          element.style.width = `${viewportWidth-20}px`;
+          element.style.width = `${window.innerWidth - 22}px`;
         }
+        // setViewportWidth(window.innerWidth);
       });
     }
+    // Create a MutationObserver to update table sizing if attribute changes
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === "attributes") {
+          handleResize();
+        }
+      }
+    });
+    // Start observing the target element for attribute changes
+    observer.observe(document.querySelector(".dashboard--container"), {
+      attributes: true,
+    });
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // initialize
-    return () => window.removeEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  // useEffect(() => {
+  //   function handleResize() {
+  //     const viewportWidth = window.innerWidth;
+  //     const sidebarWidthAndPadding = 117;
+  //     const targetElements = document.querySelectorAll(".tree-table");
+  //     // map over all  treetables and apply styling
+  //     Array.from(targetElements).forEach((element) => {
+  //       if (viewportWidth >= 800) {
+  //         console.log("over");
+  //         element.style.width = `${
+  //           viewportWidth - sidebarWidthAndPadding - 560
+  //         }px`;
+  //       } else {
+  //         console.log("under");
+  //         element.style.width = `${viewportWidth - 20}px`;
+  //       }
+  //     });
+  //   }
+
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize(); // initialize
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   return (
     <div className="dependencies">

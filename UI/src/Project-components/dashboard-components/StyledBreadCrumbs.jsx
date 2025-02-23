@@ -60,13 +60,18 @@ const Style = styled(BreadCrumbs)`
   font-weight: 600;
   position: sticky;
   top: 0;
+
+  // position: fixed;
+  // top: 75px;
+  width: ;
+
+  // width:100%;
   background-color: var(--main);
   /* width: fit-content; */
   /* border-radius: 10px; */
   padding-bottom: 10px;
   border-bottom: var(--border);
   display: flex;
-  align-items: center;
   box-shadow: var(-night-box-shadow);
 
   div {

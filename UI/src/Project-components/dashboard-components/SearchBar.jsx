@@ -16,14 +16,14 @@ export default function SearchBar() {
     function handleResize() {
       if (window.innerWidth <= maxWidth) {
         setIsPastWidth(false);
-        document
-          .querySelector(".dashboard--container")
-          .setAttribute("sidebar-popup-mode", `${false}`);
+        // document
+        //   .querySelector(".dashboard--container")
+        //   .setAttribute("sidebar-popup-mode", `${false}`);
       } else {
         setIsPastWidth(true);
-        document
-          .querySelector(".dashboard--container")
-          .setAttribute("sidebar-popup-mode", `${true}`);
+        // document
+        //   .querySelector(".dashboard--container")
+        //   .setAttribute("sidebar-popup-mode", `${true}`);
       }
     }
 

@@ -63,7 +63,7 @@ function CatalogTableMUI1({ className, children }) {
 
   useEffect(() => {
     const tableElement = document.querySelector(".tableMUI");
-    const sidebarWidthAndPadding = 140;
+    const sidebarWidthAndPadding = 150;
     // console.log(
     //   "GETTING",
     //   document
@@ -80,13 +80,13 @@ function CatalogTableMUI1({ className, children }) {
             .getAttribute("sidebar-state") === "true"
         ) {
           tableElement.style.width = `${
-            window.innerWidth - sidebarWidthAndPadding - 174
+            window.innerWidth - sidebarWidthAndPadding
           }px`;
         } else {
           console.log("CLOSED", window.innerWidth)
           // if sidebar closed:
           tableElement.style.width = `${
-            window.innerWidth - sidebarWidthAndPadding + 5
+            window.innerWidth - sidebarWidthAndPadding
           }px`;
         }
         // if sidebar in mobile mode
