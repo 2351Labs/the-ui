@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { TreeTable } from "primereact/treetable";
 import { Column } from "primereact/column";
 import wandIcon from "../../../assets/dashboard/wand.svg";
+import SideBar from "../SideBar";
 
-export default function Dependencies() {
+export default function Dependencies(props) {
+  const { isPastWidth } = props;
   const [nodeSelection, setNodeSelection] = useState(null);
   const [isVisualizeEnabled, setIsVisualizedEnabled] = useState(false);
   const nodeData = [
@@ -411,90 +413,35 @@ export default function Dependencies() {
     },
   ];
 
+  const [viewPortWidth, setViewPortWidth] = useState(window.innerWidth);
+
   useEffect(() => {
-    const tableElement = document.querySelector(".tableMUI");
-    const sidebarWidthAndPadding = 150;
-    // console.log(
-    //   "GETTING",
-    //   document
-    //     .querySelector("dashboard--container")
-
-    // );
     function handleResize() {
-      const targetElements = document.querySelectorAll(".tree-table");
-      const sideInfoWidth = 400;
-      Array.from(targetElements).forEach((element) => {
-        // if sidebar NOT in mobile mode:
-        if (window.innerWidth >= 800) {
-          // if sidebar open:
-          if (
-            document
-              .querySelector(".dashboard--container")
-              .getAttribute("sidebar-state") === "true"
-          ) {
-            element.style.width = `${
-              window.innerWidth - sidebarWidthAndPadding  -sideInfoWidth
-            }px`;
-          } else {
-            console.log("CLOSED!", window.innerWidth);
-            // if sidebar closed:
-
-            element.style.width = `${
-              window.innerWidth - sidebarWidthAndPadding  - sideInfoWidth
-            }px`;
-          }
-          // if sidebar in mobile mode
-        } else {
-          element.style.width = `${window.innerWidth - 22}px`;
-        }
-        // setViewportWidth(window.innerWidth);
-      });
+      setViewPortWidth(window.innerWidth);
     }
-    // Create a MutationObserver to update table sizing if attribute changes
-    const observer = new MutationObserver((mutationsList) => {
-      for (const mutation of mutationsList) {
-        if (mutation.type === "attributes") {
-          handleResize();
-        }
-      }
-    });
-    // Start observing the target element for attribute changes
-    observer.observe(document.querySelector(".dashboard--container"), {
-      attributes: true,
-    });
-
     window.addEventListener("resize", handleResize);
-    handleResize();
-
     return () => {
-      observer.disconnect();
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // useEffect(() => {
-  //   function handleResize() {
-  //     const viewportWidth = window.innerWidth;
-  //     const sidebarWidthAndPadding = 117;
-  //     const targetElements = document.querySelectorAll(".tree-table");
-  //     // map over all  treetables and apply styling
-  //     Array.from(targetElements).forEach((element) => {
-  //       if (viewportWidth >= 800) {
-  //         console.log("over");
-  //         element.style.width = `${
-  //           viewportWidth - sidebarWidthAndPadding - 560
-  //         }px`;
-  //       } else {
-  //         console.log("under");
-  //         element.style.width = `${viewportWidth - 20}px`;
-  //       }
-  //     });
-  //   }
-
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize(); // initialize
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
+  const tableStyling = () => {
+    const isMobileMode = !(
+      document
+        .querySelector(".dashboard--container")
+        .getAttribute("sidebar-popup-mode") === "true"
+    );
+    if (isMobileMode) {
+      const settings = { width: `${viewPortWidth - 30}px` };
+      return settings;
+    } else {
+      const settings = isPastWidth
+        ? { width: `${viewPortWidth - 540}px` }
+        : { width: `${viewPortWidth - 140}px` };
+      return settings;
+    }
+  };
+  console.log("TERE", tableStyling());
 
   return (
     <div className="dependencies">
@@ -508,15 +455,9 @@ export default function Dependencies() {
         <img className="wand-icon" src={wandIcon} />
         Visualize
       </button>
-      {/* <div className="dependency-list">
-        <div className="list-item">Service 1</div>
-        <div className="list-item">Service 2</div>
-        <div className="list-item">Service 3</div>
-        <div className="list-item">Service 4</div>
-    
-      </div> */}
+
       {!isVisualizeEnabled ? (
-        <div className="tree-table">
+        <div style={tableStyling()} className="tree-table">
           <TreeTable
             paginator
             rows={5}
@@ -545,7 +486,7 @@ export default function Dependencies() {
       )}
 
       <h3 className="option-header">Dependents (5)</h3>
-      <div className="tree-table">
+      <div style={tableStyling()} className="tree-table">
         <TreeTable
           paginator
           rows={5}

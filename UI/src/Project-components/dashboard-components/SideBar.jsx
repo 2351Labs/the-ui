@@ -13,20 +13,17 @@ import bellIcon from "../../assets/dashboard/bell.svg";
 import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
   const { sidebarState, sidebarOptions, setToggleSidebar } = props;
-  const maxWidth = 800;
+  const maxWidth = 600;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
 
   useEffect(() => {
     function handleResize() {
-      console.log("HGERE", window.innerWidth, maxWidth);
       if (window.innerWidth <= maxWidth) {
-        console.log("setting FALSE");
         document
           .querySelector(".dashboard--container")
           .setAttribute("sidebar-popup-mode", `${false}`);
         setIsPastWidth(false);
       } else {
-        console.log("setting TRUE");
         document
           .querySelector(".dashboard--container")
           .setAttribute("sidebar-popup-mode", `${true}`);

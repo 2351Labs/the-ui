@@ -35,12 +35,9 @@ export default function CatalogItemView() {
     }
 
     window.addEventListener("resize", handleResize);
-    handleResize()
+    handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-
-
 
   const { itemDataLoader, itemID } = useLoaderData();
   const [itemData, setItemData] = useState(itemDataLoader);
@@ -59,7 +56,9 @@ export default function CatalogItemView() {
     dependencies: {
       label: "Dependencies",
       svg: <TreeStructureSVG />,
-      element: <Dependencies />,
+      element: (
+        <Dependencies isPastWidth={isPastWidth} />
+      ),
     },
 
     ownership: {

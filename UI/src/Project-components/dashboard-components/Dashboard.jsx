@@ -31,7 +31,7 @@ export default function Dashboard() {
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
-  const [toggleSidebar, setToggleSidebar] = useState(true);
+  const [toggleSidebar, setToggleSidebar] = useState(false);
   const [userData, setUserData] = useState();
   const sidebarOptions = {
     Catalog: {
@@ -91,7 +91,7 @@ export default function Dashboard() {
     <div
       id={isDarkMode ? "night-mode" : undefined}
       className="dashboard--container"
-      sidebar-state="true"
+      sidebar-state="false"
     >
       <SideBar
         setToggleSidebar={setToggleSidebar}

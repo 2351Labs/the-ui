@@ -34,7 +34,6 @@ function CatalogTableMUI1({ className, children }) {
       } else {
         setSidebarIsOpen(false);
       }
-
       setIsPopupModeEnabled(
         element?.getAttribute("sidebar-popup-mode") === "true"
       );
@@ -91,7 +90,7 @@ function CatalogTableMUI1({ className, children }) {
         }
         // if sidebar in mobile mode
       } else {
-        tableElement.style.width = `${window.innerWidth - 22}px`;
+        tableElement.style.width = `${window.innerWidth - sidebarWidthAndPadding+8}px`;
       }
       setViewportWidth(window.innerWidth);
     }
