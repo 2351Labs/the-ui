@@ -15,7 +15,7 @@ export default function FilterBar(props) {
           .getAttribute("sidebar-state") === "true";
 
       const isPastWidthAndSideBarClosed =
-        window.innerWidth >= 700 && !isSidebarEnabled;
+        window.innerWidth >= 750 && !isSidebarEnabled;
 
       setIsPastWidthAndSideBarClosed(isPastWidthAndSideBarClosed);
     }

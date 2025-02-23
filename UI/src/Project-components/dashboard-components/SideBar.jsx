@@ -24,6 +24,7 @@ export default function SideBar(props) {
           .setAttribute("sidebar-popup-mode", `${false}`);
         setIsPastWidth(false);
       } else {
+        console.log("setting TRUE");
         document
           .querySelector(".dashboard--container")
           .setAttribute("sidebar-popup-mode", `${true}`);

@@ -436,7 +436,7 @@ export default function Dependencies(props) {
       return settings;
     } else {
       const settings = isPastWidth
-        ? { width: `${viewPortWidth - 540}px` }
+        ? { width: `${viewPortWidth - 545}px` }
         : { width: `${viewPortWidth - 140}px` };
       return settings;
     }
@@ -476,13 +476,15 @@ export default function Dependencies(props) {
           </TreeTable>
         </div>
       ) : (
-        <OrganizationChart
-          onNodeSelect={(e) => {
-            setNodeSelection(e.node.key);
-          }}
-          selectionMode={"single"}
-          value={data}
-        />
+        <div style={tableStyling()} className="tree-table">
+          <OrganizationChart
+            onNodeSelect={(e) => {
+              setNodeSelection(e.node.key);
+            }}
+            selectionMode={"single"}
+            value={data}
+          />
+        </div>
       )}
 
       <h3 className="option-header">Dependents (5)</h3>

@@ -70,27 +70,21 @@ function CatalogTableMUI1({ className, children }) {
 
     // );
     function handleResize() {
-      // if sidebar NOT in mobile mode:
-      if (window.innerWidth >= 800) {
-        // if sidebar open:
-        if (
-          document
-            .querySelector(".dashboard--container")
-            .getAttribute("sidebar-state") === "true"
-        ) {
-          tableElement.style.width = `${
-            window.innerWidth - sidebarWidthAndPadding
-          }px`;
-        } else {
-          console.log("CLOSED", window.innerWidth)
-          // if sidebar closed:
-          tableElement.style.width = `${
-            window.innerWidth - sidebarWidthAndPadding
-          }px`;
-        }
+      const isMobileMode = !(
+        document
+          .querySelector(".dashboard--container")
+          .getAttribute("sidebar-popup-mode") === "true"
+      );
+      if (!isMobileMode) {
+        // if sidebar NOT in mobile mode:
+        tableElement.style.width = `${
+          window.innerWidth - sidebarWidthAndPadding + 4
+        }px`;
         // if sidebar in mobile mode
       } else {
-        tableElement.style.width = `${window.innerWidth - sidebarWidthAndPadding+8}px`;
+        tableElement.style.width = `${
+          window.innerWidth - sidebarWidthAndPadding + 128
+        }px`;
       }
       setViewportWidth(window.innerWidth);
     }
@@ -104,7 +98,9 @@ function CatalogTableMUI1({ className, children }) {
       }
     });
     // Start observing the target element for attribute changes
-    observer.observe(document.querySelector('.dashboard--container'), { attributes: true });
+    observer.observe(document.querySelector(".dashboard--container"), {
+      attributes: true,
+    });
 
     window.addEventListener("resize", handleResize);
     handleResize();

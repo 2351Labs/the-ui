@@ -110,6 +110,7 @@
   }
   .p-organizationchart {
     width: 100%;
+    max-height: 500px;
     display: flex;
     overflow: auto;
     .p-icon {
