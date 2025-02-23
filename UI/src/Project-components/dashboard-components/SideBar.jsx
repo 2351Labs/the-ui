@@ -32,7 +32,7 @@ export default function SideBar(props) {
     }
 
     window.addEventListener("resize", handleResize);
-
+    handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

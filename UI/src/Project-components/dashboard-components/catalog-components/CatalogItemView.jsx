@@ -1,5 +1,5 @@
 import "../../../css/catalogItemView.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CatalogItemName from "./CatalogItemName";
 import CatalogNavigationBar from "./CatalogNavigationBar";
 import descriptionIcon from "../../../assets/dashboard/catalog-assets/description.svg";
@@ -17,7 +17,30 @@ import openSourceIcon from "../../../assets/dashboard/catalog-assets/open-source
 import useViewportWidth from "../../../helpers/useViewPortWidth";
 import StyledBreadCrumbs from "../StyledBreadCrumbs";
 export default function CatalogItemView() {
-  const isPastWidth = useViewportWidth(880);
+  const maxWidth = 880;
+  const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= maxWidth) {
+        setIsPastWidth(false);
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${false}`);
+      } else {
+        setIsPastWidth(true);
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${true}`);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize()
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
+
 
   const { itemDataLoader, itemID } = useLoaderData();
   const [itemData, setItemData] = useState(itemDataLoader);

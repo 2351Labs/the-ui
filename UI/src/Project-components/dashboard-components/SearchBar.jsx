@@ -1,7 +1,7 @@
 import searchIcon from "../../assets/dashboard/search.svg";
 import DropdownIcon from "../../assets/dashboard/dropdown.svg?react";
 import lineSVG from "../../assets/dashboard/line.svg";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import CheckIcon from "../../assets/dashboard/check.svg?react";
 import useClickOutside from "../../helpers/useClickOutside";
 import "../../css/searchBar.css";
@@ -10,7 +10,28 @@ import useViewportWidth from "../../helpers/useViewPortWidth";
 
 import MultiSelectPrime from "./MultiSelectPrime";
 export default function SearchBar() {
-  const isPastWidth = useViewportWidth(480);
+  const maxWidth = 480;
+  const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= maxWidth) {
+        setIsPastWidth(false);
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${false}`);
+      } else {
+        setIsPastWidth(true);
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${true}`);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize()
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // const isPastWidth = true;
 
   const filterOptions = [
