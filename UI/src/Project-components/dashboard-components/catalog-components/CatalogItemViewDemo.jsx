@@ -1,24 +1,23 @@
 import "../../../css/catalogItemView.css";
 import { useState, useEffect } from "react";
-import CatalogItemName from "./CatalogItemName";
-import CatalogNavigationBar from "./CatalogNavigationBar";
+import CatalogItemName from "./CatalogItemName.jsx";
+import CatalogNavigationBar from "./CatalogNavigationBar.jsx";
 import descriptionIcon from "../../../assets/dashboard/catalog-assets/description.svg";
 import InfoSVG from "../../../assets/dashboard/catalog-assets/info.svg?react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import ChangeHistory from "./ChangeHistory";
+import ChangeHistory from "./ChangeHistory.jsx";
 import { Outlet } from "react-router-dom";
 import DocumentSVG from "../../../assets/dashboard/catalog-assets/document.svg?react";
 import HistorySVG from "../../../assets/dashboard/catalog-assets/history.svg?react";
 import linkIcon from "../../../assets/dashboard/catalog-assets/link.svg";
 import TreeStructureSVG from "../../../assets/dashboard/catalog-assets/tree-structure.svg?react";
 import KeySVG from "../../../assets/dashboard/catalog-assets/key.svg?react";
-import Dependencies from "./Dependencies";
+import Dependencies from "./Dependencies.jsx";
 import openSourceIcon from "../../../assets/dashboard/catalog-assets/open-source.svg";
-import useViewportWidth from "../../../helpers/useViewPortWidth";
-import StyledBreadCrumbs from "../StyledBreadCrumbs";
-import Documentation from "./Documentation";
-import Ownership from "./Ownership";
-import collectorSchemaTestData from "../../../../collectorSchemaTestData.js";
+import useViewportWidth from "../../../helpers/useViewPortWidth.js";
+import StyledBreadCrumbs from "../StyledBreadCrumbs.jsx";
+import Documentation from "./Documentation.jsx";
+import Ownership from "./Ownership.jsx";
 export default function CatalogItemView() {
   const maxWidth = 880;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
@@ -41,15 +40,14 @@ export default function CatalogItemView() {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const { itemDataLoader, itemID, entityData } = useLoaderData();
+  const { itemDataLoader, itemID } = useLoaderData();
   const [itemData, setItemData] = useState(itemDataLoader);
 
   const navBarOptions = {
     documentation: {
       label: "Documentation",
       svg: <DocumentSVG />,
-      element: <Documentation entityData={entityData} />,
+      element: <Documentation itemData={itemData} />,
     },
     changeHistory: {
       label: "Change History",
@@ -73,8 +71,6 @@ export default function CatalogItemView() {
     Object.keys(navBarOptions)[0]
   );
 
-  
-
   return (
     <div className="catalogItemView">
       <StyledBreadCrumbs itemID={itemID} itemData={itemData} />
@@ -82,9 +78,8 @@ export default function CatalogItemView() {
       <div className="name-container">
         <div className="catalogItemName-container">
           <CatalogItemName
-            serviceName={entityData["Service Name"]}
-            // itemID={itemID}
-            // itemDataState={{ value: itemData, setter: setItemData }}
+            itemID={itemID}
+            itemDataState={{ value: itemData, setter: setItemData }}
           />
           {/* <div className="badge">
             <img src={openSourceIcon} />
@@ -93,7 +88,7 @@ export default function CatalogItemView() {
         </div>
         <div className="description-container">
           <InfoSVG className={"infoSVG"} />
-          <div>{entityData.Description}</div>
+          <div>{itemData.description}</div>
         </div>
         <CatalogNavigationBar
           isPastWidth={isPastWidth}

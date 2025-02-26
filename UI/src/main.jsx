@@ -14,6 +14,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import MicrosoftAuthCallback from "./Project-components/MicrosoftAuthCallback.jsx";
 import SignupPage from "./Project-components/SignupPage.jsx";
 import Test from "./Project-components/Test.jsx";
+import collectorSchemaTestData from "../collectorSchemaTestData.js";
+
 // for dev purposees
 const catalogData = {
   1: {
@@ -62,6 +64,7 @@ const router = createBrowserRouter([
           return {
             itemDataLoader: catalogData[params.itemID],
             itemID: params.itemID,
+            entityData: collectorSchemaTestData.collectorSchemaTestData,
           };
         },
         // children: [
@@ -102,7 +105,7 @@ const router = createBrowserRouter([
     // },
     element: <Test />,
     errorElement: <ErrorPage />,
-  }
+  },
 ]);
 const client_id =
   "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";

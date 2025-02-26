@@ -7,7 +7,7 @@
   position: relative;
   .visualize-btn:hover {
     transform: scale(1.05);
-    box-shadow: 5px 5px lightblue;
+    /* box-shadow: 5px 5px rgb(189, 219, 230); */
     transition: 0.2s ease-in-out all;
   }
   .visualize-btn {

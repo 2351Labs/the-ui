@@ -4,7 +4,7 @@ import "../../../css/catalogItemName.css";
 import GrowingInput from "../GrowingInput";
 import { useState, useRef, useEffect } from "react";
 export default function CatalogItemName(props) {
-  const { itemID, itemDataState } = props;
+  const {serviceName } = props;
   const nameRef = useRef(null);
   const [isEditingName, setIsEditingName] = useState(false);
 
@@ -19,19 +19,19 @@ export default function CatalogItemName(props) {
   }, [isEditingName]);
 
   function onChangeHandler(e) {
-    itemDataState.setter((prev) => {
-      return {
-        ...prev,
-        name: e.target.value,
-      };
-    });
+    // itemDataState.setter((prev) => {
+    //   return {
+    //     ...prev,
+    //     name: e.target.value,
+    //   };
+    // });
   }
 
   return (
     <div className="catalogItemName">
       <GrowingInput
         inputRef={nameRef}
-        inputValue={itemDataState.value.name}
+        inputValue={serviceName}
         onChangeHandler={onChangeHandler}
         isDisabled={!isEditingName}
       />

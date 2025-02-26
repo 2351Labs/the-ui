@@ -15,7 +15,6 @@ export default function SideBar(props) {
   const { sidebarState, sidebarOptions, setToggleSidebar } = props;
   const maxWidth = 600;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
-
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= maxWidth) {
@@ -24,7 +23,6 @@ export default function SideBar(props) {
           .setAttribute("sidebar-popup-mode", `${false}`);
         setIsPastWidth(false);
       } else {
-        console.log("setting TRUE");
         document
           .querySelector(".dashboard--container")
           .setAttribute("sidebar-popup-mode", `${true}`);

@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function Option(props) {
-  // use URL to determine sidebar selection
-  const url = window.location.pathname;
-  const currentSidebarOption = url.substring(url.lastIndexOf("/") + 1);
-
   const { svg, name, id, sidebarState, style, element } = props;
   return (
     <Link
@@ -14,14 +10,16 @@ export default function Option(props) {
         // location.href  = '/dashboard'\
       }}
       style={
-        currentSidebarOption == name.toLowerCase()
-          ? { backgroundColor: "var(--dashboard-grey-hover)", ...style }
+        sidebarState.value.name == name
+          ? {
+              backgroundColor: "var(--dashboard-grey-hover)",
+              ...style,
+              ...{ backgroundColor: "red !important" },
+            }
           : { ...style }
       }
       id={id}
-      className={`option ${
-        currentSidebarOption == name.toLowerCase() && "highlighted"
-      }`}
+      className={`option ${sidebarState.value.name == name && "highlighted"}`}
     >
       {svg}
       <div style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}>

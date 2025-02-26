@@ -1,36 +1,55 @@
 .Documentation {
-  a {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 12px;
-  }
+
   .document-title {
     /* text-decoration: underline; */
     /* font-weight: 500; */
   }
-  h4{
+  h4 {
     font-size: 18px;
-}
-p{
-    letter-spacing: -.4px;
-    margin-top: 0px;
-}
+    margin-bottom: 20px;
+  }
+
   .external-documents-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    a {
+    gap:25px;
+    .document-info-container {
+      display: flex;
+      align-items: center;
+      gap:12px;
+      .document-info-sub-container {
+        display: flex;
+        line-height: 22px;
+        flex-direction: column;
+      }
+    }
+    .title-link-container {
       cursor: pointer;
-
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 12px;
+      cursor: pointer;
+      .document-info-top {
+        display: flex;
+      }
+    }
+    .link-description {
+      /* margin-left: 36px; */
+      font-size: 16px;
+      color: rgb(185, 185, 185);
+    }
+    a {
+      display: flex;
+      flex-direction: column;
       &&:hover .linkSVG {
         opacity: 1;
       }
     }
 
-    svg {
-      width: 24px;
-      height: 24px;
+    svg,img {
+      width: 32px;
+      height: 32px;
     }
 
     .linkSVG {

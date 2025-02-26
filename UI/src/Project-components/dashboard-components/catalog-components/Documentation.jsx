@@ -1,7 +1,33 @@
 import "../../../css/documentation.css";
 import ReadMoreText from "./ReadMoreText.jsx";
-export default function Documentation({ itemData }) {
-  console.log("itemData", itemData);
+export default function Documentation({ entityData }) {
+  function getMainDomain(url) {
+    try {
+      const hostname = new URL(url).hostname;
+      // Split the hostname into parts
+      const parts = hostname.split(".");
+      const length = parts.length;
+
+      // Handle cases like "co.uk"
+      if (length >= 2) {
+        console.log("OVER");
+        // Special handling for domains with known second-level TLDs (e.g., "co.uk", "gov.uk")
+        const commonTLDs = ["co.uk", "org.uk", "gov.uk", "ac.uk"];
+        const lastTwo = parts.slice(-2).join(".");
+
+        if (commonTLDs.includes(lastTwo) && length > 2) {
+          return parts.slice(-3).join("."); // e.g., "bbc.co.uk" from "news.bbc.co.uk"
+        }
+
+        return lastTwo; // Default to "example.com" from "sub.example.com"
+      }
+      return hostname;
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
+    }
+  }
+
   const gitHubSVG = (
     <svg
       className="gitHubSVG"
@@ -109,12 +135,20 @@ export default function Documentation({ itemData }) {
 
   function createExternalDocumentElement(svg, title) {
     return (
-      <a>
-        {/* <div>&bull;</div> */}
+      <div className="document-info-container">
         {svg}
-        <div className="document-title">{title}</div>
-        {linkSVG}
-      </a>
+        <div className="document-info-sub-container">
+          <a>
+            <div className="title-link-container">
+              <div className="document-title">{title}</div>
+              {linkSVG}
+            </div>
+          </a>
+          <div className="link-description">
+            {"description info goes here..."}
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -123,20 +157,41 @@ export default function Documentation({ itemData }) {
       <h3 className="option-header">Documentation</h3>
       <div>
         <ReadMoreText
-          title={itemData.name}
+          title={entityData["Service Name"]}
           text={
             "The Order Service is responsible for managing customer orders, processing payments, and updating order statuses in real time. It provides a RESTful API that allows clients to create, retrieve, update, and cancel orders. The service ensures data consistency and reliability by integrating with inventory management and payment processing systems. Key features include order validation, transaction logging, and automated status updates (e.g., pending, confirmed, shipped, delivered). The service is built using a microservices architecture, supporting scalability and fault tolerance. Authentication and authorization are handled via JWT tokens to ensure secure access. Logging and monitoring are implemented using tools like Prometheus and ELK Stack, allowing seamless debugging and performance tracking."
           }
         />
       </div>
+      <br></br>
+
       <h4>External Documents</h4>
+
       <div className="external-documents-container">
-        {createExternalDocumentElement(
-          googleDriveSVG,
-          "Order Service API Documentation"
-        )}
-        {createExternalDocumentElement(gitHubSVG, "Order Service Guide")}
-        {createExternalDocumentElement(notionSVG, "Order Service Mockup")}
+        {entityData.Documentation.map((documentInfo, index) => {
+          return (
+            <div key={index} className="document-info-container">
+              {/* {gitHubSVG} */}
+              {console.log("DEBUG", getMainDomain(documentInfo.url))}
+              <img
+                src={`https://www.google.com/s2/favicons?sz=64&domain=${getMainDomain(
+                  documentInfo.url
+                )}`}
+              />
+              <div className="document-info-sub-container">
+                <a href={documentInfo.url}>
+                  <div className="title-link-container">
+                    <div className="document-title">{documentInfo.title}</div>
+                    {linkSVG}
+                  </div>
+                </a>
+                <div className="link-description">
+                  {documentInfo.description}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
