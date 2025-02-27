@@ -59,7 +59,7 @@ const collectorSchemaTestData = {
     {
       type: "Grafana",
       name: "Auth Service Dashboard",
-      url: "https://monitoring.example.com/grafana/auth-service",
+      url: "https://monitoring.amazon.com/grafana/auth-service",
       description: "Monitors authentication service performance",
     },
   ],

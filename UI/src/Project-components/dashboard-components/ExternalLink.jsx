@@ -1,5 +1,5 @@
 import "../../css/ExternalLink.css";
-export default function ExternalLink({ title, url, description }) {
+export default function ExternalLink({ title, url, description, type }) {
   const linkSVG = (
     <svg
       className="linkSVG"
@@ -77,14 +77,17 @@ export default function ExternalLink({ title, url, description }) {
           src={`https://www.google.com/s2/favicons?sz=64&domain=${mainDomain}`}
         />
       )}
+      <div className="doc-info-wrapper">
+        <div className="document-info-sub-container">
+          <a href={url}>
+            <div className="title-link-container">
+              <div className="document-title">{title}</div>
+              {linkSVG}
+            </div>
+          </a>
 
-      <div className="document-info-sub-container">
-        <a href={url}>
-          <div className="title-link-container">
-            <div className="document-title">{title}</div>
-            {linkSVG}
-          </div>
-        </a>
+          {type && <div className="type">{type}</div>}
+        </div>
         <div className="link-description">{description}</div>
       </div>
     </div>

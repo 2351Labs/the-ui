@@ -78,8 +78,10 @@
     }
     &.highlighted {
       color: var(--inversion-color-night);
-      background-color: var(--inversion-background-tint);
+      /* background-color: var(--inversion-background-tint); */
+      background-color: var(--inversion-color-night-dark);
       border-color: var(--inversion-color-night);
+      
       path,
       svg {
         fill: var(--inversion-color-night);

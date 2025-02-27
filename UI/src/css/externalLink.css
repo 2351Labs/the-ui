@@ -3,17 +3,30 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    overflow: hidden;
     width: 100%;
-
     .document-info-sub-container {
       display: flex;
       line-height: 22px;
-      flex-direction: column;
+      /* flex-direction: column; */
       width: 85%;
     }
   }
+  .doc-info-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    line-height: 20px;
+  }
+  .type{
+    background-color: var(--primary-light);
+    padding: 0px 10px;
+    border-radius: 5px;
+    color: var(--primary);
+  }
   .document-title {
-    max-width: 80%;
+    max-width: 70%;
+    font-weight: 500;
     white-space: nowrap; /* Prevents text from wrapping to the next line */
     overflow: hidden; /* Hides the overflowing text */
     text-overflow: ellipsis;
@@ -25,6 +38,7 @@
     justify-content: start;
     gap: 12px;
     cursor: pointer;
+    width: 100%;
     .document-info-top {
       display: flex;
     }
@@ -32,20 +46,24 @@
   .link-description {
     /* margin-left: 36px; */
     font-size: 16px;
-    color: rgb(185, 185, 185);
+    /* color: rgb(185, 185, 185); */
+    opacity: .6;
   }
   a {
     display: flex;
-    flex-direction: column;
     &&:hover .linkSVG {
       opacity: 1;
     }
   }
 
-  svg,
+  .gitHubSVG,
   img {
-    width: 32px;
-    height: 32px;
+    min-width: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .linkSVG {
@@ -56,6 +74,12 @@
   #night-mode && {
     .link-description {
       color: rgb(126, 126, 126);
+    }
+    .type{
+        background-color: var(--primary-dark);
+        color: var(--primary);
+        padding: 0px 10px;
+        border-radius: 5px;
     }
   }
 }

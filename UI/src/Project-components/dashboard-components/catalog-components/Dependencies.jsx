@@ -3,7 +3,7 @@ import "../../../css/dependencies.css";
 import { useEffect, useState } from "react";
 import { TreeTable } from "primereact/treetable";
 import { Column } from "primereact/column";
-import wandIcon from "../../../assets/dashboard/wand.svg";
+import WandSVG from "../../../assets/dashboard/wand.svg?react";
 import SideBar from "../SideBar";
 
 export default function Dependencies(props) {
@@ -435,7 +435,7 @@ export default function Dependencies(props) {
       const settings = { width: `${viewPortWidth - 30}px` };
       return settings;
     } else {
-      console.log("ELSE!")
+      console.log("ELSE!");
       const settings = isPastWidth
         ? { width: `${viewPortWidth - 520}px` }
         : { width: `${viewPortWidth - 140}px` };
@@ -451,7 +451,7 @@ export default function Dependencies(props) {
         }}
         className="visualize-btn"
       >
-        <img className="wand-icon" src={wandIcon} />
+        <WandSVG className="wand-icon" />
         Visualize
       </button>
 

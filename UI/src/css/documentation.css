@@ -1,7 +1,67 @@
 .Documentation {
+  .title-container {
+    display: flex;
+    gap: 20px;
+  }
+  .title {
+    max-width: 70%;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .details {
+    opacity: 0.6;
+  }
+  .copySVG {
+    opacity: 0.6;
+  }
+  .id-copy-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    svg {
+      width: 12px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover .copySVG {
+      opacity: 1;
+    }
+  }
+  .type {
+    background-color: var(--primary-light);
+    padding: 0px 10px;
+    border-radius: 5px;
+    color: var(--primary);
+  }
+  .description-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .description-container {
+    display: flex;
+    gap: 10px;
+    line-height: 20px;
+    /* align-items: center; */
+    .details {
+      /* opacity: 1; */
+    }
+  }
   .document-title {
     /* text-decoration: underline; */
     /* font-weight: 500; */
+  }
+
+  .infoSVG {
+    rotate: 180deg;
+    margin-top: 4px;
+    min-width: 20px;
+    min-height: 20px;
+    path {
+      fill: var(--primary);
+    }
   }
 
   .external-documents-container {
@@ -9,19 +69,42 @@
     flex-direction: column;
     gap: 25px;
   }
-  .service-aliases-wrapper {
+  .section-wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    .service-aliases-container {
+    .section-container {
       display: flex;
       flex-direction: column;
       gap: 0px;
       .alias {
+        font-weight: 500;
       }
       .description {
-        color:grey;
+        opacity: 0.6;
       }
+    }
+  }
+  .score-wrapper {
+    display: flex;
+    align-items: center;
+    gap:12px;
+    .score-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .score {
+      filter: invert(1);
+      border: 2px solid var(--primary);
+      border-radius: 30px;
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: black;
     }
   }
 
@@ -34,6 +117,28 @@
     .linkSVG,
     .gitHubSVG {
       filter: invert(1);
+    }
+    .copySVG {
+      path {
+        fill: white;
+      }
+    }
+    .infoSVG {
+      filter: invert(1);
+      path {
+        fill: var(--inversion-color-night) !important;
+        background-color: red !important;
+      }
+    }
+
+    .details {
+      /* color: rgb(102, 102, 102); */
+    }
+    .type {
+      padding: 0px 10px;
+      border-radius: 5px;
+      background-color: var(--primary-dark);
+      color: var(--primary);
     }
   }
 }

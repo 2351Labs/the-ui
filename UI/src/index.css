@@ -22,7 +22,7 @@
   --dashboard-grey-hover: rgb(223, 223, 223);
   --primary: #2dce6b;
   --primary-light: rgb(224, 255, 236);
-
+  --primary-dark: #21623a;
   /* --main: #fcfcfc; */
   --main: #ffffff;
   /* --main-tint-1: #ffffff; */
@@ -61,8 +61,10 @@
   /* --shadow-sidebar-night: 0px 4px 12px 0px rgba(0, 0, 0, 1); */
 
   /* invert target color to apply accurate styling */
-  --inversion-color-night: #d33094;
-  --inversion-color-night-shade: rgba(145, 61, 111, 0.9);
+  --inversion-color-night: #d33094;/*PRIMARY*/
+  --inversion-color-night-shade: rgba(145, 61, 111, 1);/*PRIMARY-LIGHT*/
+  --inversion-color-night-dark: #de9dc5;/*PRIMARY-DARK*/
+
   --inversion-background: #e6e6e6;
   --inversion-background-tint: #dfdfdf;
   --inversion-background-tint-2: #d1d1d1;
@@ -105,7 +107,7 @@ button {
   padding: none;
   margin: none;
 }
-a:hover{
+a:hover {
   text-decoration: underline !important;
 }
 
@@ -174,7 +176,7 @@ a:hover{
 }
 @keyframes shrinkWidthTable {
   from {
-    width:100%;
+    width: 100%;
   }
   to {
     width: 87px;

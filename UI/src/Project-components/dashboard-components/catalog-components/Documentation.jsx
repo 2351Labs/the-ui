@@ -1,6 +1,8 @@
 import "../../../css/documentation.css";
 import ReadMoreText from "./ReadMoreText.jsx";
 import ExternalLink from "../ExternalLink.jsx";
+import InfoSVG from "../../../assets/dashboard/catalog-assets/info.svg?react";
+import CopySVG from "../../../assets/copy.svg?react";
 export default function Documentation({ entityData }) {
   const gitHubSVG = (
     <svg
@@ -91,11 +93,7 @@ export default function Documentation({ entityData }) {
 
   return (
     <div className="Documentation">
-      <h4
-       className="option-header"
-      >
-      Documentation
-      </h4>
+      <h4 className="option-header">Documentation</h4>
       <div>
         <ReadMoreText
           title={entityData["Service Name"]}
@@ -108,7 +106,7 @@ export default function Documentation({ entityData }) {
       <br></br>
 
       <h4>External Documents</h4>
-      <div className="external-documents-container">
+      <div className="section-container">
         {entityData.Documentation.map((documentInfo, index) => {
           return (
             <ExternalLink
@@ -124,16 +122,103 @@ export default function Documentation({ entityData }) {
       <br></br>
 
       <h4>Service Aliases</h4>
-      <div className="service-aliases-wrapper">
+      <div className="section-wrapper">
         {entityData["Service Aliases"].map((alias, index) => {
           return (
-            <div className="service-aliases-container">
+            <div className="section-container">
               <div className="alias">{alias.alias}</div>
               <div className="description">{alias.description}</div>
             </div>
           );
         })}
       </div>
+
+      <br></br>
+
+      <h4>Related Repos</h4>
+      <div className="section-wrapper">
+        {entityData["RelatedRepos"].map((repo, index) => {
+          return (
+            <ExternalLink
+              key={index}
+              title={repo.name}
+              url={repo.url}
+              description={repo.description}
+            />
+          );
+        })}
+      </div>
+
+      <br></br>
+
+      <h4>Monitoring Channels</h4>
+      <div className="section-wrapper">
+        {entityData["MonitoringChannels"].map((channel, index) => {
+          return (
+            <ExternalLink
+              key={index}
+              title={channel.name}
+              url={channel.url}
+              description={channel.description}
+              type={channel.type}
+            />
+          );
+        })}
+      </div>
+
+      <br></br>
+      <h4>Infrastructure Components</h4>
+      <div className="section-wrapper">
+        {entityData["Infrastructure Components"].map((component, index) => {
+          return (
+            <div key={index}>
+              <div className="title-container">
+                <div className="title">{component.name}</div>
+                <div className="type">{component.type}</div>
+              </div>
+              <div className="description-container">
+                {/* <InfoSVG className="infoSVG" /> */}
+                <div className="description-wrapper">
+                  <div className="details">{component.description}</div>
+                  <div
+                    onClick={async () => {
+                      try {
+                        await navigator.clipboard.writeText(component.id);
+                      } catch (err) {
+                        console.error("Failed to copy: ", err);
+                      }
+                    }}
+                    className="id-copy-container"
+                  >
+                    <div className="details">ID: {component.id}</div>
+                    <CopySVG className="copySVG" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <br></br>
+
+      <h4>Service Maturity Scores(s)</h4>
+      <div className="section-wrapper">
+        {entityData["Service Maturity Score(s)"].map((score, index) => {
+          return (
+            <div key={index} className="service-maturity-score">
+              <div className="score-wrapper">
+                <div className="score">{score.score}</div>
+                <div className="score-container">
+                  <div className="title">{score.metric}</div>
+                  <div className="details">{score.description}</div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <br></br>
     </div>
   );
 }

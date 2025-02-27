@@ -221,9 +221,10 @@
   }
   .highlighted {
     filter: invert(1);
-    background-color: var(--night-background) !important;
-    /* color: var(--primary-light) */
-    /* color: white; */
+    /* background-color: var(--night-background) !important; */
+    background-color: var(--primary-dark) !important;
+
+
     color: var(--primary);
     border: 2px solid transparent;
     /* background-color: var(--inversion-background-tint-2) !important; */

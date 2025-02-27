@@ -162,7 +162,15 @@
 #night-mode .dependencies {
   .visualize-btn {
     /* background-color: red; */
-    background-color: var(--inversion-color-night);
+    background-color: var(--inversion-color-night-dark);
+    color: var(--inversion-color-night);
+    /* background-color: var(--inversion-color-night); */
+ 
+    svg,
+    path {
+      fill: var(--inversion-color-night) !important;
+      stroke: var(--inversion-color-night) !important;
+    }
   }
   .p-highlight {
     background-color: var(--inversion-background-tint);

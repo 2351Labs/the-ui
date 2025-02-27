@@ -73,7 +73,7 @@ export default function CatalogItemView() {
     ownership: {
       label: "Get Help",
       svg: <QuestionSVG className="questionSVG" />,
-      element: <EntityHelp entityData={entityData}/>,
+      element: <EntityHelp entityData={entityData} />,
     },
   };
   //   default selection is first bar option
@@ -96,6 +96,12 @@ export default function CatalogItemView() {
       timeZoneName: "short",
     };
     return date.toLocaleDateString("en-US", options);
+  }
+
+  function calculateAverage(metrics) {
+    console.log("metrics", metrics);
+    let totalScore = metrics.reduce((sum, metric) => sum + metric.score, 0);
+    return (totalScore / metrics.length).toFixed(0);
   }
 
   return (
@@ -121,7 +127,7 @@ export default function CatalogItemView() {
 
         <div className="description-container">
           <InfoSVG className={"infoSVG"} />
-          <div>{entityData.Description}</div>
+          <div className="details">{entityData.Description}</div>
         </div>
 
         <CatalogNavigationBar
@@ -141,6 +147,25 @@ export default function CatalogItemView() {
           style={!isPastWidth ? { width: "100%" } : {}}
           className="right-split"
         >
+          <div className="row-container-wrapper">
+            <div className="row-container">
+              <div className="key">Product</div>
+              <div className="value-container">
+                {/* <img className="link-icon" src={linkIcon} /> */}
+                <div className="value">{entityData.Product}</div>
+              </div>
+            </div>
+            <div className="row-container">
+              <div className="key">Average Score</div>
+              <div className="value-container">
+                {/* <img className="link-icon" src={linkIcon} /> */}
+                <div className="score">
+                  {calculateAverage(entityData["Service Maturity Score(s)"])}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="row-container">
             <div className="key">Repository</div>
             <div className="value-container link-container">
@@ -153,22 +178,7 @@ export default function CatalogItemView() {
               {/* <img className="link-icon" src={linkIcon} /> */}
             </div>
           </div>
-          <div className="row-container-wrapper">
-            <div className="row-container">
-              <div className="key">Version</div>
-              <div className="value-container">
-                {/* <img className="link-icon" src={linkIcon} /> */}
-                <div className="value">{entityData.Version}</div>
-              </div>
-            </div>
-            <div className="row-container">
-              <div className="key">Score</div>
-              <div className="value-container">
-                {/* <img className="link-icon" src={linkIcon} /> */}
-                <div className="score">7.8</div>
-              </div>
-            </div>
-          </div>
+
           <div className="row-container-wrapper">
             <div className="row-container">
               <div className="key">Last updated</div>
@@ -178,6 +188,17 @@ export default function CatalogItemView() {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="row-container-wrapper">
+            <div className="row-container">
+              <div className="key">Version</div>
+              <div className="value-container">
+                {/* <img className="link-icon" src={linkIcon} /> */}
+                <div className="value">{entityData.Version}</div>
+              </div>
+            </div>
+
             <div className="row-container">
               <div className="key">Liscense</div>
               <div className="value-container">
