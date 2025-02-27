@@ -63,6 +63,7 @@
       }
     }
     .bar-option {
+      text-wrap: nowrap;
       /* color: var(--primary); */
     }
   }

@@ -21,7 +21,7 @@ export default function EntityHelp({ entityData }) {
                   </a>
                 </div>
                 <div className="key-value-container">
-                  <div className="key">Type</div>
+                  <div className="key">Role</div>
                   <div className="value">{contact.role}</div>
                 </div>
               </div>

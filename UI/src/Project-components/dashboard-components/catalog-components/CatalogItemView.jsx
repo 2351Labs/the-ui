@@ -23,7 +23,7 @@ import ExternalLink from "../ExternalLink.jsx";
 import collectorSchemaTestData from "../../../../collectorSchemaTestData.js";
 import EntityHelp from "./EntityHelp.jsx";
 export default function CatalogItemView() {
-  const maxWidth = 880;
+  const maxWidth = 1100;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
   useEffect(() => {
     function handleResize() {

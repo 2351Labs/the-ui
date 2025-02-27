@@ -54,11 +54,11 @@ export default function Dashboard() {
   const [sidebarSelection, setsidebarSelection] = useState(
     () => {
       const pathSegments = window.location.pathname.split("/").filter(Boolean);
-      const section = pathSegments[1].toLocaleLowerCase() || null; // Get second segment or return null if it doesn't exist
+      const section = pathSegments[1]?.toLocaleLowerCase() || null; // Get second segment or return null if it doesn't exist
 
       console.log("section", section);
       if (section) {
-        console.log("RETURN 1", sidebarOptions[section])
+        console.log("RETURN 1", sidebarOptions[section]);
         return sidebarOptions[section];
       } else {
         return sidebarOptions.catalog;
@@ -69,7 +69,7 @@ export default function Dashboard() {
     //   element:  <Catalog />,
     // }
   );
-  console.log("INIT", sidebarSelection)
+  console.log("INIT", sidebarSelection);
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
@@ -101,6 +101,28 @@ export default function Dashboard() {
       .querySelector(".dashboard--container")
       .setAttribute("sidebar-state", `${!toggleSidebar}`);
   }
+
+  const maxWidth = 1100;
+  const [isPastWidth, setIsPastWidth] = useState(window.innerWidth <= maxWidth);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= maxWidth) {
+        setIsPastWidth(false);
+        // document
+        //   .querySelector(".dashboard--container")
+        //   .setAttribute("sidebar-popup-mode", `${false}`);
+      } else {
+        setIsPastWidth(true);
+        // document
+        //   .querySelector(".dashboard--container")
+        //   .setAttribute("sidebar-popup-mode", `${true}`);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
@@ -136,7 +158,12 @@ export default function Dashboard() {
         </div>
         {/* CONTENT: */}
         <div className="dashboard--content">
-          <div className="content-centered">
+          <div
+            style={
+              !isPastWidth ? { width: "95%"} : {}
+            }
+            className="content-centered"
+          >
             <EditDocumentContext.Provider
               value={{ editingDocument, setEditingDocument }}
             >

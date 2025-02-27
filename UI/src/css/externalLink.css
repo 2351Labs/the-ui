@@ -10,6 +10,7 @@
       line-height: 22px;
       /* flex-direction: column; */
       width: 85%;
+      gap:20px;
     }
   }
   .doc-info-wrapper {
@@ -25,7 +26,7 @@
     color: var(--primary);
   }
   .document-title {
-    max-width: 70%;
+    max-width: 250px;
     font-weight: 500;
     white-space: nowrap; /* Prevents text from wrapping to the next line */
     overflow: hidden; /* Hides the overflowing text */

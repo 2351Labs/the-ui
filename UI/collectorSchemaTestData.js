@@ -57,7 +57,7 @@ const collectorSchemaTestData = {
   ],
   MonitoringChannels: [
     {
-      type: "Grafana",
+      type: "Amazon",
       name: "Auth Service Dashboard",
       url: "https://monitoring.amazon.com/grafana/auth-service",
       description: "Monitors authentication service performance",
