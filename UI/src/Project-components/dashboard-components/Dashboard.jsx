@@ -160,7 +160,9 @@ export default function Dashboard() {
         <div className="dashboard--content">
           <div
             style={
-              !isPastWidth ? { width: "95%"} : {}
+              !isPastWidth
+                ? { width: "97%" }
+                : { width: `85%` }
             }
             className="content-centered"
           >

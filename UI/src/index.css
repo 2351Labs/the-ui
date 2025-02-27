@@ -96,9 +96,7 @@ button {
   padding: none;
   margin: none;
 }
-a:hover {
-  text-decoration: underline !important;
-}
+
 
 @keyframes spin {
   0% {
