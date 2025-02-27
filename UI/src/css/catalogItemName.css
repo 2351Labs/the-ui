@@ -9,12 +9,17 @@
     font-weight: 600;
     min-width: 20px; /* Maximum width */
     padding: 4px;
-    padding-left: 0px;
     border-radius: 5px;
-    margin-left: 1px;
+    margin-left: 2px;
   }
-  input:focus {
+  input.disabled:focus {
+    outline: 2px solid transparent;
+  }
+  input.enabled:focus {
     outline: 2px solid var(--primary);
+  }
+  input.disabled:hover {
+    cursor: default;
   }
   img {
     width: 20px;
@@ -24,5 +29,8 @@
 #night-mode .catalogItemName {
   input:focus {
     outline: 2px solid var(--inversion-color-night);
+  }
+  input.disabled:focus {
+    outline: 2px solid transparent;
   }
 }

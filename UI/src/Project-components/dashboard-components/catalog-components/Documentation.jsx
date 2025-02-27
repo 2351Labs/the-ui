@@ -1,33 +1,7 @@
 import "../../../css/documentation.css";
 import ReadMoreText from "./ReadMoreText.jsx";
+import ExternalLink from "../ExternalLink.jsx";
 export default function Documentation({ entityData }) {
-  function getMainDomain(url) {
-    try {
-      const hostname = new URL(url).hostname;
-      // Split the hostname into parts
-      const parts = hostname.split(".");
-      const length = parts.length;
-
-      // Handle cases like "co.uk"
-      if (length >= 2) {
-        console.log("OVER");
-        // Special handling for domains with known second-level TLDs (e.g., "co.uk", "gov.uk")
-        const commonTLDs = ["co.uk", "org.uk", "gov.uk", "ac.uk"];
-        const lastTwo = parts.slice(-2).join(".");
-
-        if (commonTLDs.includes(lastTwo) && length > 2) {
-          return parts.slice(-3).join("."); // e.g., "bbc.co.uk" from "news.bbc.co.uk"
-        }
-
-        return lastTwo; // Default to "example.com" from "sub.example.com"
-      }
-      return hostname;
-    } catch (error) {
-      console.error("Invalid URL:", error);
-      return null;
-    }
-  }
-
   const gitHubSVG = (
     <svg
       className="gitHubSVG"
@@ -88,24 +62,6 @@ export default function Documentation({ entityData }) {
     </svg>
   );
 
-  const linkSVG = (
-    <svg
-      className="linkSVG"
-      width="22"
-      height="16"
-      viewBox="0 0 22 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M8.16488 13.6504C7.92513 13.8742 7.73958 14.024 7.54996 14.1335C6.62175 14.6694 5.47816 14.6694 4.54996 14.1335C4.20791 13.936 3.87912 13.6072 3.22153 12.9497C2.56394 12.2921 2.23514 11.9633 2.03767 11.6212C1.50177 10.693 1.50177 9.54938 2.03767 8.62118C2.23514 8.27918 2.56394 7.95038 3.22153 7.29278L6.04996 4.46436C6.70755 3.80677 7.03634 3.47797 7.37838 3.2805C8.30659 2.7446 9.4502 2.7446 10.3784 3.28049C10.7204 3.47797 11.0492 3.80677 11.7068 4.46436C12.3644 5.12195 12.6932 5.45074 12.8907 5.79278C13.4266 6.72098 13.4266 7.86458 12.8907 8.79278C12.7812 8.98238 12.6314 9.16798 12.4075 9.40768M9.5919 6.59208C9.368 6.83178 9.2182 7.01738 9.1087 7.20698C8.57284 8.13518 8.57284 9.27878 9.1087 10.207C9.3062 10.5491 9.635 10.8779 10.2926 11.5354C10.9502 12.193 11.279 12.5218 11.621 12.7193C12.5492 13.2552 13.6928 13.2552 14.621 12.7193C14.9631 12.5218 15.2919 12.193 15.9495 11.5354L18.7779 8.70698C19.4355 8.04938 19.7643 7.72058 19.9617 7.37858C20.4976 6.45038 20.4976 5.30677 19.9617 4.37857C19.7643 4.03653 19.4355 3.70773 18.7779 3.05014C18.1203 2.39255 17.7915 2.06376 17.4495 1.86628C16.5212 1.33038 15.3777 1.33038 14.4495 1.86628C14.2598 1.97576 14.0743 2.12559 13.8345 2.34943"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-    </svg>
-  );
-
   const notionSVG = (
     <svg
       width="30"
@@ -133,28 +89,13 @@ export default function Documentation({ entityData }) {
     </svg>
   );
 
-  function createExternalDocumentElement(svg, title) {
-    return (
-      <div className="document-info-container">
-        {svg}
-        <div className="document-info-sub-container">
-          <a>
-            <div className="title-link-container">
-              <div className="document-title">{title}</div>
-              {linkSVG}
-            </div>
-          </a>
-          <div className="link-description">
-            {"description info goes here..."}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="Documentation">
-      <h3 className="option-header">Documentation</h3>
+      <h4
+       className="option-header"
+      >
+      Documentation
+      </h4>
       <div>
         <ReadMoreText
           title={entityData["Service Name"]}
@@ -163,32 +104,32 @@ export default function Documentation({ entityData }) {
           }
         />
       </div>
+
       <br></br>
 
       <h4>External Documents</h4>
-
       <div className="external-documents-container">
         {entityData.Documentation.map((documentInfo, index) => {
           return (
-            <div key={index} className="document-info-container">
-              {/* {gitHubSVG} */}
-              {console.log("DEBUG", getMainDomain(documentInfo.url))}
-              <img
-                src={`https://www.google.com/s2/favicons?sz=64&domain=${getMainDomain(
-                  documentInfo.url
-                )}`}
-              />
-              <div className="document-info-sub-container">
-                <a href={documentInfo.url}>
-                  <div className="title-link-container">
-                    <div className="document-title">{documentInfo.title}</div>
-                    {linkSVG}
-                  </div>
-                </a>
-                <div className="link-description">
-                  {documentInfo.description}
-                </div>
-              </div>
+            <ExternalLink
+              key={index}
+              title={documentInfo.title}
+              url={documentInfo.url}
+              description={documentInfo.description}
+            />
+          );
+        })}
+      </div>
+
+      <br></br>
+
+      <h4>Service Aliases</h4>
+      <div className="service-aliases-wrapper">
+        {entityData["Service Aliases"].map((alias, index) => {
+          return (
+            <div className="service-aliases-container">
+              <div className="alias">{alias.alias}</div>
+              <div className="description">{alias.description}</div>
             </div>
           );
         })}

@@ -1,0 +1,61 @@
+.ExternalLink {
+  &&.document-info-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    .document-info-sub-container {
+      display: flex;
+      line-height: 22px;
+      flex-direction: column;
+      width: 85%;
+    }
+  }
+  .document-title {
+    max-width: 80%;
+    white-space: nowrap; /* Prevents text from wrapping to the next line */
+    overflow: hidden; /* Hides the overflowing text */
+    text-overflow: ellipsis;
+  }
+  .title-link-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+    cursor: pointer;
+    .document-info-top {
+      display: flex;
+    }
+  }
+  .link-description {
+    /* margin-left: 36px; */
+    font-size: 16px;
+    color: rgb(185, 185, 185);
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+    &&:hover .linkSVG {
+      opacity: 1;
+    }
+  }
+
+  svg,
+  img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .linkSVG {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+  }
+  #night-mode && {
+    .link-description {
+      color: rgb(126, 126, 126);
+    }
+  }
+}

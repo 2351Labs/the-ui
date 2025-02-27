@@ -444,7 +444,7 @@ export default function Dependencies(props) {
   };
   return (
     <div className="dependencies">
-      <h3 className="option-header">Dependencies (12)</h3>
+      <h4 className="option-header">Dependencies (12)</h4>
       <button
         onClick={() => {
           setIsVisualizedEnabled(!isVisualizeEnabled);

@@ -8,10 +8,12 @@ const GrowingInput = (props) => {
   return (
     <div style={{ display: "inline-block" }}>
       <input
-        disabled={isDisabled}
+        // disabled={isDisabled}
+        readOnly = {isDisabled}
         ref={inputRef}
         type="text"
         value={inputValue}
+        className={isDisabled ? "disabled" : "enabled"}
         onChange={(e) => onChangeHandler(e)}
         style={{
           backgroundColor: "transparent",

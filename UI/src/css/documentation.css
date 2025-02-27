@@ -1,61 +1,27 @@
 .Documentation {
-
   .document-title {
     /* text-decoration: underline; */
     /* font-weight: 500; */
-  }
-  h4 {
-    font-size: 18px;
-    margin-bottom: 20px;
   }
 
   .external-documents-container {
     display: flex;
     flex-direction: column;
-    gap:25px;
-    .document-info-container {
-      display: flex;
-      align-items: center;
-      gap:12px;
-      .document-info-sub-container {
-        display: flex;
-        line-height: 22px;
-        flex-direction: column;
-      }
-    }
-    .title-link-container {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      gap: 12px;
-      cursor: pointer;
-      .document-info-top {
-        display: flex;
-      }
-    }
-    .link-description {
-      /* margin-left: 36px; */
-      font-size: 16px;
-      color: rgb(185, 185, 185);
-    }
-    a {
+    gap: 25px;
+  }
+  .service-aliases-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .service-aliases-container {
       display: flex;
       flex-direction: column;
-      &&:hover .linkSVG {
-        opacity: 1;
+      gap: 0px;
+      .alias {
       }
-    }
-
-    svg,img {
-      width: 32px;
-      height: 32px;
-    }
-
-    .linkSVG {
-      width: 20px;
-      height: 20px;
-      opacity: 0.5;
+      .description {
+        color:grey;
+      }
     }
   }
 

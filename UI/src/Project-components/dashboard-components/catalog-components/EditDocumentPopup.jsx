@@ -3,7 +3,6 @@ import { EditDocumentContext } from "../../context/dashboardContext";
 import "../../../css/EditDocumentPopup.css";
 export default function EditDocumentPopup(props) {
   const { editingDocument, setEditingDocument } = props;
-  console.log("DEBYUG", editingDocument);
   const [textChanges, setTextChanges] = useState(editingDocument.text);
 
   function handleSave() {

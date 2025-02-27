@@ -67,7 +67,6 @@ export default function Catalog() {
           {params.get("q") && (
             <div className="search-query">{`"${params.get("q")}"`}</div>
           )}
-          {console.log(params)}
         </div>
         <FilterBar
           filterConfigurationState={{

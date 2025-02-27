@@ -4,7 +4,7 @@ import "../../../css/catalogItemName.css";
 import GrowingInput from "../GrowingInput";
 import { useState, useRef, useEffect } from "react";
 export default function CatalogItemName(props) {
-  const {serviceName } = props;
+  const { serviceName } = props;
   const nameRef = useRef(null);
   const [isEditingName, setIsEditingName] = useState(false);
 
@@ -35,19 +35,23 @@ export default function CatalogItemName(props) {
         onChangeHandler={onChangeHandler}
         isDisabled={!isEditingName}
       />
-      {!isEditingName && (
-        <img
-          style={{
-            opacity: ".5",
-            cursor: "pointer",
-            // filter:"brightness(0) saturate(100%) invert(60%) sepia(86%) saturate(382%) hue-rotate(90deg) brightness(93%) contrast(94%)",
-          }}
-          onClick={() => {
-            setIsEditingName(true);
-          }}
-          src={editIcon}
-        />
-      )}
+      <img
+        style={
+          !isEditingName
+            ? {
+                opacity: ".5",
+                cursor: "pointer",
+                // filter:"brightness(0) saturate(100%) invert(60%) sepia(86%) saturate(382%) hue-rotate(90deg) brightness(93%) contrast(94%)",
+              }
+            : {
+                visibility: "hidden",
+              }
+        }
+        onClick={() => {
+          setIsEditingName(true);
+        }}
+        src={editIcon}
+      />
     </div>
   );
 }

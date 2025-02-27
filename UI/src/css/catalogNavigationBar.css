@@ -14,7 +14,7 @@
     background-color: var(--main-tint-2);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    opacity:.5;
+    opacity: 0.5;
   }
 
   img.highlighted {
@@ -47,9 +47,16 @@
       min-width: 20px;
       min-height: 20px;
       max-width: 20px;
-      min-width:20px;
+      min-width: 20px;
     }
     &.highlighted {
+      .questionSVG {
+        path,
+        svg {
+          fill: transparent;
+          stroke: var(--primary);
+        }
+      }
       path,
       svg {
         fill: var(--primary);
@@ -62,6 +69,9 @@
 }
 
 #night-mode .catalogNavigationBar {
+  .bar-option-btn:hover {
+    background-color: var(--inversion-background-tint-2);
+  }
   .bar-option-btn {
     path,
     svg {
@@ -73,6 +83,15 @@
       path,
       svg {
         fill: var(--inversion-color-night);
+      }
+
+      && .questionSVG {
+        path,
+        svg {
+          /* fill: red !important; */
+          fill: transparent;
+          stroke: var(--inversion-color-night);
+        }
       }
     }
   }
