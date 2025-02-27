@@ -34,29 +34,47 @@ export default function Dashboard() {
   // sidebar selection controls content element displayed:
   const [isValidToken, setIsValidToken] = useState(true);
   // assume token valid while waiting for response for user data from server
-  const [sidebarSelection, setsidebarSelection] = useState({
-    name: "Home",
-    element: <div>Home</div>,
-  });
+  const sidebarOptions = {
+    catalog: {
+      label: "Catalog",
+      name: "catalog",
+      element: <Catalog />,
+      svg: <CatalogSVG />,
+    },
+    reports: {
+      label: "Reports",
+      name: "reports",
+      element: <div>EMPTY</div>,
+      svg: <ReportsSVG />,
+    },
+    people: { label: "People", element: <div>EMPTY</div>, svg: <PeopleSVG /> },
+    // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
+  };
+
+  const [sidebarSelection, setsidebarSelection] = useState(
+    () => {
+      const pathSegments = window.location.pathname.split("/").filter(Boolean);
+      const section = pathSegments[1].toLocaleLowerCase() || null; // Get second segment or return null if it doesn't exist
+
+      console.log("section", section);
+      if (section) {
+        console.log("RETURN 1", sidebarOptions[section])
+        return sidebarOptions[section];
+      } else {
+        return sidebarOptions.catalog;
+      }
+    }
+    //   {
+    //   name: "Catalog",
+    //   element:  <Catalog />,
+    // }
+  );
+  console.log("INIT", sidebarSelection)
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [userData, setUserData] = useState();
-  const sidebarOptions = {
-    Catalog: {
-      label: "Catalog",
-      element: <Catalog />,
-      svg: <CatalogSVG />,
-    },
-    Reports: {
-      label: "Reports",
-      element: <div>EMPTY</div>,
-      svg: <ReportsSVG />,
-    },
-    People: { label: "People", element: <div>EMPTY</div>, svg: <PeopleSVG /> },
-    // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
-  };
 
   axios.defaults.headers.common[
     "Authorization"

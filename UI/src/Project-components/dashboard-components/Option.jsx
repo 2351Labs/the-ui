@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-
+import capitalizeFirstLetter from "../../helpers/capitilizeFirstLetter";
 export default function Option(props) {
   const { svg, name, id, sidebarState, style, element } = props;
+  console.log("N sidebarState.valueAME", sidebarState);
   return (
     <Link
-      to={name.toLowerCase()}
+      to={name}
       onClick={() => {
         sidebarState.setter({ name: name, element: element });
         // location.href  = '/dashboard'\
@@ -23,7 +24,7 @@ export default function Option(props) {
     >
       {svg}
       <div style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}>
-        {name}
+        {capitalizeFirstLetter(name)}
       </div>
     </Link>
   );

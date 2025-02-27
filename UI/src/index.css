@@ -50,15 +50,6 @@
   --box-shadow: 0px 4px 8px rgba(48, 48, 48, 0.12);
   --border: 1px solid rgb(216, 215, 215);
 
-  /* dark light mid */
-  /* light dark mid */
-  /* main tint 2 tint 1 */
-
-  /* --background-night: #070808;
-  --sidebar-background-night: #0e0e0e;
-  --sidebar-highlight-night: #202020;
-  --background-tint-night: #1a1e20; */
-  /* --shadow-sidebar-night: 0px 4px 12px 0px rgba(0, 0, 0, 1); */
 
   /* invert target color to apply accurate styling */
   --inversion-color-night: #d33094;/*PRIMARY*/
@@ -78,12 +69,10 @@
   --night-background-tint: #202020;
   --night-background-tint-2: #2e2e2e;
 
+  --night-text-dark: rgb(194, 194, 194);
   --night-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 
-  /* --night-background: #161718;
-  --night-background-tint: #40474b;
-  --night-text-color: white;
-  --night-background-hover: #3b3c3d; */
+
 }
 
 html,

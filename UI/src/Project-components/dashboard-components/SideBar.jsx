@@ -102,26 +102,27 @@ export default function SideBar(props) {
             <div className="options-list">
               {/* <Option img={bookIcon} name={"Analytics"} /> */}
               {Object.keys(sidebarOptions).map((objectKey, index) => {
+              {console.log("sidebarOptions[objectKey].label", sidebarOptions[objectKey].label.toLowerCase())}
                 return (
                   <Option
                     sidebarOptions={sidebarOptions}
                     key={index}
                     sidebarState={sidebarState}
                     svg={sidebarOptions[objectKey].svg}
-                    name={sidebarOptions[objectKey].label}
+                    name={sidebarOptions[objectKey].label.toLowerCase()}
                     element={sidebarOptions[objectKey].element}
                   />
                 );
               })}
             </div>
             {/* seperate: */}
-            <Option
+            {/* <Option
               sidebarOptions={sidebarOptions}
               sidebarState={sidebarState}
               svg={<UserSVG />}
               name={"Jared Stoddard"}
               element={<div>IN DEV</div>}
-            />
+            /> */}
           </div>
           {/* <Option img={homeIcon} name={"Dashboard"}/> */}
         </div>

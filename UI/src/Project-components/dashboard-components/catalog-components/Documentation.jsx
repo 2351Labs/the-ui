@@ -126,8 +126,8 @@ export default function Documentation({ entityData }) {
         {entityData["Service Aliases"].map((alias, index) => {
           return (
             <div className="section-container">
-              <div className="alias">{alias.alias}</div>
-              <div className="description">{alias.description}</div>
+              <div className="title">{alias.alias}</div>
+              <div className="details">{alias.description}</div>
             </div>
           );
         })}

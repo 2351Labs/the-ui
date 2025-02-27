@@ -12,6 +12,7 @@
   }
   .details {
     opacity: 0.6;
+    /* font-style: italic; */
   }
   .copySVG {
     opacity: 0.6;
@@ -20,6 +21,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    div {
+      font-style: italic !important;
+    }
     svg {
       width: 12px;
     }
@@ -47,6 +51,7 @@
     /* align-items: center; */
     .details {
       /* opacity: 1; */
+      font-style: normal;
     }
   }
   .document-title {
@@ -77,18 +82,12 @@
       display: flex;
       flex-direction: column;
       gap: 0px;
-      .alias {
-        font-weight: 500;
-      }
-      .description {
-        opacity: 0.6;
-      }
     }
   }
   .score-wrapper {
     display: flex;
     align-items: center;
-    gap:12px;
+    gap: 12px;
     .score-container {
       display: flex;
       flex-direction: column;
@@ -132,7 +131,9 @@
     }
 
     .details {
-      /* color: rgb(102, 102, 102); */
+      /* color: rgb(102, 102, 102);
+       */
+      color: var(--night-text-dark);
     }
     .type {
       padding: 0px 10px;
