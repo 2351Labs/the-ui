@@ -154,11 +154,11 @@
     /* color: white; */
     color: var(--primary);
     opacity: 1;
-    /* background-color: var(--primary) !important; */
+    background-color: var(--primary-light) !important;
     /* background-color: var(--main) !important; */
     /* background-color: var(--main) !important; */
-    background-color: transparent !important;
-    border: 1px solid var(--primary);
+    /* background-color: transparent !important; */
+    border: 1px solid transparent;
   }
   .highlighted svg {
     fill: white;

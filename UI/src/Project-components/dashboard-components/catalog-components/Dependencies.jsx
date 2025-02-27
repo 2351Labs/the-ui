@@ -8,6 +8,7 @@ import SideBar from "../SideBar";
 
 export default function Dependencies(props) {
   const { isPastWidth } = props;
+  // const isPastWidth = 880;
   const [nodeSelection, setNodeSelection] = useState(null);
   const [isVisualizeEnabled, setIsVisualizedEnabled] = useState(false);
   const nodeData = [
@@ -435,10 +436,9 @@ export default function Dependencies(props) {
       const settings = { width: `${viewPortWidth - 30}px` };
       return settings;
     } else {
-      console.log("ELSE!");
       const settings = isPastWidth
-        ? { width: `${viewPortWidth - 520}px` }
-        : { width: `${viewPortWidth - 140}px` };
+        ? { width: `${viewPortWidth - 600}px` }
+        : { width: `${viewPortWidth - 150}px` };
       return settings;
     }
   };

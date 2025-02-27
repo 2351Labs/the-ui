@@ -11,7 +11,7 @@ export default function EntityHelp({ entityData }) {
             <div className="channel-container">
               <div className="description">
                 <InfoSVG className="infoSVG" />
-                <div>{contact.description}</div>
+                <div className="description">{contact.description}</div>
               </div>
               <div className="wrapper">
                 <div className="key-value-container">
