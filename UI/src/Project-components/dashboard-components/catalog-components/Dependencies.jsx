@@ -437,7 +437,7 @@ export default function Dependencies(props) {
       return settings;
     } else {
       const settings = isPastWidth
-        ? { width: `${viewPortWidth - 600}px` }
+        ? { width: `${viewPortWidth - 700}px` }
         : { width: `${viewPortWidth - 150}px` };
       return settings;
     }

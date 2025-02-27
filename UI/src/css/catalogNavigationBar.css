@@ -32,7 +32,7 @@
   }
   .bar-option-btn {
     height: 50px;
-    translate: 0px 1px;
+    translate: 0px 2px;
     font-size: 16px;
     font-weight: 550;
     display: flex;
@@ -44,7 +44,7 @@
     cursor: pointer;
     opacity: 0.5;
     svg {
-      min-width: 20px;
+      max-height: 20px;
       min-height: 20px;
       max-width: 20px;
       min-width: 20px;
@@ -81,8 +81,8 @@
       color: var(--inversion-color-night);
       /* background-color: var(--inversion-background-tint); */
       background-color: var(--inversion-color-night-dark);
-      border-color: var(--inversion-color-night);
-      
+      border-bottom: 2px solid var(--inversion-color-night);
+
       path,
       svg {
         fill: var(--inversion-color-night);
