@@ -20,9 +20,11 @@ import UserButton from "./UserButton";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // context for editing document:
-import { EditDocumentContext } from "../context/dashboardContext";
+import { CatalogItemViewContext } from "../context/catalogItemViewContext";
 import EditDocumentPopup from "./catalog-components/EditDocumentPopup";
 export default function Dashboard() {
+  const [pageData, setPageData] = useState(null); //stores data containing items and more. Loaded in customCatalogTable
+
   // for edit document context:
   const [editingDocument, setEditingDocument] = useState({
     isEnabled: false,
@@ -56,12 +58,10 @@ export default function Dashboard() {
       const pathSegments = window.location.pathname.split("/").filter(Boolean);
       const section = pathSegments[1]?.toLocaleLowerCase() || null; // Get second segment or return null if it doesn't exist
 
-      console.log("section", section);
       if (section) {
-        console.log("RETURN 1", sidebarOptions[section]);
         return sidebarOptions[section];
       } else {
-        return sidebarOptions.catalog;
+        return null;
       }
     }
     //   {
@@ -69,7 +69,6 @@ export default function Dashboard() {
     //   element:  <Catalog />,
     // }
   );
-  console.log("INIT", sidebarSelection);
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
@@ -141,38 +140,39 @@ export default function Dashboard() {
         }}
       />
       <div className="dashboard--right">
-        <div className="top-container">
-          <button onClick={handleToggleSidebar} className="sidebar-toggle-btn">
-            <img className="sidebar-icon" src={sidebarIcon} />
-          </button>
+        <div
+          style={!isPastWidth ? { width: "97%" } : { width: `85%` }}
+          className="right-inside-wrapper"
+        >
+          <div className="top-container">
+            <button
+              onClick={handleToggleSidebar}
+              className="sidebar-toggle-btn"
+            >
+              <img className="sidebar-icon" src={sidebarIcon} />
+            </button>
 
-          <SearchBar />
-          <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
-            <div style={{ marginRight: "5px" }}>
-              <UserButton
-                darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
-                userData={userData}
-              />
+            <SearchBar />
+            <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
+              <div style={{ marginRight: "5px" }}>
+                <UserButton
+                  darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
+                  userData={userData}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        {/* CONTENT: */}
-        <div className="dashboard--content">
-          <div
-            style={
-              !isPastWidth
-                ? { width: "97%" }
-                : { width: `85%` }
-            }
-            className="content-centered"
-          >
-            <EditDocumentContext.Provider
-              value={{ editingDocument, setEditingDocument }}
-            >
-              {/* for edit document state */}
-              <Outlet />
-              {/* react router will insert elements using Outlet according to URL path: */}
-            </EditDocumentContext.Provider>
+          {/* CONTENT: */}
+          <div className="dashboard--content">
+            <div className="content-centered">
+              <CatalogItemViewContext.Provider
+                value={{ editingDocument, setEditingDocument }}
+              >
+                {/* for edit document state */}
+                <Outlet />
+                {/* react router will insert elements using Outlet according to URL path: */}
+              </CatalogItemViewContext.Provider>
+            </div>
           </div>
         </div>
       </div>

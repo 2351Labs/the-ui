@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { EditDocumentContext } from "../../context/dashboardContext";
+// import { CatalogItemViewContext } from "../../context/CatalogItemViewContext";
 import "../../../css/EditDocumentPopup.css";
 export default function EditDocumentPopup(props) {
   const { editingDocument, setEditingDocument } = props;

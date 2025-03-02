@@ -3,7 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-const rows = [
+let rows = [
   { id: 1, col1: "Hello", col2: "World" },
   { id: 2, col1: "DataGridPro", col2: "is Awesome" },
   { id: 3, col1: "MUI", col2: "is Amazing" },
@@ -14,6 +14,7 @@ const rows = [
   { id: 8, col1: "DataGridPro", col2: "is Awesome" },
   { id: 9, col1: "MUI", col2: "is Amazing" },
 ];
+rows = [...rows, ...rows, ...rows, ...rows, ...rows, ...rows, ...rows, ...rows];
 
 const columns = [
   { field: "col1", headerName: "Column 1", width: 150 },
@@ -78,7 +79,7 @@ function CatalogTableMUI1({ className, children }) {
       if (!isMobileMode) {
         // if sidebar NOT in mobile mode:
         tableElement.style.width = `${
-          window.innerWidth - sidebarWidthAndPadding
+          window.innerWidth - sidebarWidthAndPadding-180
         }px`;
         // if sidebar in mobile mode
       } else {
@@ -90,6 +91,7 @@ function CatalogTableMUI1({ className, children }) {
     }
 
     // Create a MutationObserver to update table sizing if attribute changes
+
     const observer = new MutationObserver((mutationsList) => {
       for (const mutation of mutationsList) {
         if (mutation.type === "attributes") {
@@ -97,6 +99,7 @@ function CatalogTableMUI1({ className, children }) {
         }
       }
     });
+    
     // Start observing the target element for attribute changes
     observer.observe(document.querySelector(".dashboard--container"), {
       attributes: true,

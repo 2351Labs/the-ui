@@ -22,6 +22,8 @@ import Ownership from "./Ownership";
 import ExternalLink from "../ExternalLink.jsx";
 import collectorSchemaTestData from "../../../../collectorSchemaTestData.js";
 import EntityHelp from "./EntityHelp.jsx";
+import Score from "../../Score.jsx";
+import { CatalogItemViewContext } from "../../context/catalogItemViewContext";
 export default function CatalogItemView() {
   const maxWidth = 1100;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
@@ -99,7 +101,6 @@ export default function CatalogItemView() {
   }
 
   function calculateAverage(metrics) {
-    console.log("metrics", metrics);
     let totalScore = metrics.reduce((sum, metric) => sum + metric.score, 0);
     return (totalScore / metrics.length).toFixed(0);
   }
@@ -159,9 +160,29 @@ export default function CatalogItemView() {
               <div className="key">Average Score</div>
               <div className="value-container">
                 {/* <img className="link-icon" src={linkIcon} /> */}
-                <div className="score">
-                  {calculateAverage(entityData["Service Maturity Score(s)"])}
-                </div>
+                <Score
+                  invertForNightMode={true}
+                  score={calculateAverage(
+                    entityData["Service Maturity Score(s)"]
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="row-container-wrapper">
+            <div className="row-container">
+              <div className="key">Owner</div>
+              <div className="value-container">
+                {/* <img className="link-icon" src={linkIcon} /> */}
+                <div className="value">OWNER</div>
+              </div>
+            </div>
+            <div className="row-container">
+              <div className="key">Version</div>
+              <div className="value-container">
+                {/* <img className="link-icon" src={linkIcon} /> */}
+                <div className="value">{entityData.Version}</div>
               </div>
             </div>
           </div>
@@ -192,14 +213,6 @@ export default function CatalogItemView() {
 
           <div className="row-container-wrapper">
             <div className="row-container">
-              <div className="key">Version</div>
-              <div className="value-container">
-                {/* <img className="link-icon" src={linkIcon} /> */}
-                <div className="value">{entityData.Version}</div>
-              </div>
-            </div>
-
-            <div className="row-container">
               <div className="key">Liscense</div>
               <div className="value-container">
                 <div className="value">
@@ -211,14 +224,6 @@ export default function CatalogItemView() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="row-container-wrapper">
-            <div className="row-container">
-              <div className="key">Status</div>
-              <div className="value-container">
-                <div className="status">Online</div>
-              </div>
-            </div>
             <div className="row-container">
               <div className="key">Language</div>
               <div className="value-container">
@@ -228,6 +233,14 @@ export default function CatalogItemView() {
               </div>
             </div>
           </div>
+          {/* <div className="row-container-wrapper">
+            <div className="row-container">
+              <div className="key">Status</div>
+              <div className="value-container">
+                <div className="status">Online</div>
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
     </div>

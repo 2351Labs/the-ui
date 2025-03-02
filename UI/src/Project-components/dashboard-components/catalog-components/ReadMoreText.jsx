@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
-import { EditDocumentContext } from "../../context/dashboardContext";
-import '../../../css/readMoreText.css'
+import { CatalogItemViewContext } from "../../context/catalogItemViewContext";
+import "../../../css/readMoreText.css";
 const ReadMoreText = ({ text, title }) => {
-  const { setEditingDocument, editingDocument } =
-    useContext(EditDocumentContext);
+  const { setEditingDocument, editingDocument } = useContext(
+    CatalogItemViewContext
+  );
 
   const [expanded, setExpanded] = useState(false);
   const lineLimit = 3;
@@ -18,7 +19,7 @@ const ReadMoreText = ({ text, title }) => {
   };
 
   return (
-    <div className="ReadMoreText" style={{ position: "relative", maxWidth: "500px" }}>
+    <div className="ReadMoreText" style={{ position: "relative" }}>
       <p style={paragraphStyle}>{text}</p>
       <div
         style={{

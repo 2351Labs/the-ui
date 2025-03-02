@@ -3,6 +3,7 @@ import ReadMoreText from "./ReadMoreText.jsx";
 import ExternalLink from "../ExternalLink.jsx";
 import InfoSVG from "../../../assets/dashboard/catalog-assets/info.svg?react";
 import CopySVG from "../../../assets/copy.svg?react";
+import Score from "../../Score.jsx";
 export default function Documentation({ entityData }) {
   const gitHubSVG = (
     <svg
@@ -121,7 +122,7 @@ export default function Documentation({ entityData }) {
 
       <br></br>
 
-      <h4>Service Aliases</h4>
+      <h4>Service Aliases (AKA)</h4>
       <div className="section-wrapper">
         {entityData["Service Aliases"].map((alias, index) => {
           return (
@@ -207,7 +208,7 @@ export default function Documentation({ entityData }) {
           return (
             <div key={index} className="service-maturity-score">
               <div className="score-wrapper">
-                <div className="score">{score.score}</div>
+                <Score score={score.score} />
                 <div className="score-container">
                   <div className="title">{score.metric}</div>
                   <div className="details">{score.description}</div>

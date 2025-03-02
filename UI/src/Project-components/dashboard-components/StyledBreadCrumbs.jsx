@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import capitalizeFirstLetter from "../../helpers/capitilizeFirstLetter";
 function BreadCrumbs({ props, className }) {
+  const {itemData} = props;
+  console.log("TDA", itemData);
   // use current URL
   const url = new URL(window.location);
   const paths = url.pathname.split("/").filter((segment) => segment !== "");
@@ -48,7 +50,7 @@ function BreadCrumbs({ props, className }) {
         <img src={backIcon} />
       </button> */}
       {breadCrumbsExcludingLast}
-      <span> &nbsp;{capitalizeFirstLetter(paths[paths.length - 1])}</span>
+      <span> &nbsp;{capitalizeFirstLetter(itemData.name)}</span>
     </div>
   );
 }
@@ -58,8 +60,8 @@ const Style = styled(BreadCrumbs)`
   align-items: center;
   /* opacity: 0.6; */
   font-weight: 600;
-  position: sticky;
-  top: 0;
+  // position: sticky;
+  // top: 0;
 
   // position: fixed;
   // top: 75px;

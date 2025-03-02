@@ -72,6 +72,7 @@ export default function EntityHelp({ entityData }) {
           );
         })}
       </div>
+      <br></br>
     </div>
   );
 }

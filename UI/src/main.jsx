@@ -15,7 +15,8 @@ import MicrosoftAuthCallback from "./Project-components/MicrosoftAuthCallback.js
 import SignupPage from "./Project-components/SignupPage.jsx";
 import Test from "./Project-components/Test.jsx";
 import collectorSchemaTestData from "../collectorSchemaTestData.js";
-
+import CustomCatalogTable from "./Project-components/dashboard-components/catalog-components/CustomCatalogTable.jsx";
+import CatalogPaginator from "./Project-components/dashboard-components/catalog-components/CatalogPaginator.jsx";
 // for dev purposees
 const catalogData = {
   1: {
@@ -51,14 +52,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "catalog",
-        element: <Catalog />,
+        element: <Catalog key="Catalog" />,
 
         // loader: async ({ params }) => {
         // },
       },
       {
         path: "/dashboard/catalog/:itemID",
-        element: <CatalogItemView />,
+        element: <CatalogItemView key="CatalogItemView" />,
 
         loader: async ({ params }) => {
           return {
@@ -105,6 +106,24 @@ const router = createBrowserRouter([
     // },
     element: <Test />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/test/table",
+
+    // loader: async ({ params }) => {
+    // },
+    element: <Test />,
+    errorElement: (
+      <div style={{ backgroundColor: "#ffffff", height: "100%" }}>
+        <CustomCatalogTable key="CustomCatalogTable" />
+        <CatalogPaginator
+          pageCount={5}
+          onPageChange={() => {
+            console.log("handle");
+          }}
+        />
+      </div>
+    ),
   },
 ]);
 const client_id =
