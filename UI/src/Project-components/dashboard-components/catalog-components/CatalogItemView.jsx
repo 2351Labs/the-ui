@@ -47,9 +47,9 @@ export default function CatalogItemView() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { itemDataLoader, itemID, entityData } = useLoaderData();
-  // console.log("TEST", itemDataLoader, entityData);
-  // const [itemData, setItemData] = useState(entityData);
+  const { entityData } = useLoaderData();
+  console.log("entityData!!", entityData);
+
 
   const navBarOptions = {
     documentation: {
@@ -60,7 +60,7 @@ export default function CatalogItemView() {
     changeHistory: {
       label: "Change History",
       svg: <HistorySVG />,
-      element: <ChangeHistory />,
+      element: <ChangeHistory history={entityData.History}/>,
     },
     dependencies: {
       label: "Dependencies",

@@ -71,6 +71,7 @@ const router = createBrowserRouter([
             const response = await axiosBackend.get(
               `/items/id/${params.itemID}`
             );
+            console.log("RESPONSE", response.data);
             return {
               entityData: response.data,
             };

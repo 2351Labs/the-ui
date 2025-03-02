@@ -5,6 +5,7 @@ import InfoSVG from "../../../assets/dashboard/catalog-assets/info.svg?react";
 import CopySVG from "../../../assets/copy.svg?react";
 import Score from "../../Score.jsx";
 export default function Documentation({ entityData }) {
+  console.log("ENTITY DATA", entityData);
   const gitHubSVG = (
     <svg
       className="gitHubSVG"
@@ -138,7 +139,7 @@ export default function Documentation({ entityData }) {
 
       <h4>Related Repos</h4>
       <div className="section-wrapper">
-        {entityData["RelatedRepos"].map((repo, index) => {
+        {entityData["Related Repos"].map((repo, index) => {
           return (
             <ExternalLink
               key={index}
@@ -154,7 +155,7 @@ export default function Documentation({ entityData }) {
 
       <h4>Monitoring Channels</h4>
       <div className="section-wrapper">
-        {entityData["MonitoringChannels"].map((channel, index) => {
+        {entityData["Monitoring Channels"].map((channel, index) => {
           return (
             <ExternalLink
               key={index}

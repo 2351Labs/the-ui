@@ -1,62 +1,37 @@
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import { Timeline } from "primereact/timeline";
 import "../../../css/changeHistory.css";
-export default function ChangeHistory() {
-  const events = [
-    {
-      status: "Registered",
-      date: "12/3/2022",
-    },
-    {
-      status: "Updated Documentation",
-      date: "12/11/2021",
-    },
-    {
-      status: "Added Dependencies",
-      date: "4/10/2020",
-    },
-    {
-      status: "Registered",
-      date: "12/3/2022",
-    },
-    {
-      status: "Updated Documentation",
-      date: "12/11/2021",
-    },
-    {
-      status: "Added Dependencies",
-      date: "6/10/2020",
-    },
-    {
-      status: "Registered",
-      date: "12/3/2022",
-    },
-    {
-      status: "Updated Documentation",
-      date: "12/11/2021",
-    },
-    {
-      status: "Added Dependencies",
-      date: "5/10/2020",
-    },
-    {
-      status: "OR",
-    },
-    {
-      status: "Track git version history?",
-      date: "5/10/2020",
-    },
-  ];
+export default function ChangeHistory({ history }) {
+  function formattedDate(dateStr) {
+    // Convert to a JavaScript Date object
+    const date = new Date(dateStr);
+    // Format the date to a more readable format
+    const options = {
+      // weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      // second: "numeric",
+      timeZoneName: "short",
+    };
+    return date.toLocaleDateString("en-US", options);
+  }
+
   return (
     <div className="changeHistory">
       <h4 className="option-header">Timeline</h4>
+      {console.log("HISTORY", history)}
       <Timeline
-        value={events}
-        opposite={(item) => item.status}
+        value={history}
+        opposite={(item) => item.description}
         // marker={<div>test</div>}
         content={(item) => (
           <>
-            <small className="text-color-secondary">{item.date}</small>
+            <small className="text-color-secondary">
+              {formattedDate(item.time)}
+            </small>
 
             {/* <div>Added</div> */}
           </>

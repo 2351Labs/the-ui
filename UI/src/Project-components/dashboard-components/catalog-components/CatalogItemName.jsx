@@ -29,13 +29,14 @@ export default function CatalogItemName(props) {
 
   return (
     <div className="catalogItemName">
-      <GrowingInput
+      {/* <GrowingInput
         inputRef={nameRef}
         inputValue={serviceName}
         onChangeHandler={onChangeHandler}
         isDisabled={!isEditingName}
-      />
-      <img
+      /> */}
+      <div ref={nameRef} className="service-name">{serviceName}</div>
+      {/* <img
         style={
           !isEditingName
             ? {
@@ -51,7 +52,7 @@ export default function CatalogItemName(props) {
           setIsEditingName(true);
         }}
         src={editIcon}
-      />
+      /> */}
     </div>
   );
 }
