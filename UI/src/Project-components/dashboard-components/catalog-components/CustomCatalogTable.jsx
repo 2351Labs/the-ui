@@ -3,11 +3,13 @@ import { useState, useRef, useEffect } from "react";
 import ArrowSVG from "../../../assets/arrow.svg?react";
 import CatalogPaginator from "./CatalogPaginator";
 import axiosBackend from "../../../helpers/axiosBackend";
+import { useSearchParams, useLocation } from "react-router-dom";
+
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-export default function CustomCatalogTable() {
+export default function CustomCatalogTable({pageData, setPageData}) {
   const startingPage = 1;
-  const pageSize = 7;
+  const pageSize =11;
   //   Set columns to display
   const columnKeys = [
     "Service Name",
@@ -19,20 +21,29 @@ export default function CustomCatalogTable() {
     "Product",
   ];
 
-  const [pageData, setPageData] = useState({}); //stores data containing items and more
+  // const [searchParams] = useSearchParams();
+  // const searchQuery = searchParams.get("q");
+
   const [pageDataDisplay, setPageDataDisplay] = useState([]); //stores items
+
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q") || "";
+  const entityType = searchParams.get("entityTypes") || "";
+
+  const location = useLocation();
   async function fetchPagination(page, pageSize) {
     const response = await axiosBackend.get(
-      `/items/pagination?page=${page}&pageSize=${pageSize}`
+      `/items/pagination?page=${page}&pageSize=${pageSize}&q=${searchQuery}&entityTypes=${entityType}`
     );
-    console.log("HERE", response.data.items);
+    console.log("HERE", response.data.itemsw);
     setPageData(response.data);
     setPageDataDisplay(response.data.items);
   }
 
   useEffect(() => {
+    //run on initial render and if location changes (EX: search input is used to add query to URL)
     fetchPagination(startingPage, pageSize);
-  }, []);
+  }, [location]);
 
   const navigate = useNavigate();
 
@@ -168,7 +179,7 @@ export default function CustomCatalogTable() {
       <div className="filler"></div>
       <CatalogPaginator
         fetchPagination={fetchPagination}
-        pageCount={pageData.totalPages}
+        pageCount={pageData?.totalPages}
         onPageChange={(e) => {
           console.log("PAGE CHANGE", e);
           fetchPagination(e.selected + 1, pageSize);
@@ -275,7 +286,9 @@ const ResizableColumn = ({
       >
         <div className={`key column-${columnIndex + 1}`}>
           {/* OVERRIDE FOR MATURITY SCORE NAME */}
-          {columnKey == "Service Maturity Score(s)" ? "Avg. Maturity Score" : columnKey}
+          {columnKey == "Service Maturity Score(s)"
+            ? "Avg. Maturity Score"
+            : columnKey}
         </div>
         <button
           onClick={handleToggleSort}

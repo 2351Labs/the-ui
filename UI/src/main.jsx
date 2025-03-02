@@ -23,6 +23,7 @@ import CustomCatalogTable from "./Project-components/dashboard-components/catalo
 import CatalogPaginator from "./Project-components/dashboard-components/catalog-components/CatalogPaginator.jsx";
 // for dev purposees
 import axiosBackend from "./helpers/axiosBackend.js";
+import ComingSoon from "./Project-components/dashboard-components/ComingSoon.jsx";
 const catalogData = {
   1: {
     name: "Order Service",
@@ -71,7 +72,6 @@ const router = createBrowserRouter([
             const response = await axiosBackend.get(
               `/items/id/${params.itemID}`
             );
-            console.log("RESPONSE", response.data);
             return {
               entityData: response.data,
             };
@@ -92,11 +92,11 @@ const router = createBrowserRouter([
       },
       {
         path: "reports",
-        element: <div>Reports</div>,
+        element: <ComingSoon name={"Reports"}/>,
       },
       {
         path: "people",
-        element: <div>People</div>,
+        element: <ComingSoon  name={"People"}/>,
       },
     ],
   },

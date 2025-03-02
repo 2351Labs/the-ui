@@ -13,6 +13,8 @@ import MultiSelectPrime from "../MultiSelectPrime";
 import CustomCatalogTable from "./CustomCatalogTable";
 // import dropdownIcon from "../../assets/dashboard/dropdown.svg";
 export default function Catalog() {
+  const [pageData, setPageData] = useState(); //stores data containing items and more
+
   const [filterConfiguration, setFilterConfiguration] = useState({});
   const location = useLocation();
   let params = new URLSearchParams(window.location.search);
@@ -21,7 +23,6 @@ export default function Catalog() {
     // detect changes to URL and trigger rerender to show updated elements
     // for keeping search query indicator in sync with URL
   }, [location]);
-
 
   //SUB COMPONENT AT BOTTOM OF FILE
   return (
@@ -33,7 +34,7 @@ export default function Catalog() {
         {/* <div className="sort-by">Sort By</div> */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <h3 className="search-results-header">
-            {params.get("q") ? "15+ results found" : "All Results"}
+            {params.get("q") ? `${pageData?.totalItems ? `${pageData.totalItems}+ results found` : `No results found`}` : "All Results"}
           </h3>
           {params.get("q") && (
             <div className="search-query">{`"${params.get("q")}"`}</div>
@@ -48,7 +49,7 @@ export default function Catalog() {
       </div>
 
       {/* <StyledCatalogTableMUI /> */}
-      <CustomCatalogTable />
+      <CustomCatalogTable pageData={pageData} setPageData={setPageData} />
       {/* <CatalogTable catalogData={catalogData} /> */}
     </div>
   );
