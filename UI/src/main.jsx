@@ -8,7 +8,11 @@ import Dashboard from "./Project-components/dashboard-components/Dashboard.jsx";
 import ErrorPage from "./Project-components/ErrorPage.jsx";
 import Catalog from "./Project-components/dashboard-components/catalog-components/Catalog.jsx";
 import CatalogItemView from "./Project-components/dashboard-components/catalog-components/CatalogItemView.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useSearchParams,
+} from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MicrosoftAuthCallback from "./Project-components/MicrosoftAuthCallback.jsx";
@@ -18,6 +22,7 @@ import collectorSchemaTestData from "../collectorSchemaTestData.js";
 import CustomCatalogTable from "./Project-components/dashboard-components/catalog-components/CustomCatalogTable.jsx";
 import CatalogPaginator from "./Project-components/dashboard-components/catalog-components/CatalogPaginator.jsx";
 // for dev purposees
+import axiosBackend from "./helpers/axiosBackend.js";
 const catalogData = {
   1: {
     name: "Order Service",
@@ -58,15 +63,20 @@ const router = createBrowserRouter([
         // },
       },
       {
-        path: "/dashboard/catalog/:itemID",
+        path: "/dashboard/catalog/:itemID", //If item loaded when viewing in catalog, skip loading when going to view it
         element: <CatalogItemView key="CatalogItemView" />,
-
+        // ?preloaded=true
         loader: async ({ params }) => {
-          return {
-            itemDataLoader: catalogData[params.itemID],
-            itemID: params.itemID,
-            entityData: collectorSchemaTestData.collectorSchemaTestData,
-          };
+          try {
+            const response = await axiosBackend.get(
+              `/items/id/${params.itemID}`
+            );
+            return {
+              entityData: response.data,
+            };
+          } catch (error) {
+            console.log("ERROR", error);
+          }
         },
         // children: [
         //   {

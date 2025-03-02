@@ -5,7 +5,6 @@ import styled from "styled-components";
 import capitalizeFirstLetter from "../../helpers/capitilizeFirstLetter";
 function BreadCrumbs({ props, className }) {
   const {itemData} = props;
-  console.log("TDA", itemData);
   // use current URL
   const url = new URL(window.location);
   const paths = url.pathname.split("/").filter((segment) => segment !== "");

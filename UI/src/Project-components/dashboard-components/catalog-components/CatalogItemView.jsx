@@ -48,7 +48,8 @@ export default function CatalogItemView() {
   }, []);
 
   const { itemDataLoader, itemID, entityData } = useLoaderData();
-  const [itemData, setItemData] = useState(itemDataLoader);
+  // console.log("TEST", itemDataLoader, entityData);
+  // const [itemData, setItemData] = useState(entityData);
 
   const navBarOptions = {
     documentation: {
@@ -107,7 +108,7 @@ export default function CatalogItemView() {
 
   return (
     <div className="catalogItemView">
-      <StyledBreadCrumbs itemID={itemID} itemData={itemData} />
+      <StyledBreadCrumbs itemData={entityData} />
 
       <div className="name-container">
         <div className="catalogItemName-container">

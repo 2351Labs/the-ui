@@ -21,7 +21,6 @@ export default function CustomCatalogTable() {
 
   const [pageData, setPageData] = useState([]);//stores data containing items and more
   const [pageDataDisplay, setPageDataDisplay] = useState([]);//stores items
-
   async function fetchPagination(page, pageSize) {
     const response = await axiosBackend.get(
       `/items/pagination?page=${page}&pageSize=${pageSize}`
@@ -138,8 +137,8 @@ export default function CustomCatalogTable() {
           return (
             <div
               key={index}
-              onClick={(e) => {
-                navigate(`${e.currentTarget.getAttribute("row")}`, {
+              onClick={() => {
+                navigate(`${entityObj._id}`, {
                   replace: true,
                 });
               }}
