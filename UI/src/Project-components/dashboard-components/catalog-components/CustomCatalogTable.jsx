@@ -7,9 +7,9 @@ import { useSearchParams, useLocation } from "react-router-dom";
 
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-export default function CustomCatalogTable({pageData, setPageData}) {
+export default function CustomCatalogTable({ pageData, setPageData }) {
   const startingPage = 1;
-  const pageSize =11;
+  const pageSize = 11;
   //   Set columns to display
   const columnKeys = [
     "Service Name",
@@ -28,14 +28,13 @@ export default function CustomCatalogTable({pageData, setPageData}) {
 
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
-  const entityType = searchParams.get("entityTypes") || "";
-
+  const entityTypes = searchParams.get("entityTypes") || "";
+  console.log("ENTITY TYPES!", entityTypes);
   const location = useLocation();
   async function fetchPagination(page, pageSize) {
     const response = await axiosBackend.get(
-      `/items/pagination?page=${page}&pageSize=${pageSize}&q=${searchQuery}&entityTypes=${entityType}`
+      `/items/pagination?page=${page}&pageSize=${pageSize}&q=${searchQuery}&entityTypes=${entityTypes}`
     );
-    console.log("HERE", response.data.itemsw);
     setPageData(response.data);
     setPageDataDisplay(response.data.items);
   }
@@ -181,7 +180,6 @@ export default function CustomCatalogTable({pageData, setPageData}) {
         fetchPagination={fetchPagination}
         pageCount={pageData?.totalPages}
         onPageChange={(e) => {
-          console.log("PAGE CHANGE", e);
           fetchPagination(e.selected + 1, pageSize);
         }}
       />

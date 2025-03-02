@@ -34,7 +34,13 @@ export default function Catalog() {
         {/* <div className="sort-by">Sort By</div> */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <h3 className="search-results-header">
-            {params.get("q") ? `${pageData?.totalItems ? `${pageData.totalItems}+ results found` : `No results found`}` : "All Results"}
+            {params.get("q")
+              ? `${
+                  pageData?.totalItems
+                    ? `${pageData.totalItems}+ results found`
+                    : `No results found`
+                }`
+              : "All Results"}
           </h3>
           {params.get("q") && (
             <div className="search-query">{`"${params.get("q")}"`}</div>

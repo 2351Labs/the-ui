@@ -28,19 +28,19 @@ export default function SearchBar() {
     }
 
     window.addEventListener("resize", handleResize);
-    handleResize()
+    handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // const isPastWidth = true;
 
   const filterOptions = [
-    "Services",
+    "Service",
     "Infrastructure",
-    "Domains",
-    "Teams",
-    "Libraries",
-    "APIs",
+    "Domain",
+    "Team",
+    "Library",
+    "API",
   ];
   const [isMainFilterOpen, setIsMainFilterOpen] = useState(false);
   const [mainFilterConfiguration, setMainFilterConfiguration] = useState({});
@@ -50,19 +50,40 @@ export default function SearchBar() {
   useClickOutside(mainFilterRef, () => {
     setIsMainFilterOpen(false);
   });
-
+  console.log("mainFilterConfiguration", mainFilterConfiguration);
   const mainFilterSelection = Object.keys(mainFilterConfiguration).filter(
     (key) => mainFilterConfiguration[key] === true
   );
   const mainFilterSelectionCount = mainFilterSelection.length;
+
+  function filterByTypes() {
+    let filterString = "&entityTypes=";
+    let isFirst = true; // To track if we're adding the first item
+
+    for (let key in mainFilterConfiguration) {
+      if (mainFilterConfiguration[key]) {
+        if (!isFirst) {
+          filterString += ","; // Add comma if it's not the first item
+        }
+        filterString += `${key}`;
+        isFirst = false; // Mark the first item as added
+      }
+    }
+
+    console.log("filterString", filterString);
+    return filterString;
+  }
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         console.log(inputRef.current.value);
-        navigate(`/dashboard/catalog?q=${inputRef.current.value}`, {
-          replace: true,
-        });
+        navigate(
+          `/dashboard/catalog?q=${inputRef.current.value}${filterByTypes()}`,
+          {
+            replace: true,
+          }
+        );
       }}
       className="catalog-searchbar"
     >
@@ -124,23 +145,6 @@ export default function SearchBar() {
                       }}
                       className="filter-option-container"
                     >
-                      {/* <div
-                      id="inactive"
-                      style={
-                        mainFilterConfiguration[option]
-                          ? {
-                              backgroundColor: "var(--primary)",
-                              border: " 1px solid transparent",
-                            }
-                          : {
-                              backgroundColor: "white",
-                              border: " 1px solid rgb(207, 207, 207)",
-                            }
-                      }
-                      className="checkbox-background"
-                    >
-                      <img src={checkIcon} />
-                    </div> */}
                       <CheckIcon
                         className={`dropdown-checkbox ${
                           mainFilterConfiguration[option] && "checked"
