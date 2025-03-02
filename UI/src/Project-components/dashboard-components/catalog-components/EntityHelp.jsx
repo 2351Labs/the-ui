@@ -44,7 +44,7 @@ export default function EntityHelp({ entityData }) {
       <br></br>
       <h4>Support Channels</h4>
       <div className="support-channels-container">
-        {entityData["SupportChannels"].map((channel, index) => {
+        {entityData["Support Channels"].map((channel, index) => {
           return (
             <div className="channel-container">
               <div className="description">

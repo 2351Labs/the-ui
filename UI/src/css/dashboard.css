@@ -52,7 +52,7 @@
     /* max-width: 1200px; */
     width: 100%;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: scroll;
     scrollbar-color: rgb(88, 88, 88) transparent;
     padding-right: 10px;
     .content-wrapper {

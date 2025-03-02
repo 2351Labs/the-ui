@@ -19,8 +19,8 @@ export default function CustomCatalogTable() {
     "Product",
   ];
 
-  const [pageData, setPageData] = useState([]);//stores data containing items and more
-  const [pageDataDisplay, setPageDataDisplay] = useState([]);//stores items
+  const [pageData, setPageData] = useState({}); //stores data containing items and more
+  const [pageDataDisplay, setPageDataDisplay] = useState([]); //stores items
   async function fetchPagination(page, pageSize) {
     const response = await axiosBackend.get(
       `/items/pagination?page=${page}&pageSize=${pageSize}`
@@ -166,13 +166,12 @@ export default function CustomCatalogTable() {
         })}
       </div>
       <div className="filler"></div>
-      {console.log("PAGE DATA", pageData)}
       <CatalogPaginator
         fetchPagination={fetchPagination}
         pageCount={pageData.totalPages}
         onPageChange={(e) => {
           console.log("PAGE CHANGE", e);
-          fetchPagination(e.selected+1, pageSize);
+          fetchPagination(e.selected + 1, pageSize);
         }}
       />
     </div>
@@ -240,7 +239,8 @@ const ResizableColumn = ({
       return { columnIndex: columnIndex, sortMode: currentSortMode }; //reset if past 3
     });
 
-    const pageDataCopy = [...pageData];
+    const pageDataCopy = [...pageData.items];
+
     switch (currentSortMode) {
       case 1: //sort A-Z
         pageDataCopy.sort((a, b) => {
@@ -261,7 +261,7 @@ const ResizableColumn = ({
         setPageDataDisplay(pageDataCopy);
         return;
       case 0: //reset to default
-        setPageDataDisplay(pageData);
+        setPageDataDisplay(pageData.items);
     }
   }
 
@@ -273,7 +273,10 @@ const ResizableColumn = ({
         }}
         className="key-wrapper"
       >
-        <div className={`key column-${columnIndex + 1}`}>{columnKey}</div>
+        <div className={`key column-${columnIndex + 1}`}>
+          {/* OVERRIDE FOR MATURITY SCORE NAME */}
+          {columnKey == "Service Maturity Score(s)" ? "Avg. Maturity Score" : columnKey}
+        </div>
         <button
           onClick={handleToggleSort}
           className="toggle-sort-btn"
