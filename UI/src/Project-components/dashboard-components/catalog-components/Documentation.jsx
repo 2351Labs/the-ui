@@ -109,7 +109,7 @@ export default function Documentation({ entityData }) {
 
       <h4>External Documents</h4>
       <div className="section-container">
-        {entityData.Documentation.map((documentInfo, index) => {
+        {entityData["Internal Documents"]?.map((documentInfo, index) => {
           return (
             <ExternalLink
               key={index}
@@ -125,9 +125,9 @@ export default function Documentation({ entityData }) {
 
       <h4>Service Aliases (AKA)</h4>
       <div className="section-wrapper">
-        {entityData["Service Aliases"].map((alias, index) => {
+        {entityData["Service Aliases"]?.map((alias, index) => {
           return (
-            <div className="section-container">
+            <div key={index} className="section-container">
               <div className="title">{alias.alias}</div>
               <div className="details">{alias.description}</div>
             </div>
@@ -139,7 +139,7 @@ export default function Documentation({ entityData }) {
 
       <h4>Related Repos</h4>
       <div className="section-wrapper">
-        {entityData["Related Repos"].map((repo, index) => {
+        {entityData["Related Repos"]?.map((repo, index) => {
           return (
             <ExternalLink
               key={index}
@@ -155,7 +155,7 @@ export default function Documentation({ entityData }) {
 
       <h4>Monitoring Channels</h4>
       <div className="section-wrapper">
-        {entityData["Monitoring Channels"].map((channel, index) => {
+        {entityData["Monitoring Channels"]?.map((channel, index) => {
           return (
             <ExternalLink
               key={index}
@@ -171,7 +171,7 @@ export default function Documentation({ entityData }) {
       <br></br>
       <h4>Infrastructure Components</h4>
       <div className="section-wrapper">
-        {entityData["Infrastructure Components"].map((component, index) => {
+        {entityData["Infrastructure Components"]?.map((component, index) => {
           return (
             <div key={index}>
               <div className="title-container">
@@ -205,7 +205,7 @@ export default function Documentation({ entityData }) {
 
       <h4>Service Maturity Scores(s)</h4>
       <div className="section-wrapper">
-        {entityData["Service Maturity Score(s)"].map((score, index) => {
+        {entityData["Service Maturity Score(s)"]?.map((score, index) => {
           return (
             <div key={index} className="service-maturity-score">
               <div className="score-wrapper">

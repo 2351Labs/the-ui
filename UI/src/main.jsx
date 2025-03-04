@@ -72,6 +72,7 @@ const router = createBrowserRouter([
             const response = await axiosBackend.get(
               `/items/id/${params.itemID}`
             );
+            console.log("RESPONJSE!!", response);
             return {
               entityData: response.data,
             };
@@ -92,11 +93,11 @@ const router = createBrowserRouter([
       },
       {
         path: "reports",
-        element: <ComingSoon name={"Reports"}/>,
+        element: <ComingSoon name={"Reports"} />,
       },
       {
         path: "people",
-        element: <ComingSoon  name={"People"}/>,
+        element: <ComingSoon name={"People"} />,
       },
     ],
   },
