@@ -35,7 +35,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
   // const searchQuery = searchParams.get("q") || "";
   // const entityTypes = searchParams.get("entityTypes") || "";
 
-  console.log("DEBUG", pageData, pageDataDisplay)
+  console.log("DEBUG", pageData, pageDataDisplay);
 
   const location = useLocation();
   const queryParamsString = location.search;
@@ -166,7 +166,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
 
         {/* Catalog data */}
 
-        {!isLoading ? (
+        {!isLoading && (
           <>
             {pageDataDisplay?.map((entityObj, index) => {
               return (
@@ -200,8 +200,6 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
               );
             })}
           </>
-        ) : (
-          <Loading />
         )}
       </div>
       <div className="filler"></div>
@@ -212,6 +210,8 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
           fetchPagination(e.selected + 1, pageSize);
         }}
       />
+
+      {isLoading && <Loading />}
     </div>
   );
 }
