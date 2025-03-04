@@ -50,7 +50,6 @@ export default function SearchBar() {
   useClickOutside(mainFilterRef, () => {
     setIsMainFilterOpen(false);
   });
-  console.log("mainFilterConfiguration", mainFilterConfiguration);
   const mainFilterSelection = Object.keys(mainFilterConfiguration).filter(
     (key) => mainFilterConfiguration[key] === true
   );
@@ -75,6 +74,11 @@ export default function SearchBar() {
   }
   return (
     <form
+      onClick={(e) => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }}
       onSubmit={(e) => {
         e.preventDefault();
         console.log(inputRef.current.value);
@@ -117,11 +121,11 @@ export default function SearchBar() {
           >
             <div id="main-filter" className="filter-selection">
               {mainFilterSelectionCount == 0
-                ? "All items"
+                ? "All Types"
                 : `${
                     mainFilterSelectionCount == 1
                       ? `${mainFilterSelection[0]}`
-                      : `${mainFilterSelectionCount} items`
+                      : `${mainFilterSelectionCount} Types`
                   }`}
             </div>
             <DropdownIcon

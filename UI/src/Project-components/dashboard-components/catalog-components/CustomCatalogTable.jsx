@@ -4,10 +4,15 @@ import ArrowSVG from "../../../assets/arrow.svg?react";
 import CatalogPaginator from "./CatalogPaginator";
 import axiosBackend from "../../../helpers/axiosBackend";
 import { useSearchParams, useLocation } from "react-router-dom";
-
+import { CatalogItemViewContext } from "../../context/catalogItemViewContext";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 export default function CustomCatalogTable({ pageData, setPageData }) {
+  axiosBackend.defaults.headers.common[
+    "Authorization"
+  ] = `${localStorage.getItem("token")}`;
+
   const startingPage = 1;
   const pageSize = 11;
   //   Set columns to display
@@ -20,29 +25,41 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
     "Version",
     "Product",
   ];
-
+  const { userData } = useContext(CatalogItemViewContext);
   // const [searchParams] = useSearchParams();
   // const searchQuery = searchParams.get("q");
 
   const [pageDataDisplay, setPageDataDisplay] = useState([]); //stores items
 
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get("q") || "";
-  const entityTypes = searchParams.get("entityTypes") || "";
-  console.log("ENTITY TYPES!", entityTypes);
+  // const searchQuery = searchParams.get("q") || "";
+  // const entityTypes = searchParams.get("entityTypes") || "";
+
   const location = useLocation();
+  const queryParamsString = location.search;
+
   async function fetchPagination(page, pageSize) {
-    const response = await axiosBackend.get(
-      `/items/pagination?page=${page}&pageSize=${pageSize}&q=${searchQuery}&entityTypes=${entityTypes}`
-    );
-    setPageData(response.data);
-    setPageDataDisplay(response.data.items);
+    try {
+      const response = await axiosBackend.get(
+        `/items/pagination${
+          queryParamsString ? queryParamsString : "?"
+        }&page=${page}&pageSize=${pageSize}`
+      );
+      setPageData(response.data);
+      setPageDataDisplay(response.data.items);
+    } catch (error) {
+      console.log("Error fetching pagination", error);
+    }
   }
 
   useEffect(() => {
     //run on initial render and if location changes (EX: search input is used to add query to URL)
     fetchPagination(startingPage, pageSize);
-  }, [location]);
+  }, []);
+
+  useEffect(() => {
+    fetchPagination(startingPage, pageSize);
+  }, [location, userData]); //run also when userData loads (when logged in)
 
   const navigate = useNavigate();
 
@@ -202,6 +219,10 @@ const ResizableColumn = ({
   const isResizing = useRef(false);
   const startX = useRef(0);
   const startWidth = useRef(currentColumnWidth);
+
+  const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+
   // Handle mouse down on the resizer
   const handleMouseDown = (e) => {
     e.preventDefault(); // Stops the default action
@@ -252,22 +273,37 @@ const ResizableColumn = ({
 
     switch (currentSortMode) {
       case 1: //sort A-Z
-        pageDataCopy.sort((a, b) => {
-          if (a[columnKeys[columnIndex]] < b[columnKeys[columnIndex]])
-            return -1;
-          if (a[columnKeys[columnIndex]] > b[columnKeys[columnIndex]]) return 1;
-          return 0;
+        console.log("CASE 1", params);
+        params.set("sort", 1); // Add or update the query parameter
+        params.set("sortBy", `${columnKeys[columnIndex]}`); // Add or update the query parameter
+        navigate(`${location.pathname}?${params.toString()}`, {
+          replace: true,
         });
-        setPageDataDisplay(pageDataCopy);
+
+        // pageDataCopy.sort((a, b) => {
+        //   if (a[columnKeys[columnIndex]] < b[columnKeys[columnIndex]])
+        //     return -1;
+        //   if (a[columnKeys[columnIndex]] > b[columnKeys[columnIndex]]) return 1;
+        //   return 0;
+        // });
+        // setPageDataDisplay(pageDataCopy);
         return;
       case 2: //sort Z-A
-        pageDataCopy.sort((a, b) => {
-          if (a[columnKeys[columnIndex]] > b[columnKeys[columnIndex]])
-            return -1;
-          if (a[columnKeys[columnIndex]] < b[columnKeys[columnIndex]]) return 1;
-          return 0;
+        params.set("sort", -1); // Add or update the query parameter
+        params.set("sortBy", `${columnKeys[columnIndex]}`); // Add or update the query parameter
+        navigate(`${location.pathname}?${params.toString()}`, {
+          replace: true,
         });
-        setPageDataDisplay(pageDataCopy);
+
+        // pag
+
+        // pageDataCopy.sort((a, b) => {
+        //   if (a[columnKeys[columnIndex]] > b[columnKeys[columnIndex]])
+        //     return -1;
+        //   if (a[columnKeys[columnIndex]] < b[columnKeys[columnIndex]]) return 1;
+        //   return 0;
+        // });
+        // setPageDataDisplay(pageDataCopy);
         return;
       case 0: //reset to default
         setPageDataDisplay(pageData.items);

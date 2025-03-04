@@ -6,4 +6,5 @@ const axiosBackend = axios.create({
   baseURL: apiUrl,
 });
 
+
 export default axiosBackend;

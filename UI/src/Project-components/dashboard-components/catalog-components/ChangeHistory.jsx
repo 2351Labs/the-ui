@@ -22,7 +22,6 @@ export default function ChangeHistory({ history }) {
   return (
     <div className="changeHistory">
       <h4 className="option-header">Timeline</h4>
-      {console.log("HISTORY", history)}
       <Timeline
         value={history}
         opposite={(item) => item.description}

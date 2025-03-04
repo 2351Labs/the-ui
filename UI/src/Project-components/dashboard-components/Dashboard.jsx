@@ -166,7 +166,7 @@ export default function Dashboard() {
           <div className="dashboard--content">
             <div className="content-centered">
               <CatalogItemViewContext.Provider
-                value={{ editingDocument, setEditingDocument }}
+                value={{ editingDocument, setEditingDocument, userData }}
               >
                 {/* for edit document state */}
                 <Outlet />

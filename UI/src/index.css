@@ -50,11 +50,17 @@
   --box-shadow: 0px 4px 8px rgba(48, 48, 48, 0.12);
   --border: 1px solid rgb(216, 215, 215);
 
+  --night-background: #191919;
+  --night-background-tint: #202020;
+  --night-background-tint-2: #2e2e2e;
+
+  --night-text-dark: rgb(194, 194, 194);
+  --night-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 
   /* invert target color to apply accurate styling */
-  --inversion-color-night: #d33094;/*PRIMARY*/
-  --inversion-color-night-shade: rgba(145, 61, 111, 1);/*PRIMARY-LIGHT*/
-  --inversion-color-night-dark: #de9dc5;/*PRIMARY-DARK*/
+  --inversion-color-night: #d33094; /*PRIMARY*/
+  --inversion-color-night-shade: rgba(145, 61, 111, 1); /*PRIMARY-LIGHT*/
+  --inversion-color-night-dark: #de9dc5; /*PRIMARY-DARK*/
 
   --inversion-background: #e6e6e6;
   --inversion-background-tint: #dfdfdf;
@@ -64,15 +70,6 @@
   --inversion-box-shadow: 0 4px 8px rgba(255, 255, 255, 0.12);
   --inverstion-text-highlight: #ff9f00;
   --inversion-border: 1px solid var(--inversion-background-tint-2);
-
-  --night-background: #191919;
-  --night-background-tint: #202020;
-  --night-background-tint-2: #2e2e2e;
-
-  --night-text-dark: rgb(194, 194, 194);
-  --night-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-
-
 }
 
 html,
@@ -96,7 +93,6 @@ button {
   padding: none;
   margin: none;
 }
-
 
 @keyframes spin {
   0% {

@@ -13,7 +13,6 @@ export default function UserButton(props) {
   const { userData, darkModeState } = props;
   const [isOpen, setIsOpen] = useState(false);
   const userDropdownRef = useRef(null);
-  console.log("USERDATA", userData);
 
   useClickOutside(userDropdownRef, () => {
     setIsOpen(false);
@@ -26,7 +25,9 @@ export default function UserButton(props) {
             onClick={() => {
               setIsOpen(!isOpen);
             }}
-            className={`profile-circle ${userData?.profile?.firstName ? "" : "no-letter"}`}
+            className={`profile-circle ${
+              userData?.profile?.firstName ? "" : "no-letter"
+            }`}
           >
             {userData?.profile?.firstName ? (
               <div className="letter">

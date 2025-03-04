@@ -24,6 +24,12 @@ export default function Catalog() {
     // for keeping search query indicator in sync with URL
   }, [location]);
 
+  const getEntityTypes = () => {
+    let list = params.get("entityTypes");
+    let items = list.split(",").map((item) => item.trim());
+    return items;
+  };
+
   //SUB COMPONENT AT BOTTOM OF FILE
   return (
     <div className="catalog">
@@ -32,7 +38,7 @@ export default function Catalog() {
       {/* <StyledComponent/> */}
       <div className="filterBar-container">
         {/* <div className="sort-by">Sort By</div> */}
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "20px", width:"100%" }}>
           <h3 className="search-results-header">
             {params.get("q")
               ? `${
@@ -42,10 +48,22 @@ export default function Catalog() {
                 }`
               : "All Results"}
           </h3>
-          {params.get("q") && (
-            <div className="search-query">{`"${params.get("q")}"`}</div>
-          )}
+          <div className="query-info-container">
+            {params.get("q") && (
+              <div className="search-query">{`"${params.get("q")}"`}</div>
+            )}
+            {/* {params.get("entityTypes") && (
+              <>
+                {getEntityTypes().map((item, index) => (
+                  <div key={index} className="search-query">
+                    #{item}
+                  </div>
+                ))}
+              </>
+            )} */}
+          </div>
         </div>
+
         <FilterBar
           filterConfigurationState={{
             value: filterConfiguration,

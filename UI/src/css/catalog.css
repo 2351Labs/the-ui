@@ -24,6 +24,11 @@
   width: 100%;
   flex-direction: column;
   gap: 20px;
+  .query-info-container {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+  }
 
   .search-query {
     background-color: rgb(231, 231, 231);
