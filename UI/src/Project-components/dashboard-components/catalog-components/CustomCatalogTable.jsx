@@ -5,6 +5,7 @@ import CatalogPaginator from "./CatalogPaginator";
 import axiosBackend from "../../../helpers/axiosBackend";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { CatalogItemViewContext } from "../../context/catalogItemViewContext";
+import Loading from "../../Loading";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -28,23 +29,26 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
   const { userData } = useContext(CatalogItemViewContext);
   // const [searchParams] = useSearchParams();
   // const searchQuery = searchParams.get("q");
-
+  const [isLoading, setIsLoading] = useState(false);
   const [pageDataDisplay, setPageDataDisplay] = useState([]); //stores items
-
   const [searchParams] = useSearchParams();
   // const searchQuery = searchParams.get("q") || "";
   // const entityTypes = searchParams.get("entityTypes") || "";
+
+  console.log("DEBUG", pageData, pageDataDisplay)
 
   const location = useLocation();
   const queryParamsString = location.search;
 
   async function fetchPagination(page, pageSize) {
+    setIsLoading(true); //clear pageDataDisplay to trigger loading element;
     try {
       const response = await axiosBackend.get(
         `/items/pagination${
           queryParamsString ? queryParamsString : "?"
         }&page=${page}&pageSize=${pageSize}`
       );
+      setIsLoading(false);
       setPageData(response.data);
       setPageDataDisplay(response.data.items);
     } catch (error) {
@@ -151,6 +155,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
                 setColumnWidths={setColumnWidths}
                 pageData={pageData}
                 setPageDataDisplay={setPageDataDisplay}
+                setPageData={setPageData}
                 columnKeys={columnKeys}
                 isSorting={isSorting}
                 setIsSorting={setIsSorting}
@@ -160,37 +165,44 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
         </div>
 
         {/* Catalog data */}
-        {pageDataDisplay.map((entityObj, index) => {
-          return (
-            <div
-              key={index}
-              onClick={() => {
-                navigate(`${entityObj._id}`, {
-                  replace: true,
-                });
-              }}
-              row={index + 1}
-              className={`row row-${index + 1}`}
-            >
-              {columnKeys.map((key, index) => {
-                // map over all keys again to create spot to enter value for entityObj
-                return (
-                  <div key={index} className="table-container">
-                    <div
-                      style={{
-                        width: columnWidths[key] + keyToolContainerWidth,
-                      }}
-                      className={`table column-${index + 1}`}
-                      key={index}
-                    >
-                      {getTableValue(key, entityObj)}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
+
+        {!isLoading ? (
+          <>
+            {pageDataDisplay?.map((entityObj, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => {
+                    navigate(`${entityObj._id}`, {
+                      replace: true,
+                    });
+                  }}
+                  row={index + 1}
+                  className={`row row-${index + 1}`}
+                >
+                  {columnKeys.map((key, index) => {
+                    // map over all keys again to create spot to enter value for entityObj
+                    return (
+                      <div key={index} className="table-container">
+                        <div
+                          style={{
+                            width: columnWidths[key] + keyToolContainerWidth,
+                          }}
+                          className={`table column-${index + 1}`}
+                          key={index}
+                        >
+                          {getTableValue(key, entityObj)}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <Loading />
+        )}
       </div>
       <div className="filler"></div>
       <CatalogPaginator
@@ -269,11 +281,10 @@ const ResizableColumn = ({
       return { columnIndex: columnIndex, sortMode: currentSortMode }; //reset if past 3
     });
 
-    const pageDataCopy = [...pageData.items];
+    // const pageDataCopy = [...pageData.items];
 
     switch (currentSortMode) {
       case 1: //sort A-Z
-        console.log("CASE 1", params);
         params.set("sort", 1); // Add or update the query parameter
         params.set("sortBy", `${columnKeys[columnIndex]}`); // Add or update the query parameter
         navigate(`${location.pathname}?${params.toString()}`, {
