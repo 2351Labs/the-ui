@@ -10,6 +10,9 @@ import Loading from "../../Loading";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 export default function CustomCatalogTable({ pageData, setPageData }) {
+  const keyToolContainerWidth = 5; //in px
+  const initialColumnWidth = 150; //in px
+
   axiosBackend.defaults.headers.common[
     "Authorization"
   ] = `${localStorage.getItem("token")}`;
@@ -68,8 +71,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
   const navigate = useNavigate();
 
   const [isSorting, setIsSorting] = useState({ columnKey: null, sortMode: 0 }); //0=no sort; 1=high 2=low
-  const keyToolContainerWidth = 5; //in px
-  const initialColumnWidth = 150; //in px
+
   // const entityExample = collectorSchemaTestData.collectorSchemaTestData;
   // const pageData = [
   //   { ...entityExample, ["Service Name"]: "ZTest" },
@@ -235,35 +237,58 @@ const ResizableColumn = ({
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
 
-  // Handle mouse down on the resizer
   const handleMouseDown = (e) => {
-    e.preventDefault(); // Stops the default action
+    if (e.preventDefault) e.preventDefault(); // Prevent unwanted default behavior
+    console.log("DOWN");
     isResizing.current = true;
     startX.current = e.clientX;
     startWidth.current = currentColumnWidth;
 
-    // Add event listeners to track movement
+    // Add event listeners for both mouse and touch
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("touchmove", handleMouseMove, { passive: false });
+    document.addEventListener("touchend", handleMouseUp);
   };
 
-  // Handle mouse move (resize)
+  // Handle touch start properly
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches.length > 0) {
+      handleMouseDown(e.touches[0]); // Pass the first touch event
+    }
+  };
+
+  // Handle mouse/touch move (resize & scroll left)
   const handleMouseMove = (e) => {
     if (!isResizing.current) return;
-    const newWidth = startWidth.current + (e.clientX - startX.current);
-    setColumnWidths((prev) => {
-      return {
-        ...prev,
-        [columnKey]: newWidth > minWidth ? newWidth : minWidth,
-      };
-    }); // Set a minimum width of 100px
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const newWidth = startWidth.current + (clientX - startX.current);
+
+    // Update column width
+    setColumnWidths((prev) => ({
+      ...prev,
+      [columnKey]: newWidth > minWidth ? newWidth : minWidth,
+    }));
+
+    // Scroll viewport left if touch is moving left
+    // if (e.touches) {
+    //   const container = document.querySelector(".rows-container");
+    //   const deltaX = clientX - startX.current;
+    //   if (deltaX < 0) {
+    //     container.scroll += deltaX; // Scroll left
+    //   }
+    // }
   };
 
-  // Handle mouse release
+  // Handle mouse/touch release
   const handleMouseUp = () => {
     isResizing.current = false;
+
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
+    document.removeEventListener("touchmove", handleMouseMove);
+    document.removeEventListener("touchend", handleMouseUp);
   };
 
   function handleToggleSort(e) {
@@ -348,7 +373,11 @@ const ResizableColumn = ({
       </div>
 
       <div className="key-tools-container">
-        <div className="line-draggable" onMouseDown={handleMouseDown}>
+        <div
+          className="line-draggable"
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+        >
           |
         </div>
       </div>

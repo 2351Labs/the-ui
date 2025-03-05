@@ -47,7 +47,6 @@ export default function SideBar(props) {
     ? {
         position: "absolute",
         height: "100%",
-        zIndex: "3",
         top: "0px",
         left: "0px",
         borderRadius: "0px",
