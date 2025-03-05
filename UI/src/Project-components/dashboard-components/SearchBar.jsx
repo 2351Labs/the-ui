@@ -8,7 +8,6 @@ import "../../css/searchBar.css";
 import { useNavigate } from "react-router-dom";
 import useViewportWidth from "../../helpers/useViewPortWidth";
 
-import MultiSelectPrime from "./MultiSelectPrime";
 export default function SearchBar() {
   const maxWidth = 480;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
@@ -56,7 +55,7 @@ export default function SearchBar() {
   const mainFilterSelectionCount = mainFilterSelection.length;
 
   function filterByTypes() {
-    let filterString = "&entityTypes=";
+    let filterString = "";
     let isFirst = true; // To track if we're adding the first item
 
     for (let key in mainFilterConfiguration) {
@@ -80,10 +79,12 @@ export default function SearchBar() {
         }
       }}
       onSubmit={(e) => {
+        const params = new URLSearchParams(location.search);
         e.preventDefault();
-        console.log(inputRef.current.value);
+        params.set("q", inputRef.current.value)
+        params.set("entityTypes", filterByTypes())
         navigate(
-          `/dashboard/catalog?q=${inputRef.current.value}${filterByTypes()}`,
+          `/dashboard/catalog?${params.toString()}`,
           {
             replace: true,
           }

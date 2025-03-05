@@ -101,7 +101,11 @@
     &[sortmode="1"],
     &[sortmode="2"] {
       opacity: 1 !important;
-      background-color: transparent;
+      background-color: var(--primary-light) !important;
+      svg,
+      path {
+        fill: var(--primary);
+      }
     }
     svg {
       min-height: 16px;
@@ -142,6 +146,18 @@
   #night-mode & {
     .row:nth-child(even) {
       background-color: var(--inversion-background-tint);
+    }
+    .toggle-sort-btn {
+      &[sortmode="1"] {
+      }
+      &[sortmode="1"],
+      &[sortmode="2"] {
+        background-color: var(--inversion-color-night-dark) !important;
+        svg,
+        path {
+          fill: var(--inversion-color-night);
+        }
+      }
     }
     .line-draggable {
       /* color: var(--inversion-color-night); */

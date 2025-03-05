@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 export default function CustomCatalogTable({ pageData, setPageData }) {
   const keyToolContainerWidth = 5; //in px
-  const initialColumnWidth = 150; //in px
+  const initialColumnWidth = 188; //in px
 
   axiosBackend.defaults.headers.common[
     "Authorization"
@@ -39,7 +39,6 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
   // const entityTypes = searchParams.get("entityTypes") || "";
 
   const [currentPage, setCurrentPage] = useState(1);
-  console.log("DEBUG", pageData, pageDataDisplay);
 
   const location = useLocation();
   const queryParamsString = location.search;
@@ -350,6 +349,11 @@ const ResizableColumn = ({
         // setPageDataDisplay(pageDataCopy);
         return;
       case 0: //reset to default
+        params.delete("sort"); // Add or update the query parameter
+        params.delete("sortBy"); // Add or update the query parameter
+        navigate(`${location.pathname}?${params.toString()}`, {
+          replace: true,
+        });
         setPageDataDisplay(pageData.items);
     }
   }
