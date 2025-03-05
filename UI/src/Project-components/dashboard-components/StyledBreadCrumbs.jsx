@@ -49,7 +49,7 @@ function BreadCrumbs({ props, className }) {
         <img src={backIcon} />
       </button> */}
       {breadCrumbsExcludingLast}
-      <span> &nbsp;{capitalizeFirstLetter(itemData.name)}</span>
+      <span> &nbsp;{capitalizeFirstLetter(itemData?.name)}</span>
     </div>
   );
 }

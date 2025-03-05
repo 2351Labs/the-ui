@@ -3,7 +3,7 @@ import "../../../css/CatalogPaginator.css";
 
 import ReactPaginate from "react-paginate";
 
-export default function CatalogPaginator({ pageCount = 0, onPageChange }) {
+export default function CatalogPaginator({ pageCount = 0, onPageChange, currentPage }) {
   return (
     <ReactPaginate
       previousLabel={"← Previous"}
@@ -16,6 +16,7 @@ export default function CatalogPaginator({ pageCount = 0, onPageChange }) {
       containerClassName={"CatalogPaginator"}
       activeClassName={"active"}
       disabledClassName={"disabled"}
+      forcePage={currentPage} // set the current page using props
     />
   );
 }

@@ -38,6 +38,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
   // const searchQuery = searchParams.get("q") || "";
   // const entityTypes = searchParams.get("entityTypes") || "";
 
+  const [currentPage, setCurrentPage] = useState(1);
   console.log("DEBUG", pageData, pageDataDisplay);
 
   const location = useLocation();
@@ -161,6 +162,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
                 columnKeys={columnKeys}
                 isSorting={isSorting}
                 setIsSorting={setIsSorting}
+                setCurrentPage={setCurrentPage}
               />
             );
           })}
@@ -206,9 +208,11 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
       </div>
       <div className="filler"></div>
       <CatalogPaginator
+        currentPage={currentPage - 1}
         fetchPagination={fetchPagination}
         pageCount={pageData?.totalPages}
         onPageChange={(e) => {
+          setCurrentPage(e.selected + 1);
           fetchPagination(e.selected + 1, pageSize);
         }}
       />
@@ -228,6 +232,7 @@ const ResizableColumn = ({
   columnKeys,
   isSorting,
   setIsSorting,
+  setCurrentPage,
 }) => {
   const minWidth = 100; //px
   const isResizing = useRef(false);
@@ -302,6 +307,9 @@ const ResizableColumn = ({
       //reset at 0 and add 1 to change to next mode
       currentSortMode = 1;
     }
+
+    setCurrentPage(1); //reset current page
+
     setIsSorting((prev) => {
       return { columnIndex: columnIndex, sortMode: currentSortMode }; //reset if past 3
     });

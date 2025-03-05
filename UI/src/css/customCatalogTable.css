@@ -5,13 +5,13 @@
   overflow: auto;
   width: 100%;
   height: 100%;
-  .filler{
-  flex:1;
+  .filler {
+    flex: 1;
   }
   .rows-container {
     display: flex;
     flex-direction: column;
-    width:100%;
+    width: 100%;
     height: 100%;
     overflow: auto;
     position: relative;
@@ -47,7 +47,7 @@
   .key-container {
     display: flex;
     align-items: center;
-m    &:hover .toggle-sort-btn {
+    &:hover .toggle-sort-btn {
       opacity: 0.6;
       background-color: rgb(235, 235, 235);
     }

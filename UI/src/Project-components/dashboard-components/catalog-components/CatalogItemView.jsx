@@ -48,8 +48,6 @@ export default function CatalogItemView() {
   }, []);
 
   const { entityData } = useLoaderData();
-  console.log("entityData!!", entityData);
-
 
   const navBarOptions = {
     documentation: {
@@ -60,7 +58,7 @@ export default function CatalogItemView() {
     changeHistory: {
       label: "Change History",
       svg: <HistorySVG />,
-      element: <ChangeHistory history={entityData.History}/>,
+      element: <ChangeHistory history={entityData?.History} />,
     },
     dependencies: {
       label: "Dependencies",
@@ -102,8 +100,10 @@ export default function CatalogItemView() {
   }
 
   function calculateAverage(metrics) {
-    let totalScore = metrics.reduce((sum, metric) => sum + metric.score, 0);
-    return (totalScore / metrics.length).toFixed(0);
+    if (metrics) {
+      let totalScore = metrics.reduce((sum, metric) => sum + metric.score, 0);
+      return (totalScore / metrics.length).toFixed(0);
+    }
   }
 
   return (
@@ -113,7 +113,7 @@ export default function CatalogItemView() {
       <div className="name-container">
         <div className="catalogItemName-container">
           <CatalogItemName
-            serviceName={entityData["Service Name"]}
+            serviceName={entityData?.["Service Name"]}
             // itemID={itemID}
             // itemDataState={{ value: itemData, setter: setItemData }}
           />
@@ -121,15 +121,17 @@ export default function CatalogItemView() {
             <img src={openSourceIcon} />
             <div className="badge-text">Open source</div>
           </div> */}
-          <div className="badge">
-            {/* <img src={openSourceIcon} /> */}
-            <div className="badge-text">{entityData["Entity Type"]}</div>
-          </div>
+          {
+            <div className="badge">
+              {/* <img src={openSourceIcon} /> */}
+              <div className="badge-text">{entityData?.["Entity Type"]}</div>
+            </div>
+          }
         </div>
 
         <div className="description-container">
           <InfoSVG className={"infoSVG"} />
-          <div className="details">{entityData.Description}</div>
+          <div className="details">{entityData?.Description}</div>
         </div>
 
         <CatalogNavigationBar
@@ -143,7 +145,7 @@ export default function CatalogItemView() {
         className="catalog-item-content"
       >
         <div className="left-split">
-          {navBarOptions[navBarSelection].element}
+          {navBarOptions?.[navBarSelection]?.element}
         </div>
         <div
           style={!isPastWidth ? { width: "100%" } : {}}
@@ -154,7 +156,7 @@ export default function CatalogItemView() {
               <div className="key">Product</div>
               <div className="value-container">
                 {/* <img className="link-icon" src={linkIcon} /> */}
-                <div className="value">{entityData.Product}</div>
+                <div className="value">{entityData?.Product}</div>
               </div>
             </div>
             <div className="row-container">
@@ -164,7 +166,7 @@ export default function CatalogItemView() {
                 <Score
                   invertForNightMode={true}
                   score={calculateAverage(
-                    entityData["Service Maturity Score(s)"]
+                    entityData?.["Service Maturity Score(s)"]
                   )}
                 />
               </div>
@@ -183,7 +185,7 @@ export default function CatalogItemView() {
               <div className="key">Version</div>
               <div className="value-container">
                 {/* <img className="link-icon" src={linkIcon} /> */}
-                <div className="value">{entityData.Version}</div>
+                <div className="value">{entityData?.Version}</div>
               </div>
             </div>
           </div>
@@ -193,8 +195,8 @@ export default function CatalogItemView() {
             <div className="value-container link-container">
               {/* <div className="link">github.com/chakra-ui/chakra-ui</div> */}
               <ExternalLink
-                url={entityData["Source Repo"]}
-                title={`${entityData["Source Repo"]}`}
+                url={entityData?.["Source Repo"]}
+                title={`${entityData?.["Source Repo"]}`}
                 // description={"Source Repository"}
               />
               {/* <img className="link-icon" src={linkIcon} /> */}
@@ -206,7 +208,7 @@ export default function CatalogItemView() {
               <div className="key">Last updated</div>
               <div className="value-container">
                 <div className="value">
-                  {formattedDate(entityData["Last Updated"])}
+                  {formattedDate(entityData?.["Last Updated"])}
                 </div>
               </div>
             </div>
@@ -229,7 +231,7 @@ export default function CatalogItemView() {
               <div className="key">Language</div>
               <div className="value-container">
                 <div className="value">
-                  {entityData["Programming Language"]}
+                  {entityData?.["Programming Language"]}
                 </div>
               </div>
             </div>

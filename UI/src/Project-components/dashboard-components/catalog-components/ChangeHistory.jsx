@@ -22,20 +22,22 @@ export default function ChangeHistory({ history }) {
   return (
     <div className="changeHistory">
       <h4 className="option-header">Timeline</h4>
-      <Timeline
-        value={history}
-        opposite={(item) => item.description}
-        // marker={<div>test</div>}
-        content={(item) => (
-          <>
-            <small className="text-color-secondary">
-              {formattedDate(item.time)}
-            </small>
+      {history && (
+        <Timeline
+          value={history}
+          opposite={(item) => item.description}
+          // marker={<div>test</div>}
+          content={(item) => (
+            <>
+              <small className="text-color-secondary">
+                {formattedDate(item.time)}
+              </small>
 
-            {/* <div>Added</div> */}
-          </>
-        )}
-      />
+              {/* <div>Added</div> */}
+            </>
+          )}
+        />
+      )}
     </div>
   );
 }
