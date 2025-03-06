@@ -2,26 +2,26 @@
   border: 2px solid var(--primary);
 }
 .catalog-searchbar {
-  color: rgb(70, 70, 70);
-  z-index: 1;
-  width: 60%;
-  max-width: 900px;
+  color: var(--main-color-2);
+  z-index: 2;
+  width: 100%;
+  max-width: 600px;
+  height: 48px;
+  box-sizing: border-box;
   border: 2px solid transparent;
-  background-color: var(--dashboard-grey);
+  background-color: var(--main-tint-1);
   padding: 3px 15px;
-  /* max-width: 500px; */
   border-radius: 30px;
   display: flex;
   align-items: center;
   font-size: 16px;
-  z-index: 5;
   font-weight: 600;
   .catalog-searchbar-container {
     display: flex;
     align-items: center;
   }
   .search-filter-container:hover {
-    background-color: var(--dashboard-grey-hover);
+    background-color: var(--main-tint-2);
   }
   .search-filter-container {
     display: flex;
@@ -40,21 +40,20 @@
     /* width: 100px; */
 
     .dropdown-list {
-      animation: dropdown 0.2s ease-in-out;
-
+      animation: fadeIn 0.15s ease-in-out;
       overflow: hidden;
-      background-color: var(--dashboard-grey);
+      background-color: var(--main-tint-1);
       position: absolute;
       top: 45px;
       left: 0px;
       border-radius: 5px;
       /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
-      box-shadow:var(--box-shadow);
-      animation: fadeIn 0.1s ease-in-out;
+      box-shadow: var(--box-shadow);
       border: 1px solid var(--main-tint-2);
 
       .filter-option-container:hover {
         /* background-color: var(--primary-light); */
+        background-color: var(--main-tint-2);
       }
       .filter-option-container {
         font-weight: 500;
@@ -63,34 +62,41 @@
         padding: 2px 5px;
         gap: 5px;
         .dropdown-checkbox {
-          background-color: rgb(255, 255, 255);
+          background-color: white;
           padding: 4px 4px;
           margin: 5px;
           cursor: pointer;
           width: 10px;
           height: 10px;
           border-radius: 5px;
-          border: 1px solid rgb(207, 207, 207);
+          border: var(--border);
           &.checked {
-            background-color: var(--primary);
+            background-color: var(--primary-light);
             border: 1px solid transparent;
+            svg,
+            path {
+              stroke: var(--primary);
+            }
           }
         }
       }
     }
+
     .dropdown {
       translate: 0px 1px;
-      /* transition: .2s ease-in-out all; */
+      transition: 0.2s ease-in-out all;
     }
   }
 
   .splitter {
     height: 28px;
   }
-  img {
+
+  img,
+  svg {
     width: 20px;
-    transition: 0.2s ease-in-out all;
   }
+
   .search-icon {
     /* margin-right: 10px; */
     padding: 0px 5px;
@@ -99,8 +105,9 @@
     background-color: transparent;
     border: none;
     font-size: 16px;
-    color: black;
+    color: rgb(0, 0, 0);
     width: 110px;
+    margin-left: 10px;
   }
   .filter-selection {
     white-space: nowrap;
@@ -108,7 +115,7 @@
   input:focus {
     /* outline: rgb(151, 151, 151) 1px solid; */
     outline: none;
-    color: black;
+    color: rgb(0, 0, 0);
   }
 }
 
@@ -119,21 +126,32 @@
   }
   /* background-color: var(--background-tint-night) !important; */
   .search-filter-container {
+    &&:hover {
+      background-color: var(--inversion-background-tint-1);
+    }
     &.highlighted {
       border-color: var(--inversion-color-night);
     }
   }
-  .dropdown-list{
+  .filter-option-container:hover {
+    /* background-color: var(--primary-light); */
+    background-color: var(--inversion-background-tint-2);
+  }
+  .dropdown-list {
     background-color: var(--inversion-background-tint);
     box-shadow: var(--inversion-box-shadow);
     border: 1px solid var(--inversion-background-tint-2);
   }
   .dropdown-checkbox {
+    /* border: var(--inversion-border); */
     &.checked {
-      background-color: var(--inversion-color-night);
+      background-color: var(--inversion-color-night-dark);
+      /* background-color: var(--inversion-color-night); */
+
       svg,
       path {
-        /* stroke: rgb(255, 255, 255); */
+        stroke: var(--inversion-color-night);
+        /* stroke: var(--inversion-background); */
       }
     }
     &:not(.checked) {
@@ -144,5 +162,4 @@
       }
     }
   }
- 
 }

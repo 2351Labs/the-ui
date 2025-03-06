@@ -19,32 +19,61 @@ import LoggedInChecker from "../LoggedInChecker";
 import UserButton from "./UserButton";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+// context for editing document:
+import { CatalogItemViewContext } from "../context/catalogItemViewContext";
+import EditDocumentPopup from "./catalog-components/EditDocumentPopup";
 export default function Dashboard() {
+  const [pageData, setPageData] = useState(null); //stores data containing items and more. Loaded in customCatalogTable
+
+  // for edit document context:
+  const [editingDocument, setEditingDocument] = useState({
+    isEnabled: false,
+    header: null,
+    text: null,
+  });
+
   const navigate = useNavigate();
   // sidebar selection controls content element displayed:
-  const [sidebarSelection, setsidebarSelection] = useState({
-    name: "Home",
-    element: <div>Home</div>,
-  });
-  const [isDarkMode, setIsDarkMode] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
-  const [toggleSidebar, setToggleSidebar] = useState(true);
-  const [userData, setUserData] = useState();
+  const [isValidToken, setIsValidToken] = useState(true);
+  // assume token valid while waiting for response for user data from server
   const sidebarOptions = {
-    Catalog: {
+    catalog: {
       label: "Catalog",
+      name: "catalog",
       element: <Catalog />,
       svg: <CatalogSVG />,
     },
-    Reports: {
+    reports: {
       label: "Reports",
+      name: "reports",
       element: <div>EMPTY</div>,
       svg: <ReportsSVG />,
     },
-    People: { label: "People", element: <div>EMPTY</div>, svg: <PeopleSVG /> },
+    people: { label: "People", element: <div>EMPTY</div>, svg: <PeopleSVG /> },
     // ServiceMaturity: {label:"Service Maturity", element: <div>EMPTY</div>, img: reportsIcon },
   };
+
+  const [sidebarSelection, setsidebarSelection] = useState(
+    () => {
+      const pathSegments = window.location.pathname.split("/").filter(Boolean);
+      const section = pathSegments[1]?.toLocaleLowerCase() || null; // Get second segment or return null if it doesn't exist
+
+      if (section) {
+        return sidebarOptions[section];
+      } else {
+        return null;
+      }
+    }
+    //   {
+    //   name: "Catalog",
+    //   element:  <Catalog />,
+    // }
+  );
+  const [isDarkMode, setIsDarkMode] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [userData, setUserData] = useState();
 
   axios.defaults.headers.common[
     "Authorization"
@@ -55,21 +84,53 @@ export default function Dashboard() {
     axios
       .get("http://localhost:3000/user/getUser")
       .then((response) => {
-        console.log("RESPONSE DATA", response)
+        // console.log("RESPONSE DATA", response);
         setUserData(response.data);
       })
       .catch((error) => {
         console.error(error);
+        setIsValidToken(false);
         // navigate("/login")
       });
+  }, []);
+
+  function handleToggleSidebar() {
+    setToggleSidebar(!toggleSidebar);
+    document
+      .querySelector(".dashboard--container")
+      .setAttribute("sidebar-state", `${!toggleSidebar}`);
+  }
+
+  const maxWidth = 1100;
+  const [isPastWidth, setIsPastWidth] = useState(window.innerWidth <= maxWidth);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= maxWidth) {
+        setIsPastWidth(false);
+        // document
+        //   .querySelector(".dashboard--container")
+        //   .setAttribute("sidebar-popup-mode", `${false}`);
+      } else {
+        setIsPastWidth(true);
+        // document
+        //   .querySelector(".dashboard--container")
+        //   .setAttribute("sidebar-popup-mode", `${true}`);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div
       id={isDarkMode ? "night-mode" : undefined}
       className="dashboard--container"
+      sidebar-state="false"
     >
       <SideBar
+        setToggleSidebar={setToggleSidebar}
         sidebarOptions={sidebarOptions}
         sidebarState={{
           value: sidebarSelection,
@@ -79,57 +140,53 @@ export default function Dashboard() {
         }}
       />
       <div className="dashboard--right">
-        <div className="top-container">
-          <button
-            onClick={(e) => {
-              setToggleSidebar(!toggleSidebar);
-            }}
-            className="sidebar-toggle-btn"
-          >
-            <img className="sidebar-icon" src={sidebarIcon} />
-          </button>
-          {/* <div
-            style={{ display: "flex", width: "100%", justifyContent: "center" }}
-          > */}
-          <SearchBar />
-          <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
-            {/* <NightModeSwitch
-              darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
-            /> */}
-            <div style={{marginRight:"20px"}}>
-              <UserButton
-                darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
-                userData={userData}
-              />
+        <div
+          style={!isPastWidth ? { width: "97%" } : { width: `85%` }}
+          className="right-inside-wrapper"
+        >
+          <div className="top-container">
+            <button
+              onClick={handleToggleSidebar}
+              className="sidebar-toggle-btn"
+            >
+              <img className="sidebar-icon" src={sidebarIcon} />
+            </button>
+
+            <SearchBar />
+            <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
+              <div style={{ marginRight: "5px" }}>
+                <UserButton
+                  darkModeState={{ value: isDarkMode, setter: setIsDarkMode }}
+                  userData={userData}
+                />
+              </div>
             </div>
-
-            {/* <UserSVG className={"user-icon"} /> */}
           </div>
-
-          {/* <button
-            onClick={() => {
-              setIsDarkMode(!isDarkMode);
-            }}
-          >
-            NIGHT MODE
-          </button> */}
-          {/* </div> */}
-        </div>
-        {/* CONTENT: */}
-        <div className="dashboard--content">
-          <div className="content-centered">
-            <Outlet />
+          {/* CONTENT: */}
+          <div className="dashboard--content">
+            <div className="content-centered">
+              <CatalogItemViewContext.Provider
+                value={{ editingDocument, setEditingDocument, userData }}
+              >
+                {/* for edit document state */}
+                <Outlet />
+                {/* react router will insert elements using Outlet according to URL path: */}
+              </CatalogItemViewContext.Provider>
+            </div>
           </div>
-          {/* {sidebarSelection?.element} */}
-
-          {/* react router will insert elements using Outlet according to URL path: */}
         </div>
       </div>
 
       {/* possible search param-eters:
       type, date, name
       */}
-      <LoggedInChecker />
+      {editingDocument.isEnabled && (
+        <EditDocumentPopup
+          editingDocument={editingDocument}
+          setEditingDocument={setEditingDocument}
+        />
+      )}
+      <LoggedInChecker isValidToken={isValidToken} />
     </div>
   );
 }

@@ -1,12 +1,29 @@
 import "../../css/filterBar.css";
 import DropDown from "./DropDown";
 import useViewportWidth from "../../helpers/useViewPortWidth";
+import { useEffect, useState } from "react";
 export default function FilterBar(props) {
-  const { filterConfigurationState, toggleSidebar } = props;
+  const { filterConfigurationState } = props;
+  const [isPastWidthAndSideBarClosed, setIsPastWidthAndSideBarClosed] =
+    useState(false);
 
-  // const isPast1030pxAndSideBarClosed = useViewportWidth(1230) || !toggleSidebar;
+  useEffect(() => {
+    function handleResize() {
+      const isSidebarEnabled =
+        document
+          .querySelector(".dashboard--container")
+          .getAttribute("sidebar-state") === "true";
 
-  
+      const isPastWidthAndSideBarClosed =
+        window.innerWidth >= 750 && !isSidebarEnabled;
+
+      setIsPastWidthAndSideBarClosed(isPastWidthAndSideBarClosed);
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+  }, []);
+
   function optionClickHandler(option, label, e) {
     e.stopPropagation();
     // update main filter configuration state stored at dashboard level
@@ -23,6 +40,7 @@ export default function FilterBar(props) {
 
   return (
     <div className="FilterBar">
+      {isPastWidthAndSideBarClosed ? (
         <>
           <DropDown
             label={"Search By"}
@@ -49,6 +67,14 @@ export default function FilterBar(props) {
             optionClickHandler={optionClickHandler}
           />
         </>
+      ) : (
+        <DropDown
+          label={"Filter By"}
+          list={["Tags", "Status", "Criticality", "Dependencies"]}
+          listState={filterConfigurationState.value}
+          optionClickHandler={optionClickHandler}
+        />
+      )}
     </div>
   );
 }

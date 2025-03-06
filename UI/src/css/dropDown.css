@@ -1,13 +1,4 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    translate: 0px -15px;
-  }
-  to {
-    opacity: 1;
-    translate: 0px 0px;
-  }
-}
+
 .DropDown:hover {
   background-color: rgb(238, 238, 238) !important;
 }
@@ -15,12 +6,13 @@
   border: 1px solid var(--primary) !important;
 }
 .DropDown {
-  z-index: 2;
-  color: rgb(70, 70, 70) !important;
+  user-select: none;
+  color: var(--main-color-2) !important;
   display: flex;
   gap: 5px;
   box-sizing: border-box;
   height: 36px;
+  width: 100%;
   padding: 10px 10px;
   border-radius: 10px;
   justify-content: center;
@@ -31,10 +23,10 @@
   color: black;
   font-family: "DM Sans", serif;
   font-size: 14px;
-  /* background-color: var(--dashboard-grey) !important; */
-  background-color: rgb(245, 245, 245) !important;
+  /* background-color: var(--main-tint-1) !important; */
+  background-color: var(--main);
   cursor: pointer;
-  border: 1px solid rgb(216, 216, 216) !important;
+  border: var(--border) !important;
   /* border: "1px solid var(--primary)" */
   .dropdown-label {
     text-wrap: nowrap;
@@ -47,22 +39,29 @@
     width: 20px;
     translate: 0px 1px;
     transition: 0.2s ease-in-out all;
+    svg,
+    path {
+      fill: var(--main-color-2);
+    }
   }
 
   .dropdown-list {
-    animation: fadeIn 0.1s ease-in-out;
+    animation: fadeIn 0.15s ease-in-out;
     z-index: 2;
     /* background-color: var(--dashboard-grey); */
     position: absolute;
-    min-width: 100%;
+    width: fit-content;
     top: 40px;
-    left: 0px;
+    /* left: 0px; */
+    right:0;
     overflow: hidden;
+    background-color: var(--main-tint-1);
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
     /* box-shadow: 0px 0px 5px 0px rgb(175, 175, 175); */
     box-shadow: var(--box-shadow);
-    border: 1px solid var(--main-tint-2);
-
+    border: var(--border);
     /* .option-btn:hover {
       background-color: var(--primary-light);
     } */
@@ -71,10 +70,11 @@
       align-items: center;
       cursor: pointer;
       gap: 5px;
-      min-width: 100%;
+      padding: 2px 5px;
+      background-color: var(--main-tint-1);
       /* font-weight: 600; */
       &&:hover {
-        background-color: var(--main-tint-1);
+        background-color: var(--main-tint-2);
       }
       .option-label {
         display: flex;
@@ -96,10 +96,11 @@
           padding: 4px 4px;
           margin: 5px;
           cursor: pointer;
-          width: 10px;
+          min-width: 10px;
+          max-width: 10px;
           height: 10px;
           border-radius: 5px;
-          border: 1px solid rgb(207, 207, 207);
+          border: var(--border);
           &.checked {
             background-color: var(--primary);
             border: 1px solid transparent;
@@ -111,11 +112,13 @@
 }
 
 #night-mode .DropDown {
-  background-color: var(--inversion-background-tint) !important;
+  /* background-color: var(--inversion-background-tint) !important; */
+  background-color: var(--inversion-background) !important;
   .dropdown-list {
     box-shadow: var(--inversion-box-shadow);
   }
   .dropdown-checkbox {
+    border: var(--inversion-border);
     &.checked {
       svg,
       path {

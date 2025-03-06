@@ -8,12 +8,22 @@ import Dashboard from "./Project-components/dashboard-components/Dashboard.jsx";
 import ErrorPage from "./Project-components/ErrorPage.jsx";
 import Catalog from "./Project-components/dashboard-components/catalog-components/Catalog.jsx";
 import CatalogItemView from "./Project-components/dashboard-components/catalog-components/CatalogItemView.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useSearchParams,
+} from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MicrosoftAuthCallback from "./Project-components/MicrosoftAuthCallback.jsx";
 import SignupPage from "./Project-components/SignupPage.jsx";
+import Test from "./Project-components/Test.jsx";
+import collectorSchemaTestData from "../collectorSchemaTestData.js";
+import CustomCatalogTable from "./Project-components/dashboard-components/catalog-components/CustomCatalogTable.jsx";
+import CatalogPaginator from "./Project-components/dashboard-components/catalog-components/CatalogPaginator.jsx";
 // for dev purposees
+import axiosBackend from "./helpers/axiosBackend.js";
+import ComingSoon from "./Project-components/dashboard-components/ComingSoon.jsx";
 const catalogData = {
   1: {
     name: "Order Service",
@@ -37,26 +47,38 @@ const catalogData = {
 
 const router = createBrowserRouter([
   {
+    path: "/",
+    element: <div>HOME</div>,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/dashboard",
     element: <Dashboard />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "catalog",
-        element: <Catalog />,
+        element: <Catalog key="Catalog" />,
 
         // loader: async ({ params }) => {
         // },
       },
       {
-        path: "/dashboard/catalog/:itemID",
-        element: <CatalogItemView />,
-
+        path: "/dashboard/catalog/:itemID", //If item loaded when viewing in catalog, skip loading when going to view it
+        element: <CatalogItemView key="CatalogItemView" />,
+        // ?preloaded=true
         loader: async ({ params }) => {
-          return {
-            itemDataLoader: catalogData[params.itemID],
-            itemID: params.itemID,
-          };
+          try {
+            const response = await axiosBackend.get(
+              `/items/id/${params.itemID}`
+            );
+            console.log("RESPONJSE!!", response);
+            return {
+              entityData: response.data,
+            };
+          } catch (error) {
+            console.log("ERROR", error);
+          }
         },
         // children: [
         //   {
@@ -71,11 +93,11 @@ const router = createBrowserRouter([
       },
       {
         path: "reports",
-        element: <div>Reports</div>,
+        element: <ComingSoon name={"Reports"} />,
       },
       {
         path: "people",
-        element: <div>People</div>,
+        element: <ComingSoon name={"People"} />,
       },
     ],
   },
@@ -89,6 +111,32 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   { path: "/auth/microsoftAuthCallback", element: <MicrosoftAuthCallback /> },
+  {
+    path: "/test",
+
+    // loader: async ({ params }) => {
+    // },
+    element: <Test />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/test/table",
+
+    // loader: async ({ params }) => {
+    // },
+    element: <Test />,
+    errorElement: (
+      <div style={{ backgroundColor: "#ffffff", height: "100%" }}>
+        <CustomCatalogTable key="CustomCatalogTable" />
+        <CatalogPaginator
+          pageCount={5}
+          onPageChange={() => {
+            console.log("handle");
+          }}
+        />
+      </div>
+    ),
+  },
 ]);
 const client_id =
   "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";

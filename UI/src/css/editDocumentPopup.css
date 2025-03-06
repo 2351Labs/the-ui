@@ -1,0 +1,80 @@
+@keyframes popupGrow {
+  0% {
+    transform: scale(.5);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.EditDocumentPopup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(39, 39, 39, 0.9) !important;
+  ::selection {
+    background-color: rgb(
+      207,
+      207,
+      207
+    ); /* Background color when text is highlighted */
+  }
+  .popup-container {
+    animation: popupGrow 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 90%;
+    justify-content: center;
+    flex-direction: column;
+    /* margin: 50px; */
+  }
+  h1 {
+    color: white;
+  }
+  textarea {
+    font-family: "DM Sans", serif;
+    background-color: #ffffff;
+
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    line-height: 22px;
+    font-weight: 300;
+    display: flex;
+    padding: 40px;
+    border: none;
+    border-radius: 5px;
+    aspect-ratio: 9 / 16; /* Aspect ratio: width / height */
+    resize: none;
+    &&:focus {
+      outline: none;
+    }
+  }
+  .buttons-container {
+    display: flex;
+    gap: 30px;
+    button {
+      color: white;
+      font-size: 18px;
+    }
+  }
+  #night-mode && {
+    background-color: rgba(22, 22, 22, 0.9) !important;
+    filter: invert(1);
+
+    textarea {
+      background-color: #e0e0e0;
+    }
+  }
+  ::selection {
+    background-color: rgb(
+      173,
+      173,
+      173
+    ) !important; /* Background color when text is highlighted */
+  }
+}

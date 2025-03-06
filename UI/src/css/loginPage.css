@@ -12,7 +12,7 @@
     margin-top: 10px;
   }
   .microsoft {
-    opacity: .5;
+    /* opacity: .5; */
     cursor: default !important;
   }
   .divider-container {

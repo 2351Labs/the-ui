@@ -4,27 +4,24 @@ import styled from "styled-components";
 
 import capitalizeFirstLetter from "../../helpers/capitilizeFirstLetter";
 function BreadCrumbs({ props, className }) {
+  const {itemData} = props;
   // use current URL
   const url = new URL(window.location);
   const paths = url.pathname.split("/").filter((segment) => segment !== "");
 
   const breadCrumbsExcludingLast = paths.map((path, index) => {
-    if (!(index + 1 == paths.length)) {
-      // exclude last
-
-      // create link for path item
-
+    if (!(index + 1 == paths.length) && !(index == 0)) {
+      // exclude last and first
       function arrayToPath(paths) {
         return "/" + paths.join("/");
       }
 
-      // Example usage:
       const pathsCopy = [...paths];
       const pathArray = pathsCopy.splice(0, index + 1);
       const urlPath = arrayToPath(pathArray);
 
       return (
-        <div key={index} style={{ opacity: ".6", cursor: "default" }}>
+        <div key={index} style={{ opacity: ".65", cursor: "default" }}>
           <Link to={urlPath}>
             <div style={{ cursor: "pointer" }} className="bread-crumb">
               {capitalizeFirstLetter(path)}
@@ -38,7 +35,7 @@ function BreadCrumbs({ props, className }) {
   });
   return (
     <div
-      className={className}
+      className={`BreadCrumbs ${className}`}
       style={{ zIndex: "1", cursor: "default" }}
       // className="catalog-bread-crumbs"
     >
@@ -52,7 +49,7 @@ function BreadCrumbs({ props, className }) {
         <img src={backIcon} />
       </button> */}
       {breadCrumbsExcludingLast}
-      <span> &nbsp;{capitalizeFirstLetter(paths[paths.length - 1])}</span>
+      <span> &nbsp;{capitalizeFirstLetter(itemData?.name)}</span>
     </div>
   );
 }
@@ -62,16 +59,22 @@ const Style = styled(BreadCrumbs)`
   align-items: center;
   /* opacity: 0.6; */
   font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  background-color: white;
+  // position: sticky;
+  // top: 0;
+
+  // position: fixed;
+  // top: 75px;
+  width: ;
+
+  // width:100%;
+  background-color: var(--main);
   /* width: fit-content; */
   /* border-radius: 10px; */
   padding-bottom: 10px;
-  border-bottom: 1px solid rgb(201, 201, 201);
+  border-bottom: var(--border);
   display: flex;
-  align-items: center;
+  box-shadow: var(-night-box-shadow);
+
   div {
     display: flex;
     .bread-crumb:hover {

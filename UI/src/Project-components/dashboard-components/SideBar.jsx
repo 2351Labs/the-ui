@@ -8,22 +8,45 @@ import reportsIcon from "../../assets/dashboard/reports.svg";
 import "../../css/sideBar.css";
 import useViewportWidth from "../../helpers/useViewPortWidth";
 import useClickOutside from "../../helpers/useClickOutside";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import bellIcon from "../../assets/dashboard/bell.svg";
 import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
-  const { sidebarState, sidebarOptions } = props;
+  const { sidebarState, sidebarOptions, setToggleSidebar } = props;
+  const maxWidth = 600;
+  const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= maxWidth) {
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${false}`);
+        setIsPastWidth(false);
+      } else {
+        document
+          .querySelector(".dashboard--container")
+          .setAttribute("sidebar-popup-mode", `${true}`);
+        setIsPastWidth(true);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const sidebarRef = useRef(null);
-  const isPast725px = useViewportWidth(725);
   useClickOutside(sidebarRef, () => {
-    !isPast725px && sidebarState.setToggleSidebar(false);
+    document
+      .querySelector(".dashboard--container")
+      .setAttribute("sidebar-state", `${false}`);
+    setToggleSidebar(false);
   });
 
-  const popupConfig = !(isPast725px && sidebarState.isEnabled)
+  const popupConfig = !(isPastWidth && sidebarState.isEnabled)
     ? {
         position: "absolute",
         height: "100%",
-        zIndex: "3",
         top: "0px",
         left: "0px",
         borderRadius: "0px",
@@ -34,7 +57,7 @@ export default function SideBar(props) {
   return (
     <>
       {/* hide sidebar if under 725px and sidebar closed */}
-      {(isPast725px || sidebarState.isEnabled) && (
+      {(isPastWidth || sidebarState.isEnabled) && (
         <div
           ref={sidebarRef}
           style={
@@ -84,20 +107,20 @@ export default function SideBar(props) {
                     key={index}
                     sidebarState={sidebarState}
                     svg={sidebarOptions[objectKey].svg}
-                    name={sidebarOptions[objectKey].label}
+                    name={sidebarOptions[objectKey].label.toLowerCase()}
                     element={sidebarOptions[objectKey].element}
                   />
                 );
               })}
             </div>
             {/* seperate: */}
-            <Option
+            {/* <Option
               sidebarOptions={sidebarOptions}
               sidebarState={sidebarState}
-              svg={<UserSVG/>}
+              svg={<UserSVG />}
               name={"Jared Stoddard"}
               element={<div>IN DEV</div>}
-            />
+            /> */}
           </div>
           {/* <Option img={homeIcon} name={"Dashboard"}/> */}
         </div>

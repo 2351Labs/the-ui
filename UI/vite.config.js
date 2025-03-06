@@ -8,6 +8,6 @@ export default defineConfig({
     port: 5174,
   },
   optimizeDeps: {
-    exclude: ['@react-oauth/google']
-  }
+    exclude: ["@react-oauth/google"],
+  },
 });

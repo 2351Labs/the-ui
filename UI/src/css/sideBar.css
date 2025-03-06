@@ -6,17 +6,32 @@
     }
   } */
 
+[sidebar-state="false"] {
+  .sidebar {
+    /* margin-right: 183px; */
+  }
+}
+
 .sidebar {
   /* min-width: 87px; */
   /* height: 100%; */
+  z-index: 100;
+  position: fixed;
+  top: 10px;
+  left: 10px;
   flex-direction: column;
   overflow-x: hidden;
   display: flex;
-  background-color: #f1f1f1;
+  height: calc(100% - 20px);
+  background-color: var(--main-tint-1);
   /* padding: 20px; */
   border-radius: 15px;
   /* border: 1px solid rgb(228, 228, 228); */
-  box-shadow: 0px 0px 5px 0px var(--dashboard-shadow);
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  box-sizing: border-box;
+  /* z-index: 100; */
+
   .bell-icon {
     width: 20px;
   }
@@ -38,6 +53,8 @@
   }
   .top {
     /* height: 100px; */
+    color: var(--main-color-2);
+
     padding: 20px 20px;
     .top-welcome {
       text-wrap: nowrap;
@@ -69,7 +86,7 @@
       max-height: 40px;
       /* fill: white; */
       path {
-        stroke: rgb(0, 0, 0);
+        stroke: var(--main-color-2);
         /* fill: white; */
       }
     }
@@ -86,7 +103,8 @@
   .option {
     color: black;
     text-decoration: none;
-    padding: 15px 30px;
+    padding: 10px 20px;
+    margin: 5px 10px;
     /* border-top: 1px solid var(--dashboard-grey-hover); */
     /* transition: 0.4s ease-in-out; */
     display: flex;
@@ -94,9 +112,14 @@
     align-items: center;
     gap: 16px;
     font-weight: 600;
+    border-radius: 15px;
     text-wrap: nowrap;
+    overflow: hidden;
     /* background-color: rgb(224, 224, 224); */
     height: 26px;
+    opacity: 0.5;
+    border: 1px solid transparent;
+
     svg {
       min-width: 20px;
       min-height: 20px;
@@ -108,8 +131,8 @@
     /* border-bottom: 1px solid  var(--dashboard-grey-hover); */
   }
   .option:hover {
-    background-color: var(--dashboard-grey-hover);
-    transition: 0.15s ease-in-out;
+    background-color: var(--main-tint-2);
+    /* transition: 0.15s ease-in-out; */
     cursor: pointer;
   }
   #selected {
@@ -123,13 +146,25 @@
     max-height: 40px;
     /* fill: white; */
     path {
-      /* fill: white; */
+      fill: white;
     }
   }
+  .highlighted {
+    /* color: var(--primary); */
+    /* color: white; */
+    color: var(--primary);
+    opacity: 1;
+    background-color: var(--primary-light) !important;
+    /* background-color: var(--main) !important; */
+    /* background-color: var(--main) !important; */
+    /* background-color: transparent !important; */
+    border: 1px solid transparent;
+  }
   .highlighted svg {
-    fill: var(--primary);
+    fill: white;
 
     path {
+      /* fill: white; */
       fill: var(--primary);
     }
   }
@@ -159,19 +194,39 @@
 
   background-color: var(--inversion-background-tint);
   box-shadow: 0px 0px 5px 0px var(--inversion-background);
+  border: var(--inversion-border);
 
   .option:hover {
     background-color: var(--inversion-background-tint-2);
   }
+  .logo {
+    filter: invert(1);
+    path {
+      fill: var(--night-background-tint);
+      stroke: rgb(112, 112, 112);
+    }
+  }
+  .option {
+    border: 2px solid transparent;
+  }
   .option.highlighted {
     svg {
       path {
-        /* fill: white; */
-        fill: var(--inversion-color-night);
+        /* fill: rgb(255, 255, 255); */
+        fill: var(--primary);
+
+        /* fill: var(--inversion-color-night); */
       }
     }
   }
   .highlighted {
-    background-color: var(--inversion-background-tint-2) !important;
+    filter: invert(1);
+    /* background-color: var(--night-background) !important; */
+    background-color: var(--primary-dark) !important;
+
+
+    color: var(--primary);
+    border: 2px solid transparent;
+    /* background-color: var(--inversion-background-tint-2) !important; */
   }
 }

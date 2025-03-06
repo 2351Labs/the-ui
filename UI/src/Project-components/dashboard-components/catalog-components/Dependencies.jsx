@@ -1,11 +1,14 @@
 import { OrganizationChart } from "primereact/organizationchart";
 import "../../../css/dependencies.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TreeTable } from "primereact/treetable";
 import { Column } from "primereact/column";
-import wandIcon from "../../../assets/dashboard/wand.svg";
+import WandSVG from "../../../assets/dashboard/wand.svg?react";
+import SideBar from "../SideBar";
 
-export default function Dependencies() {
+export default function Dependencies(props) {
+  const { isPastWidth } = props;
+  // const isPastWidth = 880;
   const [nodeSelection, setNodeSelection] = useState(null);
   const [isVisualizeEnabled, setIsVisualizedEnabled] = useState(false);
   const nodeData = [
@@ -410,27 +413,50 @@ export default function Dependencies() {
       ],
     },
   ];
+
+  const [viewPortWidth, setViewPortWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setViewPortWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const tableStyling = () => {
+    const isMobileMode = !(
+      document
+        .querySelector(".dashboard--container")
+        .getAttribute("sidebar-popup-mode") === "true"
+    );
+    if (isMobileMode) {
+      const settings = { width: `${viewPortWidth - 30}px` };
+      return settings;
+    } else {
+      const settings = isPastWidth
+        ? { width: `${viewPortWidth - 800}px` }
+        : { width: `${viewPortWidth - 160}px` };
+      return settings;
+    }
+  };
   return (
     <div className="dependencies">
-      <h3 className="option-header">Dependencies (12)</h3>
+      <h4 className="option-header">Dependencies (12)</h4>
       <button
         onClick={() => {
           setIsVisualizedEnabled(!isVisualizeEnabled);
         }}
         className="visualize-btn"
       >
-        <img className="wand-icon" src={wandIcon} />
+        <WandSVG className="wand-icon" />
         Visualize
       </button>
-      {/* <div className="dependency-list">
-        <div className="list-item">Service 1</div>
-        <div className="list-item">Service 2</div>
-        <div className="list-item">Service 3</div>
-        <div className="list-item">Service 4</div>
-    
-      </div> */}
+
       {!isVisualizeEnabled ? (
-        <div className="tree-table">
+        <div style={tableStyling()} className="tree-table">
           <TreeTable
             paginator
             rows={5}
@@ -449,17 +475,19 @@ export default function Dependencies() {
           </TreeTable>
         </div>
       ) : (
-        <OrganizationChart
-          onNodeSelect={(e) => {
-            setNodeSelection(e.node.key);
-          }}
-          selectionMode={"single"}
-          value={data}
-        />
+        <div style={tableStyling()} className="tree-table">
+          <OrganizationChart
+            onNodeSelect={(e) => {
+              setNodeSelection(e.node.key);
+            }}
+            selectionMode={"single"}
+            value={data}
+          />
+        </div>
       )}
 
       <h3 className="option-header">Dependents (5)</h3>
-      <div className="tree-table">
+      <div style={tableStyling()} className="tree-table">
         <TreeTable
           paginator
           rows={5}
