@@ -12,7 +12,7 @@ export default function LoggedInChecker(props) {
       {!isValidToken && (
         <div className="LoggedInChecker">
           <div className="container">
-            <div className="header">Welcome Back</div>
+            <div className="header">Welcome</div>
             <div className="message">Log in or sign up to continue.</div>
             <div className="btn-container">
               <button
