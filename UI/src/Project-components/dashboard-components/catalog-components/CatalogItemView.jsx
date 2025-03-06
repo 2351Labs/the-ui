@@ -22,8 +22,8 @@ import Ownership from "./Ownership";
 import ExternalLink from "../ExternalLink.jsx";
 import collectorSchemaTestData from "../../../../collectorSchemaTestData.js";
 import EntityHelp from "./EntityHelp.jsx";
+import EditDocumentPopup from "./EditDocumentPopup.jsx";
 import Score from "../../Score.jsx";
-import { CatalogItemViewContext } from "../../context/catalogItemViewContext";
 export default function CatalogItemView() {
   const maxWidth = 1100;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
@@ -47,13 +47,25 @@ export default function CatalogItemView() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { entityData } = useLoaderData();
-
+  const { entityDataLoaded } = useLoaderData();
+  const [entityData, setEntityData] = useState(entityDataLoaded);
+  // for edit document context:
+  const [editingDocument, setEditingDocument] = useState({
+    isEnabled: false,
+    document: entityData?.["Internal Documentation"]?.document,
+    test:"here"
+  });
   const navBarOptions = {
     documentation: {
       label: "Documentation",
       svg: <DocumentSVG />,
-      element: <Documentation entityData={entityData} />,
+      element: (
+        <Documentation
+          entityData={entityData}
+          setEditingDocument={setEditingDocument}
+          document={editingDocument?.document}
+        />
+      ),
     },
     changeHistory: {
       label: "Change History",
@@ -246,6 +258,15 @@ export default function CatalogItemView() {
           </div> */}
         </div>
       </div>
+      {console.log("DOCUEMNT", editingDocument)}
+      {editingDocument.isEnabled && (
+        <EditDocumentPopup
+          title={entityData?.["Service Name"]}
+          document={editingDocument?.document}
+          setEditingDocument={setEditingDocument}
+          docId={entityData._id}
+        />
+      )}
     </div>
   );
 }

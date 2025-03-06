@@ -22,7 +22,7 @@ export default function ChangeHistory({ history }) {
   return (
     <div className="changeHistory">
       <h4 className="option-header">Timeline</h4>
-      {history && (
+      {history ? (
         <Timeline
           value={history}
           opposite={(item) => item.description}
@@ -37,7 +37,7 @@ export default function ChangeHistory({ history }) {
             </>
           )}
         />
-      )}
+      ) : <div>No events to show</div>}
     </div>
   );
 }

@@ -4,11 +4,9 @@ import ArrowSVG from "../../../assets/arrow.svg?react";
 import CatalogPaginator from "./CatalogPaginator";
 import axiosBackend from "../../../helpers/axiosBackend";
 import { useSearchParams, useLocation } from "react-router-dom";
-import { CatalogItemViewContext } from "../../context/catalogItemViewContext";
 import Loading from "../../Loading";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
 export default function CustomCatalogTable({ pageData, setPageData }) {
   const keyToolContainerWidth = 5; //in px
   const initialColumnWidth = 188; //in px
@@ -29,7 +27,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
     "Version",
     "Product",
   ];
-  const { userData } = useContext(CatalogItemViewContext);
+  // const { userData } = useContext(CatalogItemViewContext);
   // const [searchParams] = useSearchParams();
   // const searchQuery = searchParams.get("q");
   const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +64,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
 
   useEffect(() => {
     fetchPagination(startingPage, pageSize);
-  }, [location, userData]); //run also when userData loads (when logged in)
+  }, [location]); //run also when userData loads (when logged in)
 
   const navigate = useNavigate();
 

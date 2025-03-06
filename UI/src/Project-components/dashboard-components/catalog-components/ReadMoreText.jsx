@@ -1,13 +1,29 @@
-import { useState, useContext } from "react";
+import {
+  useState,
+  useContext,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import { CatalogItemViewContext } from "../../context/catalogItemViewContext";
 import "../../../css/readMoreText.css";
-const ReadMoreText = ({ text, title }) => {
-  const { setEditingDocument, editingDocument } = useContext(
-    CatalogItemViewContext
-  );
 
+const ReadMoreText = ({ text, title, setEditingDocument }) => {
   const [expanded, setExpanded] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const paragraphRef = useRef(null);
+
   const lineLimit = 3;
+
+  useLayoutEffect(() => {
+    if (paragraphRef.current) {
+      const lineHeight = parseInt(
+        getComputedStyle(paragraphRef.current).lineHeight
+      );
+      const maxHeight = lineHeight * lineLimit;
+      setIsOverflowing(paragraphRef.current.scrollHeight > maxHeight);
+    }
+  }, [text]);
 
   const paragraphStyle = {
     overflow: "hidden",
@@ -20,57 +36,42 @@ const ReadMoreText = ({ text, title }) => {
 
   return (
     <div className="ReadMoreText" style={{ position: "relative" }}>
-      <p style={paragraphStyle}>{text}</p>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "start",
-          gap: "20px",
-        }}
-      >
-        {!expanded ? (
+      <p ref={paragraphRef} style={paragraphStyle}>
+        {text}
+      </p>
+      <>
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          {isOverflowing && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                marginTop: "8px",
+                cursor: "pointer",
+                padding: "0px",
+                textDecoration: "underline",
+              }}
+            >
+              {expanded ? "Close" : "Read More"}
+            </button>
+          )}
+
           <button
-            onClick={() => setExpanded(true)}
+            onClick={() =>
+              setEditingDocument((prev) => {
+                return {...prev, isEnabled: true };
+              })
+            }
             style={{
               marginTop: "8px",
-              // color: "blue",
-              cursor: "pointer",
-              textDecoration: "underline",
-              padding: "0px",
-            }}
-          >
-            Read More
-          </button>
-        ) : (
-          <button
-            onClick={() => setExpanded(false)}
-            style={{
-              marginTop: "8px",
-              // color: "blue",
               cursor: "pointer",
               padding: "0px",
               textDecoration: "underline",
             }}
           >
-            Close
+            Edit Document
           </button>
-        )}
-        <button
-          onClick={() =>
-            setEditingDocument({ isEnabled: true, text: text, title: title })
-          }
-          style={{
-            marginTop: "8px",
-            // color: "blue",
-            cursor: "pointer",
-            padding: "0px",
-            textDecoration: "underline",
-          }}
-        >
-          Edit Document
-        </button>
-      </div>
+        </div>
+      </>
     </div>
   );
 };

@@ -25,13 +25,6 @@ import EditDocumentPopup from "./catalog-components/EditDocumentPopup";
 export default function Dashboard() {
   const [pageData, setPageData] = useState(null); //stores data containing items and more. Loaded in customCatalogTable
 
-  // for edit document context:
-  const [editingDocument, setEditingDocument] = useState({
-    isEnabled: false,
-    header: null,
-    text: null,
-  });
-
   const navigate = useNavigate();
   // sidebar selection controls content element displayed:
   const [isValidToken, setIsValidToken] = useState(true);
@@ -165,13 +158,9 @@ export default function Dashboard() {
           {/* CONTENT: */}
           <div className="dashboard--content">
             <div className="content-centered">
-              <CatalogItemViewContext.Provider
-                value={{ editingDocument, setEditingDocument, userData }}
-              >
-                {/* for edit document state */}
-                <Outlet />
-                {/* react router will insert elements using Outlet according to URL path: */}
-              </CatalogItemViewContext.Provider>
+              {/* for edit document state */}
+              <Outlet />
+              {/* react router will insert elements using Outlet according to URL path: */}
             </div>
           </div>
         </div>
@@ -180,12 +169,7 @@ export default function Dashboard() {
       {/* possible search param-eters:
       type, date, name
       */}
-      {editingDocument.isEnabled && (
-        <EditDocumentPopup
-          editingDocument={editingDocument}
-          setEditingDocument={setEditingDocument}
-        />
-      )}
+
       <LoggedInChecker isValidToken={isValidToken} />
     </div>
   );

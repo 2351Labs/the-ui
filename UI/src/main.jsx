@@ -69,13 +69,14 @@ const router = createBrowserRouter([
         element: <CatalogItemView key="CatalogItemView" />,
         // ?preloaded=true
         loader: async ({ params }) => {
+          console.log("LOADINBG")
           try {
             const response = await axiosBackend.get(
               `/items/id/${params.itemID}`
             );
             console.log("RESPONJSE!!", response);
             return {
-              entityData: response.data,
+              entityDataLoaded: response.data,
             };
           } catch (error) {
             console.log("ERROR", error);

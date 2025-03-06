@@ -31,7 +31,7 @@ export default function LoginPage(props) {
           }
         );
         localStorage.setItem("token", response.data.token); // Store token
-        navigate("/dashboard");
+        navigate("/dashboard/catalog");
       } catch (error) {
         if (!error?.response?.data?.error) {
           setRequestError("Could not connect to server. Try again.");
@@ -50,7 +50,7 @@ export default function LoginPage(props) {
       });
       localStorage.setItem("token", response.data.token); // Store token
 
-      navigate("/dashboard");
+      navigate("/dashboard/catalog");
     } catch (error) {
       if (!error?.response?.data?.error) {
         setRequestError("Could not connect to server. Try again.");
