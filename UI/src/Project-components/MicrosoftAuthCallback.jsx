@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/microsoftAuthCallback.css";
 import { useState } from "react";
-import SpinnerSVG from '../assets/spinner.svg?react'
+import SpinnerSVG from "../assets/spinner.svg?react";
+import axiosBackend from "../helpers/axiosBackend";
 const MicrosoftAuthCallback = () => {
   console.log("CALLBACK TIME");
   const navigate = useNavigate();
@@ -19,19 +20,16 @@ const MicrosoftAuthCallback = () => {
   }, []); // Empty dependency array to run the effect once when component mounts
 
   useEffect(() => {
-    console.log("RUN")
     const urlParams = new URLSearchParams(window.location.search);
     const authCode = urlParams.get("code");
     console.log("params", urlParams);
     if (authCode) {
       // Send auth code to backend
-      axios
-        .post("http://localhost:3000/user/oauth/microsoft", { code: authCode })
+      axiosBackend
+        .post("/user/oauth/microsoft", { code: authCode })
         .then((response) => {
-          console.log("respnse", response);
           localStorage.setItem("token", response.data.token);
-          console.log("MICROSOFT TOKEN", response.data.token);
-            navigate("/dashboard");
+          navigate("/dashboard/catalog");
         })
         .catch((error) => {
           console.error("Error exchanging auth code:", error);
@@ -44,14 +42,15 @@ const MicrosoftAuthCallback = () => {
 
   return (
     <div className="microsoftAuthCallback">
-      <SpinnerSVG className="spinner"/>
+      <SpinnerSVG className="spinner" />
       <div
         className={showMessage ? "visible" : "hidden"}
         onClick={() => {
           navigate("/login");
         }}
       >
-        Click to return to <strong>Log in</strong> if not automatically redirected.
+        Click to return to <strong>Log in</strong> if not automatically
+        redirected.
       </div>
     </div>
   );

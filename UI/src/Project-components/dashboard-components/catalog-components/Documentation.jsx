@@ -5,7 +5,6 @@ import InfoSVG from "../../../assets/dashboard/catalog-assets/info.svg?react";
 import CopySVG from "../../../assets/copy.svg?react";
 import Score from "../../Score.jsx";
 export default function Documentation({entityData, document, setEditingDocument }) {
-  console.log("ENTITY DATA", entityData);
 
   const gitHubSVG = (
     <svg

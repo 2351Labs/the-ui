@@ -258,7 +258,6 @@ export default function CatalogItemView() {
           </div> */}
         </div>
       </div>
-      {console.log("DOCUEMNT", editingDocument)}
       {editingDocument.isEnabled && (
         <EditDocumentPopup
           title={entityData?.["Service Name"]}

@@ -5,20 +5,16 @@ import axiosBackend from "../../../helpers/axiosBackend";
 export default function EditDocumentPopup(props) {
   const { document, docId, setEditingDocument, title } = props;
   const [textChanges, setTextChanges] = useState(document);
-  console.log("document!!#!", document);
   async function handleSave() {
-    setEditingDocument((prev) => ({
-      ...prev,
-      document: textChanges,
-      isEnabled: false,
-    }));
-
     try {
-      console.log("SENDING REQ")
       const response = await axiosBackend.put(`/items/document/${docId}`, {
         document: `${textChanges}`,
       });
-      console.log("response!!", response);
+      setEditingDocument((prev) => ({
+        ...prev,
+        document: textChanges,
+        isEnabled: false,
+      }));
     } catch (error) {
       console.log("Error while saving", error);
     }

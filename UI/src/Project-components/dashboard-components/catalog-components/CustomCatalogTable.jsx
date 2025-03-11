@@ -241,7 +241,6 @@ const ResizableColumn = ({
 
   const handleMouseDown = (e) => {
     if (e.preventDefault) e.preventDefault(); // Prevent unwanted default behavior
-    console.log("DOWN");
     isResizing.current = true;
     startX.current = e.clientX;
     startWidth.current = currentColumnWidth;

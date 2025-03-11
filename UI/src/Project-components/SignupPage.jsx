@@ -7,10 +7,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validatePassword from "../helpers/validatePassword";
 import validateEmail from "../helpers/validateEmail";
-
+import axiosBackend from "../helpers/axiosBackend";
 // for microsoft OAUTH:
 const MICROSOFT_CLIENT_ID = "3063a465-dc3d-4f51-b0eb-c13634cba3b2";
-const MICROSOFT_REDIRECT_URI = "http://localhost:5174/auth/microsoftAuthCallback";
+const MICROSOFT_REDIRECT_URI = "https://the-api-yuq4.onrender.com/auth/microsoftAuthCallback";
 const MICROSOFT_AUTH_URL = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${MICROSOFT_CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
   MICROSOFT_REDIRECT_URI
 )}&scope=openid profile email&response_mode=query`;
@@ -23,8 +23,8 @@ export default function SignupPage() {
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/user/oauth/google",
+        const response = await axiosBackend.post(
+          "/user/oauth/google",
           {
             // http://localhost:3001/auth/google backend that will exchange the code
             code,
@@ -59,7 +59,7 @@ export default function SignupPage() {
     } else {
       // login req sent to backend
       try {
-        const response = await axios.post("http://localhost:3000/user/signup", {
+        const response = await axiosBackend.post("/user/signup", {
           ...form,
         });
         localStorage.setItem("token", response.data.token); // Store token

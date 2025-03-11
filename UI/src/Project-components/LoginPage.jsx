@@ -7,11 +7,11 @@ import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axiosBackend from "../helpers/axiosBackend";
 // for microsoft OAUTH:
 const MICROSOFT_CLIENT_ID = "3063a465-dc3d-4f51-b0eb-c13634cba3b2";
 const MICROSOFT_REDIRECT_URI =
-  "http://localhost:5174/auth/microsoftAuthCallback";
+  "https://scrollos.netlify.app/auth/microsoftAuthCallback";
 const MICROSOFT_AUTH_URL = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${MICROSOFT_CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
   MICROSOFT_REDIRECT_URI
 )}&scope=openid profile email&response_mode=query`;
@@ -24,12 +24,9 @@ export default function LoginPage(props) {
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/user/oauth/google",
-          {
-            code,
-          }
-        );
+        const response = await axiosBackend.post("/user/oauth/google", {
+          code,
+        });
         localStorage.setItem("token", response.data.token); // Store token
         navigate("/dashboard/catalog");
       } catch (error) {
@@ -45,7 +42,7 @@ export default function LoginPage(props) {
   async function submitForm() {
     // login req sent to backend
     try {
-      const response = await axios.post("http://localhost:3000/user/login", {
+      const response = await axiosBackend.post("/user/login", {
         ...form,
       });
       localStorage.setItem("token", response.data.token); // Store token
@@ -61,7 +58,6 @@ export default function LoginPage(props) {
           "Error. Try using Google or Microsoft account to sign in."
         );
       } else {
-        console.log("JERE");
         console.log("err", error);
         setRequestError(error.response.data.error);
       }
