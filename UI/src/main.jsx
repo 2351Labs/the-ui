@@ -69,16 +69,16 @@ const router = createBrowserRouter([
         element: <CatalogItemView key="CatalogItemView" />,
         // ?preloaded=true
         loader: async ({ params }) => {
-          console.log("LOADINBG")
           try {
             const response = await axiosBackend.get(
               `/items/id/${params.itemID}`
             );
-            console.log("RESPONJSE!!", response);
             return {
               entityDataLoaded: response.data,
             };
           } catch (error) {
+            //if cannot get data, usually means user not logged in so redirect to login
+            window.location.href = "/dashboard/catalog"; 
             console.log("ERROR", error);
           }
         },

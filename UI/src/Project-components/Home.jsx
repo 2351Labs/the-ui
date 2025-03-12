@@ -9,5 +9,5 @@ export default function Home() {
     //redirect
     navigate("/dashboard/catalog", { replace: true });
   }, []);
-  return <div>HOME!</div>;
+  return <div></div>;
 }
