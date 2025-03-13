@@ -16,7 +16,7 @@ export default function CustomCatalogTable({ pageData, setPageData }) {
   ] = `${localStorage.getItem("token")}`;
 
   const startingPage = 1;
-  const pageSize = 11;
+  const pageSize = 12;
   //   Set columns to display
   const columnKeys = [
     "Service Name",

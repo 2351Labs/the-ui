@@ -53,7 +53,7 @@ export default function CatalogItemView() {
   const [editingDocument, setEditingDocument] = useState({
     isEnabled: false,
     document: entityData?.["Internal Documentation"]?.document,
-    test:"here"
+    test: "here",
   });
   const navBarOptions = {
     documentation: {
@@ -72,11 +72,11 @@ export default function CatalogItemView() {
       svg: <HistorySVG />,
       element: <ChangeHistory history={entityData?.History} />,
     },
-    dependencies: {
-      label: "Dependencies",
-      svg: <TreeStructureSVG />,
-      element: <Dependencies isPastWidth={isPastWidth} />,
-    },
+    // dependencies: {
+    //   label: "Dependencies",
+    //   svg: <TreeStructureSVG />,
+    //   element: <Dependencies isPastWidth={isPastWidth} />,
+    // },
 
     // ownership: {
     //   label: "Ownership",
@@ -137,6 +137,12 @@ export default function CatalogItemView() {
             <div className="badge">
               {/* <img src={openSourceIcon} /> */}
               <div className="badge-text">{entityData?.["Entity Type"]}</div>
+            </div>
+          }
+          {
+            <div className="badge">
+              {/* <img src={openSourceIcon} /> */}
+              <div className="badge-text">v{entityData?.["Version"]}</div>
             </div>
           }
         </div>
