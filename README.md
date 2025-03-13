@@ -4,6 +4,16 @@
 
 ## Description: 
 This repository contains the front end for a catalog, intended to centralize your services, libraries, code and any other data with useful features for discovery, getting help, and version history.
+# Key Features:
+-OAuth 2.0 for google and microsoft
+-RBAC
+-JWT tokens to secure backend endpoints
+-Schema validation for database
+-Pagination endpoint that accepts a wide variety of optional query parameters used to fetch and filter results from database.
+-State for catalog filter stored in browser url as query paramaters allowing for sharable links that store set filter
+-40+ custom react components
+-Deployed using Netlify, Render, and MongoDB Atlas
+-Responsive design that works well with any mobile screen size
 
 ## Deployed Application Link:
 https://scrollos.netlify.app
