@@ -10,6 +10,7 @@ This repository contains the front end for a catalog, intended to centralize you
 - RBAC
 - JWT tokens to secure backend endpoints
 - Schema validation for database
+- Custom design for light mode and dark mode
 - Pagination endpoint that accepts a wide variety of optional query parameters used to fetch and filter results from database
 - State for catalog filter stored in browser url as query paramaters allowing for sharable links that store set filter
 - Deployed using Netlify, Render, and MongoDB Atlas
