@@ -19,9 +19,9 @@ This repository contains the front end for a catalog, intended to centralize you
 https://scrollos.netlify.app
 
 ## Main Technologies:
--MongoDB for database
--React with react-router for front end
--Express and Node.js for back-end
+- MongoDB for database
+- React with react-router for front end
+- Express and Node.js for back-end
 
 ## License: 
 This project is licensed under the MIT License 
