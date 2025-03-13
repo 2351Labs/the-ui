@@ -23,6 +23,12 @@ https://scrollos.netlify.app
 -React for front end
 -Express and Node.js for back-end
 
+## License: 
+This project is licensed under the MIT License 
+## Questions?: 
+https://github.com/stoddardjd2
+
+Or contact me at: jared.stoddard2@gmail.com
 
 ## Demo:
 ### Discover items in your catalog. (Dark Mode and Light Mode Examples)
@@ -69,9 +75,3 @@ https://scrollos.netlify.app
 ![Demo 13](/Scrollos-demo-images/13.png?raw=true)
 <br/><br/>
 
-## License: 
-This project is licensed under the MIT License 
-## Questions?: 
-https://github.com/stoddardjd2
-
-Or contact me at: jared.stoddard2@gmail.com
