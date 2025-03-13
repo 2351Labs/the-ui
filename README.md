@@ -68,7 +68,7 @@ Or contact me at: jared.stoddard2@gmail.com
 ![Demo 11](/Scrollos-demo-images/11.png?raw=true)
 <br/><br/>
 
-### Responsive design that works well with any mobile screen size for all pages.
+### Responsive design that works well with any mobile screen size for all pages. (Mobile View)
 ![Demo 12](/Scrollos-demo-images/12.png?raw=true)
 <br/><br/>
 
