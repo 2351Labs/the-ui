@@ -5,7 +5,7 @@
 ## Description: 
 This repository contains the front end for a catalog, intended to centralize your services, libraries, code and any other data with useful features for discovery, getting help, and version history.
 
-##Deployed Application Link:
+## Deployed Application Link:
 https://scrollos.netlify.app
 
 ## Technologies:
