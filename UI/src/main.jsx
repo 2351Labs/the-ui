@@ -24,6 +24,7 @@ import CatalogPaginator from "./Project-components/dashboard-components/catalog-
 // for dev purposees
 import axiosBackend from "./helpers/axiosBackend.js";
 import ComingSoon from "./Project-components/dashboard-components/ComingSoon.jsx";
+import Home from "./Project-components/Home.jsx";
 const catalogData = {
   1: {
     name: "Order Service",
@@ -48,7 +49,7 @@ const catalogData = {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>HOME</div>,
+    element: <Home />,
     errorElement: <ErrorPage />,
   },
   {
@@ -72,11 +73,12 @@ const router = createBrowserRouter([
             const response = await axiosBackend.get(
               `/items/id/${params.itemID}`
             );
-            console.log("RESPONJSE!!", response);
             return {
-              entityData: response.data,
+              entityDataLoaded: response.data,
             };
           } catch (error) {
+            //if cannot get data, usually means user not logged in so redirect to login
+            window.location.href = "/dashboard/catalog"; 
             console.log("ERROR", error);
           }
         },

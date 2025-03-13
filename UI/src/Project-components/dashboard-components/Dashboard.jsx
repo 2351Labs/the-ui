@@ -18,19 +18,13 @@ import NightModeSwitch from "./NightModeSwitch";
 import LoggedInChecker from "../LoggedInChecker";
 import UserButton from "./UserButton";
 import axios from "axios";
+import axiosBackend from "../../helpers/axiosBackend";
 import { useNavigate } from "react-router-dom";
 // context for editing document:
 import { CatalogItemViewContext } from "../context/catalogItemViewContext";
 import EditDocumentPopup from "./catalog-components/EditDocumentPopup";
 export default function Dashboard() {
   const [pageData, setPageData] = useState(null); //stores data containing items and more. Loaded in customCatalogTable
-
-  // for edit document context:
-  const [editingDocument, setEditingDocument] = useState({
-    isEnabled: false,
-    header: null,
-    text: null,
-  });
 
   const navigate = useNavigate();
   // sidebar selection controls content element displayed:
@@ -75,14 +69,14 @@ export default function Dashboard() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [userData, setUserData] = useState();
 
-  axios.defaults.headers.common[
+  axiosBackend.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${localStorage.getItem("token")}`;
-  axios.defaults.headers.common["Content-Type"] = "application/json";
+  axiosBackend.defaults.headers.common["Content-Type"] = "application/json";
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/user/getUser")
+    axiosBackend
+      .get("/user/getUser")
       .then((response) => {
         // console.log("RESPONSE DATA", response);
         setUserData(response.data);
@@ -92,6 +86,22 @@ export default function Dashboard() {
         setIsValidToken(false);
         // navigate("/login")
       });
+
+    // check again when token is set to expire.
+    const interval = setInterval(() => {
+      axiosBackend
+        .get("/user/getUser")
+        .then((response) => {
+          setUserData(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+          setIsValidToken(false);
+          // navigate("/login")
+        });
+    }, 14400000); // 4 hours in milliseconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   function handleToggleSidebar() {
@@ -165,13 +175,9 @@ export default function Dashboard() {
           {/* CONTENT: */}
           <div className="dashboard--content">
             <div className="content-centered">
-              <CatalogItemViewContext.Provider
-                value={{ editingDocument, setEditingDocument, userData }}
-              >
-                {/* for edit document state */}
-                <Outlet />
-                {/* react router will insert elements using Outlet according to URL path: */}
-              </CatalogItemViewContext.Provider>
+              {/* for edit document state */}
+              <Outlet />
+              {/* react router will insert elements using Outlet according to URL path: */}
             </div>
           </div>
         </div>
@@ -180,12 +186,7 @@ export default function Dashboard() {
       {/* possible search param-eters:
       type, date, name
       */}
-      {editingDocument.isEnabled && (
-        <EditDocumentPopup
-          editingDocument={editingDocument}
-          setEditingDocument={setEditingDocument}
-        />
-      )}
+
       <LoggedInChecker isValidToken={isValidToken} />
     </div>
   );

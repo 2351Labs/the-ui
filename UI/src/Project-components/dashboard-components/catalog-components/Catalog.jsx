@@ -64,12 +64,12 @@ export default function Catalog() {
           </div>
         </div>
 
-        <FilterBar
+        {/* <FilterBar
           filterConfigurationState={{
             value: filterConfiguration,
             setter: setFilterConfiguration,
           }}
-        />
+        /> */}
       </div>
 
       {/* <StyledCatalogTableMUI /> */}

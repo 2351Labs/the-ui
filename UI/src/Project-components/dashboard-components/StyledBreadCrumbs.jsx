@@ -27,7 +27,6 @@ function BreadCrumbs({ props, className }) {
               {capitalizeFirstLetter(path)}
             </div>
           </Link>
-
           <div> &nbsp;&nbsp;/&nbsp;&nbsp;</div>
         </div>
       );

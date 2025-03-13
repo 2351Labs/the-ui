@@ -24,6 +24,8 @@
     background-color: var(--main-tint-1);
     color: black;
     border: var(--border);
+    text-wrap: nowrap;
+    overflow: auto;
   }
 
   & li a:hover {

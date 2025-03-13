@@ -1,13 +1,25 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 // import { CatalogItemViewContext } from "../../context/CatalogItemViewContext";
 import "../../../css/EditDocumentPopup.css";
+import axiosBackend from "../../../helpers/axiosBackend";
 export default function EditDocumentPopup(props) {
-  const { editingDocument, setEditingDocument } = props;
-  const [textChanges, setTextChanges] = useState(editingDocument.text);
-
-  function handleSave() {
-    setEditingDocument((prev) => ({ ...prev, text: textChanges }));
+  const { document, docId, setEditingDocument, title } = props;
+  const [textChanges, setTextChanges] = useState(document);
+  async function handleSave() {
+    try {
+      const response = await axiosBackend.put(`/items/document/${docId}`, {
+        document: `${textChanges}`,
+      });
+      setEditingDocument((prev) => ({
+        ...prev,
+        document: textChanges,
+        isEnabled: false,
+      }));
+    } catch (error) {
+      console.log("Error while saving", error);
+    }
   }
+
   function handleClose() {
     setEditingDocument((prev) => ({
       ...prev,
@@ -32,20 +44,17 @@ export default function EditDocumentPopup(props) {
       }}
     >
       <div className="popup-container">
-        <h1>{editingDocument.title}</h1>
+        <h1>{title}</h1>
         <textarea
           style={{
             height: "100%",
-            fontFamily: `${"DM Sans"}, serif}`,
+            fontFamily: `DM Sans, serif`,
           }}
           value={textChanges}
           onChange={(e) => setTextChanges(e.target.value)}
         />
         <div className="buttons-container" style={{ marginTop: "10px" }}>
-          <button
-            onClick={() => handleSave(text)}
-            style={{ marginRight: "10px" }}
-          >
+          <button onClick={handleSave} style={{ marginRight: "10px" }}>
             Save
           </button>
           <button onClick={handleClose}>Cancel</button>
