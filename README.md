@@ -5,7 +5,7 @@
 ## Description: 
 This repository contains the front end for a catalog, intended to centralize your services, libraries, code and any other data with useful features for discovery, getting help, and version history.
 # Key Features:
-- 40+ custom react components
+- 40+ custom react components styled with vanilla CSS
 - OAuth 2.0 for google and microsoft
 - RBAC
 - JWT tokens to secure backend endpoints
