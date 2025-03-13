@@ -57,7 +57,7 @@ Or contact me at: jared.stoddard2@gmail.com
 <br/><br/>
 
 ### Edit documentation.
-![Demo 9](/Scrollos-demo-images/9.png?raw=true)
+![Demo 9](/Scrollos-demo-images/9-v2.png?raw=true)
 <br/><br/>
 
 ### View change history.
