@@ -30,7 +30,7 @@ https://scrollos.netlify.app
 ![Demo 5](/Scrollos-demo-images/5.png?raw=true)
 <br/><br/>
 ### View various catalog item details, starting with documentation.
-![Demo 6](/Scrollos-demo-images/6.png?raw=true)
+![Demo 6](/Scrollos-demo-images/6-v2.png?raw=true)
 <br/><br/>
 ### More of the documentation view.
 ![Demo 7](/Scrollos-demo-images/7.png?raw=true)
