@@ -18,9 +18,9 @@ This repository contains the front end for a catalog, intended to centralize you
 ## Deployed Application Link:
 https://scrollos.netlify.app
 
-## Technologies:
+## Main Technologies:
 -MongoDB for database
--React for front end
+-React with react-router for front end
 -Express and Node.js for back-end
 
 ## License: 
