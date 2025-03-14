@@ -1,7 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Scrollos-UI
-
+# Catoalog-UI
 ## Description: 
 This repository contains the front end for a catalog, intended to centralize your services, libraries, code and any other data with useful features for discovery, getting help, and version history.
 # Key Features:
