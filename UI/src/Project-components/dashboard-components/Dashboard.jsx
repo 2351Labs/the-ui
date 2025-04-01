@@ -140,6 +140,7 @@ export default function Dashboard() {
       sidebar-state="false"
     >
       <SideBar
+        userData={userData}
         setToggleSidebar={setToggleSidebar}
         sidebarOptions={sidebarOptions}
         sidebarState={{

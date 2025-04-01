@@ -63,7 +63,6 @@ export default function Catalog() {
             )} */}
           </div>
         </div>
-
         {/* <FilterBar
           filterConfigurationState={{
             value: filterConfiguration,

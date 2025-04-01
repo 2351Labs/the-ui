@@ -5,7 +5,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useGoogleOneTapLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosBackend from "../helpers/axiosBackend";
 // for microsoft OAUTH:
@@ -20,6 +20,17 @@ export default function LoginPage(props) {
   const navigate = useNavigate();
   const [requestError, setRequestError] = useState();
   const [form, setForm] = useState({ email: null, password: null });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const isDemo = params.get("demo"); // Replace 'key' with the parameter name
+
+    console.log("DEMO, ", isDemo);
+    if (isDemo == "true") {
+      console.log("IS DEMO!, ", isDemo);
+      submitForm({ email: "demo@gmail.com", password: "ScrollosDemo$1" });
+    }
+  }, []); //if demo link, login with demo account
 
   const googleLogin = useGoogleLogin({
     onSuccess: async ({ code }) => {
@@ -39,13 +50,21 @@ export default function LoginPage(props) {
     flow: "auth-code",
   });
 
-  async function submitForm() {
+  async function submitForm(overrideForm) {
     // login req sent to backend
     try {
-      const response = await axiosBackend.post("/user/login", {
-        ...form,
-      });
-      localStorage.setItem("token", response.data.token); // Store token
+      console.log("SUBMIT", form);
+      if (overrideForm) {
+        const response = await axiosBackend.post("/user/login", {
+          ...overrideForm,
+        });
+        localStorage.setItem("token", response.data.token); // Store token
+      } else {
+        const response = await axiosBackend.post("/user/login", {
+          ...form,
+        });
+        localStorage.setItem("token", response.data.token); // Store token
+      }
 
       navigate("/dashboard/catalog");
     } catch (error) {

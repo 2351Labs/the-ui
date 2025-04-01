@@ -113,32 +113,32 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   { path: "/auth/microsoftAuthCallback", element: <MicrosoftAuthCallback /> },
-  {
-    path: "/test",
+  // {
+  //   path: "/test",
 
-    // loader: async ({ params }) => {
-    // },
-    element: <Test />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/test/table",
+  //   // loader: async ({ params }) => {
+  //   // },
+  //   element: <Test />,
+  //   errorElement: <ErrorPage />,
+  // },
+  // {
+  //   path: "/test/table",
 
-    // loader: async ({ params }) => {
-    // },
-    element: <Test />,
-    errorElement: (
-      <div style={{ backgroundColor: "#ffffff", height: "100%" }}>
-        <CustomCatalogTable key="CustomCatalogTable" />
-        <CatalogPaginator
-          pageCount={5}
-          onPageChange={() => {
-            console.log("handle");
-          }}
-        />
-      </div>
-    ),
-  },
+  //   // loader: async ({ params }) => {
+  //   // },
+  //   element: <Test />,
+  //   errorElement: (
+  //     <div style={{ backgroundColor: "#ffffff", height: "100%" }}>
+  //       <CustomCatalogTable key="CustomCatalogTable" />
+  //       <CatalogPaginator
+  //         pageCount={5}
+  //         onPageChange={() => {
+  //           console.log("handle");
+  //         }}
+  //       />
+  //     </div>
+  //   ),
+  // },
 ]);
 const client_id =
   "446172791092-ijgfqcf5v4120o4kr6mkif88m8n4v2t8.apps.googleusercontent.com";
