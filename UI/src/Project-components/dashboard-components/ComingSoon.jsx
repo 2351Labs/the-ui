@@ -8,7 +8,7 @@ export default function ComingSoon({name}) {
         height: "100%",
       }}
     >
-      <h1>In Development</h1>
+      <h1>Coming Soon...</h1>
     </div>
   );
 }

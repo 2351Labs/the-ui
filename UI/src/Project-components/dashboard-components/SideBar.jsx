@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import bellIcon from "../../assets/dashboard/bell.svg";
 import UserSVG from "../../assets/dashboard/user.svg?react";
 export default function SideBar(props) {
-  const { sidebarState, sidebarOptions, setToggleSidebar } = props;
+  const { sidebarState, sidebarOptions, setToggleSidebar, userData } = props;
   const maxWidth = 600;
   const [isPastWidth, setIsPastWidth] = useState(useViewportWidth(maxWidth));
   useEffect(() => {
@@ -91,7 +91,11 @@ export default function SideBar(props) {
               style={sidebarState.isEnabled ? {} : { visibility: "hidden" }}
               className="top-welcome"
             >
-              Welcome, Jared!
+              {`Welcome${
+                userData?.profile?.firstName
+                  ? `, ${userData?.profile?.firstName}`
+                  : ""
+              }!`}
             </div>
 
             <div className="border"></div>

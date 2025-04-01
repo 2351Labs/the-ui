@@ -5,7 +5,7 @@ import axios from "axios";
 
 // const apiUrl = "https://the-api-yuq4.onrender.com";
 // const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrl = "http://localhost:3000";
+const apiUrl = window.env.VITE_API_URL;
 
 const axiosBackend = axios.create({
   baseURL: apiUrl,
